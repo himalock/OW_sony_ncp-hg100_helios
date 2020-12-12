@@ -8,7 +8,14 @@
 / {
 	model = "Sony NCP-HG100";
 	compatible = "sony,ncp-hg100", "qcom,ipq4019";
-
+/*
+	aliases {
+		led-boot = &led_blue0;
+		led-failsafe = &led_red0;
+		led-running = &led_blue0;
+		led-upgrade = &led_red0;
+	};
+*/
 	chosen {
 	/*	bootargs = "root=/dev/mmcblk0p16 rootfstype=squashfs,ext4 rootwait"; */
 		bootargs-append = " clk_ignore_unused";
@@ -89,18 +96,10 @@
 			switch_mac_mode = <0x0>; /* mac mode for RGMII RMII */
 			switch_initvlas = <0x0007c 0x54>; /* PORT0_STATUS */
 		};
-
-		qpic-nand@79b0000 {
-			status = "disabled";
-		};
-	};
-
-	leds {
-		compatible = "gpio-leds";
 	};
 
 	gpio-keys {
-		compatible = "gpio_keys_polled";
+		compatible = "gpio_keys";
 		pinctrl-0 = <&gpiokey_pins>;
 		pinctrl-names = "default";
 		autorepeat;
@@ -379,6 +378,14 @@
 		};
 	};
 
+	mcu_reset: mcu_pinmux {
+		mux {
+			pins = "gpio5";
+			function = "gpio";
+			baias-disabled;
+		};
+	};
+
 	usb-pwr-en {
 		gpio-hog;
 		gpios = <36 GPIO_ACTIVE_HIGH>;
@@ -479,12 +486,14 @@
 
 		chan0 {
 			chan-name = "led1_g";
+			label = "wan:green";
 			led-cur = /bits/ 8 <50>;
 			max-cur = /bits/ 8 <100>;
 		};
 
 		chan1 {
 			chan-name = "led1_b";
+			label = "wan:blue";
 			led-cur = /bits/ 8 <50>;
 			max-cur = /bits/ 8 <100>;
 		};
@@ -515,6 +524,7 @@
 
 		chan6 {
 			chan-name = "led1_r";
+			label = "wan:red";
 			led-cur = /bits/ 8 <50>;
 			max-cur = /bits/ 8 <100>;
 		};
@@ -597,7 +607,7 @@
 	rt5628@18 {
 		compatible = "rt5628";
 		reg = <0x18>;
-		status = "ok";
+		status = "okay";
 		pinctrl-0 = <&alc1304_pins>;
 		pinctrl-names = "default";
 		shutdown-gpio = <&tlmm 44 GPIO_ACTIVE_LOW>;
@@ -613,9 +623,14 @@
 		pinctrl-names = "default";
 	};
 
+/* testing */
 	mcu@15 {
 		compatible = "wistron,mcu";
 		reg = <0x15>;
+		status = "okay";
+		pinctrl-0 = <&mcu_reset>;
+		pinctrl-names = "default";
+		reset-gpio = <&tlmm 5 GPIO_ACTIVE_HIGH>;
 	};
 };
 
