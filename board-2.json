@@ -1,0 +1,14 @@
+[
+    {
+        "data": "boardData_1_0_IPQ4019_DK04_2G.bin", 
+        "names": [
+            "bus=ahb,bmi-chip-id=0,bmi-board-id=20,variant=Sony_NCP-HG100"
+        ]
+    }, 
+    {
+        "data": "boardData_1_0_IPQ4019_DK04_5G.bin", 
+        "names": [
+            "bus=ahb,bmi-chip-id=0,bmi-board-id=21,variant=Sony_NCP-HG100"
+        ]
+    }
+]
