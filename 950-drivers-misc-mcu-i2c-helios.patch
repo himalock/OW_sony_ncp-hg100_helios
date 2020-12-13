@@ -7,7 +7,7 @@
 +config MCU_I2C
 +	tristate "MCU I2C bus connection"
 +	depends on I2C
-+	default m
++	default y
 +	---help---
 +	  Say Y here if you have a digital potentiometers hooked to an I2C bus.
 +
@@ -1141,15 +1141,15 @@
 +	data->reset_gpio = MCU_RESET_GPIO;
 +	data->boot_gpio = MCU_BOOT_GPIO;
 +	err= devm_gpio_request(&client->dev, data->reset_gpio, "MCU_reset_gpio");
-+	if (err) {
-+		dev_err(&client->dev,"##Unable to request reset_gpio\n");
-+		return err;
-+	}
++//	if (err) {
++//		dev_err(&client->dev,"##Unable to request reset_gpio\n");
++//		return err;
++//	}
 +	err= devm_gpio_request(&client->dev, data->boot_gpio, "MCU_boot_gpio");
-+	if (err) {
-+		dev_err(&client->dev,"##Unable to request boot_gpio\n");
-+		return err;
-+	}
++//	if (err) {
++//		dev_err(&client->dev,"##Unable to request boot_gpio\n");
++//		return err;
++//	}
 +	gpio_direction_output(data->boot_gpio,0);
 +	msleep(10);
 +	gpio_direction_output(data->reset_gpio,1);
