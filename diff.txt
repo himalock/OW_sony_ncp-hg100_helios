@@ -1,0 +1,139 @@
+diff --git a/package/base-files/files/lib/functions.sh b/package/base-files/files/lib/functions.sh
+index ee4ad1af83..8352b51d3a 100755
+--- a/package/base-files/files/lib/functions.sh
++++ b/package/base-files/files/lib/functions.sh
+@@ -307,6 +307,19 @@ find_mtd_part() {
+ 	echo "${INDEX:+$PREFIX$INDEX}"
+ }
+ 
++find_mmc_part() {
++	local DEVNAME PARTNAME
++
++	if grep -q "$1" /proc/mtd; then
++		 echo "" && return 0
++	fi
++
++	for DEVNAME in /sys/block/mmcblk0/mmcblk*p*; do
++		 PARTNAME=$(grep PARTNAME ${DEVNAME}/uevent | cut -f2 -d'=')
++		 [ "$PARTNAME" = "$1" ] && echo "/dev/$(basename $DEVNAME)" && return 0
++	done
++}
++
+ group_add() {
+ 	local name="$1"
+ 	local gid="$2"
+diff --git a/package/base-files/files/lib/functions/caldata.sh b/package/base-files/files/lib/functions/caldata.sh
+index e22c7d27e6..7ff4b68a08 100644
+--- a/package/base-files/files/lib/functions/caldata.sh
++++ b/package/base-files/files/lib/functions/caldata.sh
+@@ -15,6 +15,8 @@ caldata_extract() {
+ 	local mtd
+ 
+ 	mtd=$(find_mtd_chardev $part)
++	[ -n "$mtd" ] || \
++		mtd=$(find_mmc_part $part)
+ 	[ -n "$mtd" ] || caldata_die "no mtd device found for partition $part"
+ 
+ 	dd if=$mtd of=/lib/firmware/$FIRMWARE iflag=skip_bytes bs=$count skip=$offset count=1 2>/dev/null || \
+diff --git a/package/firmware/ipq-wifi/Makefile b/package/firmware/ipq-wifi/Makefile
+index 9aa6852046..9954249cf9 100644
+--- a/package/firmware/ipq-wifi/Makefile
++++ b/package/firmware/ipq-wifi/Makefile
+@@ -42,7 +42,8 @@ ALLWIFIBOARDS:= \
+ 	linksys_mr8300-v0 \
+ 	luma_wrtq-329acn \
+ 	mobipromo_cm520-79f \
+-	qxwlan_e2600ac
++	qxwlan_e2600ac \
++	sony_ncp-hg100
+ 
+ ALLWIFIPACKAGES:=$(foreach BOARD,$(ALLWIFIBOARDS),ipq-wifi-$(BOARD))
+ 
+@@ -121,5 +122,6 @@ $(eval $(call generate-ipq-wifi-package,linksys_mr8300-v0,Linksys MR8300))
+ $(eval $(call generate-ipq-wifi-package,luma_wrtq-329acn,Luma WRTQ-329ACN))
+ $(eval $(call generate-ipq-wifi-package,mobipromo_cm520-79f,MobiPromo CM520-79F))
+ $(eval $(call generate-ipq-wifi-package,qxwlan_e2600ac,Qxwlan E2600AC))
++$(eval $(call generate-ipq-wifi-package,sony_ncp-hg100,Sony NCP-HG100))
+ 
+ $(foreach PACKAGE,$(ALLWIFIPACKAGES),$(eval $(call BuildPackage,$(PACKAGE))))
+diff --git a/target/linux/ipq40xx/base-files/etc/board.d/02_network b/target/linux/ipq40xx/base-files/etc/board.d/02_network
+index 86787eeffd..ed772775ca 100755
+--- a/target/linux/ipq40xx/base-files/etc/board.d/02_network
++++ b/target/linux/ipq40xx/base-files/etc/board.d/02_network
+@@ -17,7 +17,8 @@ ipq40xx_setup_interfaces()
+ 	alfa-network,ap120c-ac|\
+ 	engenius,emr3500|\
+ 	engenius,ens620ext|\
+-	luma,wrtq-329acn)
++	luma,wrtq-329acn|\
++	sony,ncp-hg100)
+ 		ucidef_set_interfaces_lan_wan "eth0" "eth1"
+ 		;;
+ 	aruba,ap-303|\
+diff --git a/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata b/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
+index f33d3f331c..143df1e6d3 100644
+--- a/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
++++ b/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
+@@ -137,6 +137,9 @@ case "$FIRMWARE" in
+ 		caldata_extract "ART" 0x1000 0x2f20
+ 		ath10k_patch_mac $(mtd_get_mac_binary dnidata 0x0)
+ 		;;
++	sony,ncp-hg100)
++		caldata_extract "0:ART" 0x1000 0x2f20
++		;;
+ 	zyxel,nbg6617 |\
+ 	zyxel,wre6606)
+ 		caldata_extract "ART" 0x1000 0x2f20
+@@ -234,6 +237,9 @@ case "$FIRMWARE" in
+ 		caldata_extract "ART" 0x5000 0x2f20
+ 		ath10k_patch_mac $(mtd_get_mac_binary dnidata 0xc)
+ 		;;
++	sony,ncp-hg100)
++		caldata_extract "0:ART" 0x5000 0x2f20
++		;;
+ 	zyxel,nbg6617 |\
+ 	zyxel,wre6606)
+ 		caldata_extract "ART" 0x5000 0x2f20
+diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
+index d4188f5282..01169e4c1a 100644
+--- a/target/linux/ipq40xx/image/Makefile
++++ b/target/linux/ipq40xx/image/Makefile
+@@ -755,4 +755,17 @@ define Device/zyxel_wre6606
+ endef
+ TARGET_DEVICES += zyxel_wre6606
+ 
++define Device/sony_ncp-hg100
++	$(call Device/FitImage)
++	DEVICE_VENDOR := Sony
++	DEVICE_MODEL := NCP-HG100
++	BOARD_NAME := ncp-hg100
++	SOC := qcom-ipq4019
++	KERNEL_SIZE := 8192k
++	IMAGE_SIZE := 139264k
++	IMAGE/sysupgrade.bin := append-kernel | append-rootfs | pad-rootfs | append-metadata | check-size
++	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100
++endef
++TARGET_DEVICES += sony_ncp-hg100
++
+ $(eval $(call BuildImage))
+diff --git a/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch b/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch
+index 06dd135a59..7c56e06f10 100644
+--- a/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch
++++ b/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch
+@@ -10,7 +10,7 @@ Signed-off-by: John Crispin <john@phrozen.org>
+ 
+ --- a/arch/arm/boot/dts/Makefile
+ +++ b/arch/arm/boot/dts/Makefile
+-@@ -837,11 +837,54 @@ dtb-$(CONFIG_ARCH_QCOM) += \
++@@ -837,11 +837,55 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+  	qcom-apq8074-dragonboard.dtb \
+  	qcom-apq8084-ifc6540.dtb \
+  	qcom-apq8084-mtp.dtb \
+@@ -51,6 +51,7 @@ Signed-off-by: John Crispin <john@phrozen.org>
+ +	qcom-ipq4019-e2600ac-c1.dtb \
+ +	qcom-ipq4019-e2600ac-c2.dtb \
+ +	qcom-ipq4019-habanero-dvk.dtb \
+++	qcom-ipq4019-ncp-hg100.dtb \
+ +	qcom-ipq4019-rtl30vw.dtb \
+ +	qcom-ipq4019-u4019-32m.dtb \
+ +	qcom-ipq4019-wpj419.dtb \
