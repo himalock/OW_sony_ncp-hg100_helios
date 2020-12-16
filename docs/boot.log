@@ -1,0 +1,2049 @@
+Format: Log Type - Time(microsec) - Message - Optional Info
+Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
+S - QC_IMAGE_VERSION_STRING=BOOT.BF.3.1.1-00120
+S - IMAGE_VARIANT_STRING=DAAAANAZA
+S - OEM_IMAGE_VERSION_STRING=CRM
+S - Boot Config, 0x000000a3
+S - Reset status Config, 0x00000000
+S - Core 0 Frequency, 0 MHz
+B -       261 - PBL, Start
+B -      5152 - bootable_media_detect_entry, Start
+B -     33467 - bootable_media_detect_success, Start
+B -     33472 - elf_loader_entry, Start
+B -     35446 - auth_hash_seg_entry, Start
+B -     36602 - auth_hash_seg_exit, Start
+B -     52423 - elf_segs_hash_verify_entry, Start
+B -     97102 - PBL, End
+B -     97115 - SBL1, Start
+B -    173458 - pm_device_init, Start
+D -         2 - pm_device_init, Delta
+B -    174217 - boot_flash_init, Start
+D -     17430 - boot_flash_init, Delta
+B -    196178 - boot_config_data_table_init, Start
+D -      1589 - boot_config_data_table_init, Delta - (419 Bytes)
+B -    204216 - clock_init, Start
+D -      3286 - clock_init, Delta
+B -    210932 - CDT version:2,Platform ID:8,Major ID:1,Minor ID:3,Subtype:1
+B -    217361 - sbl1_ddr_set_params, Start
+B -    221702 - cpr_init, Start
+D -         2 - cpr_init, Delta
+B -    226193 - Pre_DDR_clock_init, Start
+D -         4 - Pre_DDR_clock_init, Delta
+D -     13281 - sbl1_ddr_set_params, Delta
+B -    239606 - pm_driver_init, Start
+D -         2 - pm_driver_init, Delta
+B -    310773 - sbl1_wait_for_ddr_training, Start
+D -        28 - sbl1_wait_for_ddr_training, Delta
+B -    326952 - Image Load, Start
+D -    706777 - QSEE Image Loaded, Delta - (304152 Bytes)
+B -   1034156 - Image Load, Start
+D -       944 - SEC Image Loaded, Delta - (0 Bytes)
+B -   1044041 - Image Load, Start
+D -    705660 - APPSBL Image Loaded, Delta - (435807 Bytes)
+B -   1750127 - QSEE Execution, Start
+D -        60 - QSEE Execution, Delta
+B -   1756299 - SBL1, End
+D -   1661297 - SBL1, Delta
+S - Flash Throughput, 26568 KB/s  (740730 Bytes,  27880 us)
+S - DDR Frequency, 672 MHz
+
+
+U-Boot 2012.07 [Chaos Calmer 15.05.1,r48067] (Dec 19 2018 - 08:16:11)
+
+smem ram ptable found: ver: 1 len: 3
+DRAM:  512 MiB
+machid : 0x8010301
+MMC:   qca_mmc: 0
+In:    serial
+Out:   serial
+Err:   serial
+machid: 8010301
+flash_type: 1
+MAC0 : xxxxxxxxxx0B
+MAC1 : xxxxxxxxxx09
+Hit any key to stop autoboot:  0
+
+(IPQ40xx) # bootipq debug
+bootargs=rootfsname=rootfs_1 rootwait
+Booting from flash
+Using MMC device
+
+MMC read: dev # 0, block # 11810, count 16384 ... 16384 blocks read: OK
+## Booting kernel from FIT Image at 84000028 ...
+   Using 'config@ap.dk04.1-c4' configuration
+   Trying 'kernel@1' kernel subimage
+     Description:  ARM OpenWrt Linux-4.4.60
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Start:   0x8400010c
+     Data Size:    3706964 Bytes = 3.5 MiB
+     Architecture: ARM
+     OS:           Linux
+     Load Address: 0x80208000
+     Entry Point:  0x80208000
+     Hash algo:    crc32
+     Hash value:   000297e1
+     Hash algo:    sha1
+     Hash value:   92e1ced760a10a46b0acc07508bdd40c3b41420d
+   Verifying Hash Integrity ... crc32+ sha1+ OK
+## Flattened Device Tree from FIT Image at 84000028
+   Using 'config@ap.dk04.1-c4' configuration
+   Trying 'fdt@ap.dk04.1-c4' FDT blob subimage
+     Description:  ARM OpenWrt qcom-ipq40xx-ap.dkxx device tree blob
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x843c5550
+     Data Size:    33755 Bytes = 33 KiB
+     Architecture: ARM
+     Hash algo:    crc32
+     Hash value:   496024b9
+     Hash algo:    sha1
+     Hash value:   54c3f8319be5d79c5cb16de0ccbaf6000a93b38c
+   Verifying Hash Integrity ... crc32+ sha1+ OK
+   Booting using the fdt blob at 0x843c5550
+   Uncompressing Kernel Image ... OK
+   Loading Device Tree to 86ff4000, end 86fff3da ... OK
+Using machid 0x8010301 from environment
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.4.60 (android@androidbuildmachine) (gcc version 5.3.0 (OpenWrt GCC 5.3.0 r48067) ) #7 SMP PREEMPT Thu Dec 20 16:40:33 CST 2018
+[    0.000000] CPU: ARMv7 Processor [410fc075] revision 5 (ARMv7), cr=10c5387d
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] Machine model: Qualcomm Technologies, Inc. IPQ4019/AP-DK04.1-C4
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] PERCPU: Embedded 12 pages/cpu @dfb2b000 s18560 r8192 d22400 u49152
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 125824
+[    0.000000] Kernel command line: rootfsname=rootfs rootwait clk_ignore_unused
+[    0.000000] PID hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes)
+[    0.000000] Memory: 494884K/507904K available (5184K kernel code, 309K rwdata, 1760K rodata, 228K init, 268K bss, 13020K reserved, 0K cma-reserved, 0K highmem)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+[    0.000000]     fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[    0.000000]     vmalloc : 0xe0800000 - 0xff800000   ( 496 MB)
+[    0.000000]     lowmem  : 0xc0000000 - 0xe0000000   ( 512 MB)
+[    0.000000]     pkmap   : 0xbfe00000 - 0xc0000000   (   2 MB)
+[    0.000000]     modules : 0xbf000000 - 0xbfe00000   (  14 MB)
+[    0.000000]       .text : 0xc0208000 - 0xc08d03b8   (6945 kB)
+[    0.000000]       .init : 0xc08d1000 - 0xc090a000   ( 228 kB)
+[    0.000000]       .data : 0xc090a000 - 0xc0957428   ( 310 kB)
+[    0.000000]        .bss : 0xc095a000 - 0xc099d1dc   ( 269 kB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000]  Build-time adjustment of leaf fanout to 32.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] Architected cp15 timer(s) running at 48.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0xb11fd3bfb, max_idle_ns: 440795203732 ns
+[    0.000006] sched_clock: 56 bits at 48MHz, resolution 20ns, wraps every 4398046511096ns
+[    0.000021] Switching to timer-based delay loop, resolution 20ns
+[    0.000340] Calibrating delay loop (skipped), value calculated using timer frequency.. 96.00 BogoMIPS (lpj=480000)
+[    0.000357] pid_max: default: 32768 minimum: 301
+[    0.000481] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.000494] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.001195] Initializing cgroup subsys memory
+[    0.001251] CPU: Testing write buffer coherency: ok
+[    0.001579] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.001663] Setting up static identity map for 0x80208280 - 0x802082d8
+[    0.052822] MSM Memory Dump base table set up
+[    0.052867] MSM Memory Dump apps data table set up
+[    0.090972] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.121028] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+[    0.151084] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+[    0.151175] Brought up 4 CPUs
+[    0.151205] SMP: Total of 4 processors activated (384.00 BogoMIPS).
+[    0.151215] CPU: All CPU(s) started in SVC mode.
+[    0.164196] VFP support v0.3: implementor 41 architecture 2 part 30 variant 7 rev 5
+[    0.164645] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.164677] futex hash table entries: 1024 (order: 4, 65536 bytes)
+[    0.165017] pinctrl core: initialized pinctrl subsystem
+[    0.166588] NET: Registered protocol family 16
+[    0.168189] DMA: preallocated 2048 KiB pool for atomic coherent allocations
+[    0.190329] cpuidle: using governor ladder
+[    0.220363] cpuidle: using governor menu
+[    0.238425] <CORE> glink_init: IPC Logging Disabled
+[    0.239313] IPC logging disabled
+[    0.239324] IPC logging disabled
+[    0.239330] IPC logging disabled
+[    0.239336] IPC logging disabled
+[    0.239342] IPC logging disabled
+[    0.239614] sps:sps is ready.
+[    0.273089] SCSI subsystem initialized
+[    0.275270] Advanced Linux Sound Architecture Driver Initialized.
+[    0.276292] clocksource: Switched to clocksource arch_sys_counter
+[    0.278086] NET: Registered protocol family 2
+[    0.279059] TCP established hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.279137] TCP bind hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.279226] TCP: Hash tables configured (established 4096 bind 4096)
+[    0.279292] UDP hash table entries: 256 (order: 1, 8192 bytes)
+[    0.279325] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+[    0.279576] NET: Registered protocol family 1
+[    0.290969] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.290995] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.295860] Key type asymmetric registered
+[    0.295887] Asymmetric key parser 'x509' registered
+[    0.295946] io scheduler noop registered
+[    0.295966] io scheduler deadline registered (default)
+[    0.297907] 40000000.pci supply vdda not found, using dummy regulator
+[    0.297987] 40000000.pci supply vdda_phy not found, using dummy regulator
+[    0.298052] 40000000.pci supply vdda_refclk not found, using dummy regulator
+[    0.298388] PCI host bridge /soc/pci@40000000 ranges:
+[    0.298422]    IO 0x40200000..0x402fffff -> 0x40200000
+[    0.298443]   MEM 0x48000000..0x57ffffff -> 0x48000000
+[    1.363752] qcom-pcie 40000000.pci: phy link never came up
+[    1.401413] qcom-pcie 40000000.pci: hostinit failed
+[    1.401428] qcom-pcie 40000000.pci: cannot initialize host
+[    1.401652] qcom-pcie: probe of 40000000.pci failed with error -110
+[    1.402104] MDSS QPIC HW Base phy_Address=0x7980000 virt=0xe0e40000
+[    1.402501] mdss_qpic_panel_probe: Panel Name = qpic lcd panel
+[    1.405257] mdss_fb_register: FrameBuffer[0] 800x480 registered successfully!
+[    1.410330] NET: Registered protocol family 27
+[    1.410349] IPC_RTR: ipc_router_create_log_ctx: IPC Logging disabled
+[    1.410370] qmi_log_init: IPC Logging disabled
+[    1.410378] qmi_log_init: IPC Logging disabled
+[    1.411295] tcsr 194b000.tcsr: setting usb hs phy mode select = e700e7
+[    1.411362] tcsr 1953000.ess_tcsr: setting ess interface select = 0
+[    1.411436] tcsr 1949000.tcsr: setting wifi_glb_cfg = 41000000
+[    1.411494] tcsr 1957000.tcsr: setting wifi_noc_memtype_m0_m2 = 2222222
+[    1.412448] msm_serial: driver initialized
+[    1.412770] msm_serial_hsl_probe: detected port #0 (ttyMSM0)
+[    1.412803] msm_serial_hsl_probe: Bus scaling is disabled
+[    1.412940] 78af000.serial: ttyMSM0 at MMIO 0x78af000 (irq = 25, base_baud = 115200) is a MSM
+[    1.413037] msm_hsl_console_setup: console setup on port #0
+[    2.027867] console [ttyMSM0] enabled
+[    2.031957] msm_serial_hsl_probe: detected port #1 (ttyMSM1)
+[    2.037167] msm_serial_hsl_probe: Bus scaling is disabled
+[    2.042626] 78b0000.serial: ttyMSM1 at MMIO 0x78b0000 (irq = 26, base_baud = 115200) is a MSM
+[    2.051604] msm_serial_hsl_init: driver initialized
+[    2.069955] brd: module loaded
+[    2.072297] [--------- HELIOS MISC ---------]HELIOS_MISC driver probe
+[    2.368617] libphy: Fixed MDIO Bus: probed
+[    2.592472] ipq40xx-mdio 90000.mdio: Could not find phy-reset-gpio
+[    2.597830] libphy: ipq40xx_mdio: probed
+[    2.605128] ipq40xx-mdio 90000.mdio: ipq40xx-mdio driver was registered
+[    2.610913] cnss: Unable to create IPC log context!
+[    2.616048] cnss: Platform driver probed successfully.
+[    2.620894] i2c /dev entries driver
+[    2.625952] mcu 1-0015: #####MCU driver probe start!
+[    2.796935] mcu 1-0015: #####MCU driver probed
+[    2.802920] sdhci: Secure Digital Host Controller Interface driver
+[    2.808127] sdhci: Copyright(c) Pierre Ossman
+[    2.812419] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.819130] sdhci_msm 7824900.sdhci: Got SD LDO GPIO #33
+[    2.923441] sdhci_msm 7824900.sdhci: No vreg data found for vdd
+[    2.928350] sdhci_msm 7824900.sdhci: No vreg data found for vdd-io
+[    2.947331] sdhci_msm 7824900.sdhci: No vmmc regulator found
+[    2.996493] mmc0: SDHCI controller on 7824900.sdhci [7824900.sdhci] using ADMA 64-bit
+[    3.089247] mmc0: MAN_BKOPS_EN bit is not set
+[    3.098916] lp5523x 1-0032: lp55231 Programmable led chip found
+[    3.106586] mmc0: new HS200 MMC card at address 0001
+[    3.111219] mmcblk0: mmc0:0001 004GA0 3.69 GiB
+[    3.115297] mmcblk0rpmb: mmc0:0001 004GA0 partition 3 512 KiB
+[    3.122307] Alternate GPT is invalid, using primary GPT.
+[    3.126707] GPT: device [179:15] (rootfs) set to be root filesystem
+[    3.132851]  mmcblk0: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 p17
+[    3.195479] lp5523x 1-0033: lp55231 Programmable led chip found
+[    3.205711]
+[    3.205711] Version Rollback Feature Disabled
+[    3.267957] gpio-reset=65
+[    3.270528] ipq_audio soc:sound@0: ASoC: CPU DAI qca-i2s-dai not registered
+[    3.276621] ipq_audio soc:sound@0: snd_soc_register_card() failed:-517
+[    3.287105] NET: Registered protocol family 10
+[    3.291625] NET: Registered protocol family 17
+[    3.295110] bridge: automatic filtering via arp/ip/ip6tables has been deprecated. Update your scripts to load br_netfilter if you need this.
+[    3.307725] Bridge firewalling registered
+[    3.311626] 8021q: 802.1Q VLAN Support v1.8
+[    3.315923] Registering SWP/SWPB emulation handler
+[    3.323124] RT5628 Audio Codec probed
+[    3.325756] [hp_depop_mode2]
+[    3.630391] [rt5628_set_bias_level] SND_SOC_BIAS_OFF
+[    3.936258] cx2092x 1-0041: codec driver version: 03,08,00,21
+[    3.942027] ipq_audio soc:sound@0: qca-i2s-codec-dai <-> qca-i2s-dai mapping ok
+[    3.948939] ipq_audio soc:sound@0: qca-i2s-conexant-dai <-> qca-i2s-dai mapping ok
+[    3.972358] hctosys: unable to open rtc device (rtc0)
+[    3.981967] clk: Not disabling unused clocks
+[    3.985215] ALSA device list:
+[    3.988287]   #0: ipq4019_snd_card
+[    3.995969] VFS: Mounted root (squashfs filesystem) readonly on device 179:15.
+[    4.002920] Freeing unused kernel memory: 228K (c08d1000 - c090a000)
+[    4.504611] init: Console is alive
+[    4.507265] init: - watchdog -
+[    6.344360] usbcore: registered new interface driver usbfs
+[    6.348968] usbcore: registered new interface driver hub
+[    6.354246] usbcore: registered new device driver usb
+[    6.362172] Button Hotplug driver version 0.4.1
+[    6.898653] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[    6.903141] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+[    6.911056] xhci-hcd xhci-hcd.0.auto: hcc params 0x0228f665 hci version 0x100 quirks 0x00010010
+[    6.919527] xhci-hcd xhci-hcd.0.auto: irq 233, io mem 0x08a00000
+[    6.926450] hub 1-0:1.0: USB hub found
+[    6.929215] hub 1-0:1.0: 1 port detected
+[    6.933556] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[    6.938648] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+[    6.946323] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    6.955136] hub 2-0:1.0: USB hub found
+[    6.958095] hub 2-0:1.0: 1 port detected
+[    6.962480] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    6.967431] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 3
+[    6.975247] xhci-hcd xhci-hcd.1.auto: hcc params 0x0220f665 hci version 0x100 quirks 0x00010010
+[    6.983768] xhci-hcd xhci-hcd.1.auto: irq 234, io mem 0x06000000
+[    6.990629] hub 3-0:1.0: USB hub found
+[    6.993442] hub 3-0:1.0: 1 port detected
+[    6.997845] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    7.002796] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 4
+[    7.010556] usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+[    7.019455] hub 4-0:1.0: USB hub found
+[    7.022265] hub 4-0:1.0: config failed, hub doesn't have any ports! (err -19)
+[    7.033466] input: soc:gpio_input_keys as /devices/platform/soc/soc:gpio_input_keys/input/input0
+[    7.044167] usbcore: registered new interface driver usb-storage
+[    7.356930] usb 2-1: new SuperSpeed USB device number 2 using xhci-hcd
+[    7.511720] init: - preinit -
+Press the [f] key and hit [enter] to enter failsafe mode
+Press the [1], [2], [3] or [4] key and hit [enter] to select the debug level
+Before mount_root
+[    9.989421] EXT4-fs (mmcblk0p17): recovery complete
+[    9.992791] random: procd: uninitialized urandom read (4 bytes read, 11 bits of entropy available)
+[   10.002279] EXT4-fs (mmcblk0p17): mounted filesystem with ordered data mode. Opts: (null)
+[   10.011847] mount_root: switching to jffs2 overlay
+After mount_root
+377+0 records in
+377+0 records out
+12064 bytes (11.8KB) copied, 0.004182 seconds, 2.8MB/s
+377+0 records in
+377+0 records out
+12064 bytes (11.8KB) copied, 0.003927 seconds, 2.9MB/s
+reason hw reset
+[   10.121828] procd: - early -
+[   10.123752] procd: - watchdog -
+[   10.822528] procd: - ubus -
+[   11.825398] random: ubusd: uninitialized urandom read (4 bytes read, 12 bits of entropy available)
+[   11.833626] random: ubusd: uninitialized urandom read (4 bytes read, 12 bits of entropy available)
+[   11.842351] random: ubusd: uninitialized urandom read (4 bytes read, 12 bits of entropy available)
+[   11.852317] random: ubusd: uninitialized urandom read (4 bytes read, 12 bits of entropy available)
+[   11.860315] random: ubusd: uninitialized urandom read (4 bytes read, 12 bits of entropy available)
+[   11.869343] random: ubusd: uninitialized urandom read (4 bytes read, 12 bits of entropy available)
+[   11.878268] random: ubusd: uninitialized urandom read (4 bytes read, 12 bits of entropy available)
+[   11.887331] procd: - init -
+CY8C bootloader I2C update utility v1.4 bundled FW:(V14 released on 2018-08-27), Wistron Corp.
+Checking current firmware...
+Firmware Version is V14
+Current firmware is greater than or equal to version:V14 (V14 released on 2018-08-27)
+CY8C bootloader I2C update utility v1.4 bundled FW:(V14 released on 2018-08-27), Wistron Corp.
+Restart successed
+[   15.021688] QCE50: __qce_get_device_tree_data: BAM Apps EE is not defined, setting to default 1
+[   15.029890] QCE50: __qce_init_clk: Unable to get CE core src clk, set to NULL
+[   15.036580] qcrypto 8e20000.qcrypto: Qualcomm Crypto 5.3.1 device found @0x8e20000
+[   15.044039] qcrypto 8e20000.qcrypto: CE device = 0x0
+[   15.044039] , IO base, CE = 0xe17c0000
+[   15.044039] , Consumer (IN) PIPE 2,    Producer (OUT) PIPE 3
+[   15.044039] IO base BAM = 0x  (null)
+[   15.044039] BAM IRQ 24
+[   15.044039] Engines Availability = 0x2010453
+[   15.068756] sps_register_bam_device : unable to create IPC Logging 0 for bam 0x08e04000
+[   15.076369] sps_register_bam_device : unable to create IPC Logging 1 for bam 0x08e04000sps_register_bam_device : unable to create IPC Logging 2 for bam 0x08e04000
+[   15.090880] sps_register_bam_device : unable to create IPC Logging 3 for bam 0x08e04000sps_register_bam_device : unable to create IPC Logging 4 for bam 0x08e04000
+[   15.105317] sps:BAM 0x08e04000 is registered.[   15.109875] sps:BAM 0x08e04000 (va:0xe1840000) enabled: ver:0x27, number of pipes:4
+[   15.117555] QCE50: qce_sps_init:  Qualcomm MSM CE-BAM at 0x0000000008e04000 irq 24
+[   15.127087] bus_scale_table is NULL
+[   15.129753] qcrypto 8e20000.qcrypto: qcrypto-ecb-aes
+[   15.134627] qcrypto 8e20000.qcrypto: qcrypto-cbc-aes
+[   15.139587] qcrypto 8e20000.qcrypto: qcrypto-ctr-aes
+[   15.144504] qcrypto 8e20000.qcrypto: qcrypto-ecb-des
+[   15.149496] qcrypto 8e20000.qcrypto: qcrypto-cbc-des
+[   15.154398] qcrypto 8e20000.qcrypto: qcrypto-ecb-3des
+[   15.159458] qcrypto 8e20000.qcrypto: qcrypto-cbc-3des
+[   15.164471] qcrypto 8e20000.qcrypto: qcrypto-xts-aes
+[   15.169449] qcrypto 8e20000.qcrypto: qcrypto-sha1
+[   15.174106] qcrypto 8e20000.qcrypto: qcrypto-sha256
+[   15.179000] qcrypto 8e20000.qcrypto: qcrypto-aead-hmac-sha1-cbc-aes
+[   15.185216] qcrypto 8e20000.qcrypto: qcrypto-aead-hmac-sha1-cbc-des
+[   15.191493] qcrypto 8e20000.qcrypto: qcrypto-aead-hmac-sha1-cbc-3des
+[   15.197834] qcrypto 8e20000.qcrypto: qcrypto-aead-hmac-sha256-cbc-aes
+[   15.204225] qcrypto 8e20000.qcrypto: qcrypto-aead-hmac-sha256-cbc-des
+[   15.210706] qcrypto 8e20000.qcrypto: qcrypto-aead-hmac-sha256-cbc-3des
+[   15.217190] qcrypto 8e20000.qcrypto: qcrypto-hmac-sha1
+[   15.222281] qcrypto 8e20000.qcrypto: qcrypto-hmac-sha256
+[   15.227610] qcrypto 8e20000.qcrypto: qcrypto-aes-ccm
+[   15.232524] qcrypto 8e20000.qcrypto: qcrypto-rfc4309-aes-ccm
+[   15.252315] nf_conntrack version 0.5.0 (7736 buckets, 30944 max)
+[   15.266018] ntfs: driver 2.1.32 [Flags: R/O MODULE].
+[   15.278909] Initializing XFRM netlink socket
+[   15.283766] NET: Registered protocol family 15
+[   15.290480] PPP generic driver version 2.4.2
+[   16.949939] ssdk_alloc_priv[4390]:INFO:ess-switch dts node number: 1
+[   16.955317] ssdk_dt_parse[2642]:INFO:ess-switch DT exist!
+[   16.960666] ssdk_dt_parse[2671]:INFO:switch_access_mode: local bus
+[   16.966838] ssdk_dt_parse_mac_mode[2270]:INFO:mac mode = 0x0
+[   16.972450] ssdk_dt_parse_mac_mode[2276]:INFO:mac mode1 doesn't exit!
+[   16.978873] ssdk_dt_parse_mac_mode[2285]:INFO:mac mode2 doesn't exit!
+[   16.985327] ssdk_dt_parse_uniphy[2304]:INFO:ess-uniphy DT doesn't exist!
+[   16.991989] ssdk_dt_parse_scheduler_cfg[2494]:ERROR:cannot find port_scheduler_resource node
+[   17.000402] ssdk_dt_parse_phy_info[2537]:INFO:qcom,port_phyinfo DT doesn't exist!
+[   17.007904] ssdk_dt_parse_mdio[2574]:INFO:mdio DT exist!
+[   17.013171] ssdk_dt_parse[2697]:INFO:switchreg_base_addr: 0xc000000
+[   17.019409] ssdk_dt_parse[2698]:INFO:switchreg_size: 0x80000
+[   17.025071] ssdk_dt_parse[2707]:INFO:ess-psgmii DT exist!
+[   17.030457] ssdk_dt_parse[2764]:INFO:current dts led_source_num is 5
+[   17.036792] ssdk_plat_init start
+[   17.040180] enable ess clk
+[   17.105455] malibu_phy_api_ops_init[2505]:INFO:qca probe malibu phy driver succeeded!
+[   17.158528] regi_init[4495]:INFO:Initializing DESS!!
+[   18.914813] ssdk_switch_register[1587]:INFO:Chip version 0x1401
+[   18.919735] qca_link_polling_select[1281]:INFO:link-polling-required node does not exist
+[   18.927802] ssdk_switch_register[1610]:INFO:polling is selected
+[   18.933676] regi_init[4504]:INFO:Initializing DESS Done!!
+[   18.939121] regi_init[4528]:INFO:qca-ssdk module init succeeded!
+[   18.957269] tun: Universal TUN/TAP device driver, 1.6
+[   18.961292] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+[   18.975130] **********************************************************
+[   18.980689] * Driver    :NSS GMAC Driver for RTL v(3.72a)
+[   18.986010] * Version   :1.0
+[   18.988946] * Copyright :Copyright (c) 2013-2016 The Linux Foundation. All rights reserved.
+[   18.997250] **********************************************************
+[   19.025982] l2tp_core: L2TP core driver, V2.0
+[   19.030655] l2tp_netlink: L2TP netlink interface
+[   19.076240] qca-nss-drv.ko is loaded for symbol link
+[   19.082331] sit: IPv6 over IPv4 tunneling driver
+[   19.089642] nat46: module (version 8ff2ae59ec9840a7b8b45f976c51cae80abe0226) loaded.
+[   19.101210] gre: GRE over IPv4 demultiplexor driver
+[   19.107495] ip_gre: GRE over IPv4 tunneling driver
+[   19.127916] Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
+[   19.144991] QCA multicast snooping installed successfully
+[   19.153521] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[   21.297459] nss_lag_init[345]:LAG Manager Installed
+[   21.647640] NET: Registered protocol family 24
+[   21.652814] PPTP driver version 0.8.5
+[   21.839487] <NSS-CRYPTO>:module loaded (platform - IPQ806x, build - Build_ID - 12/20/18, 16:35:04)
+[   21.847667] <NSS-CRYPTO>:qca-nss-crypto.ko is loaded for symbol link
+[   22.037652] crypto bench loaded - Build_ID - 12/20/18, 16:35:07
+[   22.042566] nss_crypto_register_user[151]:bf6a33cc: Crypto Device is not ready
+[   22.235209] nss_macsec init success
+[   22.402730] Not a bridge device, or device not found: br-lan
+[   22.849299] nss is not enabled on this platform
+[   22.852802] nss_ipsecmgr_init[977]:NSS is not enabled in this platform
+[   23.257753] nss_crypto_register_user[151]:bf6a33cc: Crypto Device is not ready
+[   23.458037] nss_crypto_register_user[151]:bf6a33cc: Crypto Device is not ready
+[   25.557421] u32 classifier
+[   25.559096]     input device check on
+[   25.562740]     Actions configured
+[   25.957384] Mirror/redirect action on
+[   30.144083] fuse init (API version 7.23)
+[   30.361408] arp_tables: (C) 2002 David S. Miller
+[   30.369069] usbcore: registered new interface driver cdc_wdm
+[   30.377735] ip_tables: (C) 2000-2006 Netfilter Core Team
+[   30.389356] l2tp_ppp: PPPoL2TP kernel driver, V2.0
+[   30.478695] nf_conntrack_rtsp v0.6.21 loading
+[   30.702570] nf_nat_rtsp v0.6.21 loading
+[   30.713608] PPP MPPE Compression module registered
+[   30.735097] usbcore: registered new interface driver usbserial
+[   30.740175] usbcore: registered new interface driver usbserial_generic
+[   30.746619] usbserial: USB Serial support registered for generic
+[   30.793332] xt_time: kernel timezone is -0000
+[   30.798316] usbcore: registered new interface driver cp210x
+[   30.802959] usbserial: USB Serial support registered for cp210x
+[   30.811108] usbcore: registered new interface driver ftdi_sio
+[   30.815931] usbserial: USB Serial support registered for FTDI USB Serial Device
+[   30.847371] usbcore: registered new interface driver pl2303
+[   30.852027] usbserial: USB Serial support registered for pl2303
+[   30.883100] qmi_wwan 2-1:1.1: cdc-wdm0: USB WDM device
+[   30.889571] qmi_wwan 2-1:1.1 wwan0: register 'qmi_wwan' at usb-xhci-hcd.0.auto-1, WWAN/QMI device, ea:ae:4a:xx:xx:xx
+[   30.899450] usbcore: registered new interface driver qmi_wwan
+[   30.916256] usbcore: registered new interface driver option
+[   30.921154] usbserial: USB Serial support registered for GSM modem (1-port)
+[   30.928407] option 2-1:1.0: GSM modem (1-port) converter detected
+[   30.934293] usb 2-1: GSM modem (1-port) converter now attached to ttyUSB0
+[   30.941038] option 2-1:1.2: GSM modem (1-port) converter detected
+[   30.947329] usb 2-1: GSM modem (1-port) converter now attached to ttyUSB1
+[   30.953794] option 2-1:1.3: GSM modem (1-port) converter detected
+[   30.960132] usb 2-1: GSM modem (1-port) converter now attached to ttyUSB2
+[   30.966731] option 2-1:1.4: GSM modem (1-port) converter detected
+[   30.972838] usb 2-1: GSM modem (1-port) converter now attached to ttyUSB3
+WLAN 2 interfaces not ready, failed
+[   33.004760] Not a bridge device, or device not found: br-lan
+[   37.327765] mem_manager: module license 'unspecified' taints kernel.
+[   37.333090] Disabling lock debugging due to kernel taint
+[   37.383524] ath_dfs: Version 2.0.0
+[   37.383524] Copyright (c) 2005-2006 Atheros Communications, Inc. All Rights Reserved
+[   37.406079] ath_spectral: Version 2.0.0
+[   37.406079] Copyright (c) 2005-2009 Atheros Communications, Inc. All Rights Reserved
+[   39.260780] ath_hal: 0.9.17.1 (AR5416, AR9380, WRITE_EEPROM, 11D)
+[   39.278408] ath_rate_atheros: Copyright (c) 2001-2005 Atheros Communications, Inc, All Rights Reserved
+[   39.296129] ath_tx99: Version 2.0
+[   39.296129] Copyright (c) 2010 Atheros Communications, Inc, All Rights Reserved
+[   39.365030] ath_dev: Copyright (c) 2001-2007 Atheros Communications, Inc, All Rights Reserved
+[   39.409749] ath_da_pci:  (Atheros/multi-bss)
+[   40.142619] vmap allocation for size 1036288 failed: use vmalloc=<size> to increase size.
+[   40.188024]  *********** IPQ4019  *************Wifi0 CPU frequency 250000000
+[   40.214110] hif_target_sync_ahb: Got FW signal, retries = 1hif_ahb_enable_bus: X - hif_type = 0xd, target_type = 0xbhif_config_ce: ce_init donehif_config_ce: X, ret = 0hif_set_hia: Ehif_pci_bus_configure: hif_set_hia donehif_configure_irq: Ehif_enable: X OKhif_napi_create: NAPI structures initializedhif_napi_create: NAPI id 6 created for pipe 5qca_napi_create: napi instance 32 created on pipe 4
+[   40.253272] hif_napi_event: received evnt: CONF cmd; v = 1 (state=0x1)hif_napi_event: setting configuration to ON
+__ol_ath_attach() Allocated scn dc2c0500
+[   40.267247] nss is not enabled on this platform
+[   40.271676] nss register id -1 offload mode enabled = 0 nss config 0 Target Type b
+[   40.279352] __ol_ath_attach: dev name wifi0
+[   40.283484] ol_ath_attach interface_id 0
+[   40.287657] ol_target_init() BMI inited.
+[   40.291391] ol_target_init() BMI Get Target Info.
+[   40.295979] Chip id: 0xb, chip version: 0x1000000
+[   40.300685]
+[   40.300685]  CE WAR Disabled
+[   40.305141] NUM_DEV=1 FWMODE=0x2 FWSUBMODE=0x0 FWBR_BUF 0
+[   40.310596] ol_target_init() configure Target .
+[   40.314988]
+[   40.314988]  Target Version is 1000000
+[   40.320128]
+[   40.320128]  Flash Download Address  c0000
+[   40.325753] ol_transfer_bin_file: flash data file defined
+[   40.331149] ol_transfer_bin_file[3769] Get Caldata for wifi0.
+[   40.336927] qdf_fs_read[59], Open File /tmp/wifi0.caldata SUCCESS!!file system magic:16914836super blocksize:4096inode 1082file size:12064qc98xx_verify_checksum: flash checksum passed: 0x 1c6
+[   40.353878] ol_transfer_bin_file 3830: Download Flash data len 12064
+[   40.360592] Board extended Data download address: 0x0
+[   40.384797]
+[   40.384797]  Board data initialized
+[   40.388797] ol_ath_download_firmware: Download OTP, flash download ADDRESS 0xc0000
+[   40.396300]
+[   40.396300]  Selecting  OTP binary for CHIP Version -509221332
+[   40.417975] ol_transfer_bin_file 3650: downloading file 0, Download data len 4676
+[   40.440849]
+[   40.440849]  First OTP send param 8000
+[   40.449718] ol_ath_download_firmware :First OTP download and Execute is good address:0x5000 return param 4660
+[   40.458618] ol_ath_download_firmware:##Board Id 20 , CHIP Id 0
+[   40.464502] ol_ath_download_firmware: BOARDDATA DOWNLOAD TO address 0xc0000
+[   40.471381]
+[   40.471381]  wifi0: Selecting board data file name boardData_1_0_IPQ4019_DK04_2G.bin
+[   40.480577] ol_transfer_bin_file: Board Data File download to address=0xc0000 file name=IPQ4019/hw.1/boardData_1_0_IPQ4019_DK04_2G.bin
+[   40.553969] ol_transfer_bin_file 3650: downloading file 3, Download data len 12064
+[   40.560942] Board extended Data download address: 0x0
+[   40.585278] ol_ath_download_firmware: Using 0x1234 for the remainder of init
+[   40.591315]
+[   40.591315]  Selecting  OTP binary for CHIP Version -509221332
+[   40.598754] ol_transfer_bin_file 3650: downloading file 0, Download data len 4676
+[   40.622428]
+[   40.622428]  [Flash] : Ignore Module param
+[   40.626998]
+[   40.626998]  Second otp download Param 10000
+[   40.643012] ol_ath_download_firmware : Second OTP download and Execute is good, param=0x0
+[   40.650260]
+[   40.650260]  Mission mode: Firmware CHIP Version -509221332
+[   40.658605] ol_swap_seg_alloc: Successfully allocated memory for SWAP size=262144
+[   40.665594] ol_swap_wlan_memory_expansion: length:185067 size_left:185087 dma_size_left:262144 fw_temp:e1abc004 fw_entry_size:185091
+[   40.677093] ol_swap_wlan_memory_expansion: dma_virt_addr :e1459000 fw_temp: e1abc008 length: 185067
+[   40.686363] Swap: bytes_left to copy: fw:16; dma_page:77077
+[   40.691626] ol_swap_wlan_memory_expansion: length:0 size_left:12 dma_size_left:77077 fw_temp:e1ae92f7 fw_entry_size:185091
+[   40.702669] Swap: wrong length read:0
+[   40.706314] ol_swap_wlan_memory_expansion: Swap total_bytes copied: 185067 Target address 4180b0
+[   40.715270] scn=dc2c0500  target_write_addr=4180b0 seg_info=decd3c10
+[   40.721592] ol_transfer_swap_struct:Code swap structure successfully downloaded for bin type =2
+[   40.730349] bin_filename=IPQ4019/hw.1/athwlan.bin swap_filename=/lib/firmware/IPQ4019/hw.1/athwlan.codeswap.bin
+[   40.740587] ol_transfer_bin_file: Downloading firmware file: IPQ4019/hw.1/athwlan.bin
+[   40.914439] ol_transfer_bin_file 3650: downloading file 1, Download data len 378640
+[   42.177388] ol_target_init() Download FW done.
+[   42.180996]
+[   42.180996] ol_ath_copy_tgt_iram() iram read paddr: 0x980000 host paddr 0x87500000 Radio id 0
+[   42.356146] ol_ath_attach() WMI attached. wmi_handle dc680000
+[   42.360973] wmi_unified_register_event_handler: Event id 62 is unavailable
+[   42.367820] +htc_create ..  HIF :dc1e0000-htc_create: (0xdc50a000)
+[   42.373792] htc_wmi_init() HT Create . dc50a000
+[   42.378587] htc_wmi_init 7754 host_enable 0 nss_nwifi_offload 0
+[   42.384383] ol_ath_set_default_tgt_config : AC Minfree buffer allocation through module param (umac.ko)
+[   42.393776]  OL_ACBKMinfree : 0
+[   42.396891]  OL_ACBEMinfree : 0
+[   42.400004]  OL_ACVIMinfree : 0
+[   42.403129]  OL_ACVOMinfree : 0
+[   42.406257] hif_enable_fastpath, Enabling fastpath mode
+[   42.411302] +HWT
+[   42.413294] hif_completion_thread_startup: pipe_num:0 pipe_info:0xdc1e4b78hif_completion_thread_startup: pipe_num:3 pipe_info:0xdc1e4c50hif_completion_thread_startup: pipe_num:4 pipe_info:0xdc1e4c98
+[   42.435291] -HWT
+[   42.436370] Startup Mode-0 set
+[   42.439305] pdev attach   (null) -1
+[   42.442863]
+[   42.442863] <=== cfg max peer id 1056 ====>
+[   42.449241] htt_peer_map_timer_init Enter pdev db450000 hrtimer db454948
+[   42.455193]
+[   42.455193]  htt_alloc_peer_map_mem : Alloc Success : host q vaddr db45a000 paddr 9b45a000
+[   42.464949]
+[   42.464949]  htt_alloc_peer_map_mem : Flush Interval Configured to 256 pkts
+[   42.476547] ol_txrx_pdev_attach: 2500 tx desc's allocated ; range starts from db0e0000
+[   42.485626] Firmware_Build_Number:50
+[   42.488295] FW wireless modes: 0x680c
+[   42.491910] num_rf_chain:0x00000002  ht_cap_info:0x0000085b  vht_cap_info:0x339959b2  vht_supp_mcs:0x0000fffa
+[   42.501816] btcoex_support 1, wlan_prio_gpio 52, coex_gpio_pin 0 0 0
+[   42.508156] wmi_service_coex_gpio 1, wmi_service_4_wire_coex_support 1, coex_version 2
+[   42.516042]
+[   42.516042] Sending Ext resource cfg: HOST PLATFORM as 0
+[   42.516042] fw_feature_bitmap as 52 to TGT
+[   42.526959] ol_ath_service_ready_event: tt_support: 1
+[   42.531923] ol_ath_service_ready_event: periodic_chan_stats: 1
+[   42.537754] ol_ath_service_ready_event: sw_cal_support_check_flag: 1
+[   42.544079] Peer Caching Enabled ; num_peers = 530, num_active_peers = 52 num_tids = 104, num_vdevs = 17
+[   42.553594] EXT NSS Supported
+[   42.556517] idx 1 req 2  num_units 1 num_unit_info 12 unit size 256 actual units 53
+[   42.564263] ol_ath_alloc_host_mem_chunk req_id 2 idx 0 num_units 53 unit_len 256,
+[   42.571701] idx 2 req 3  num_units 1 num_unit_info 12 unit size 1024 actual units 53
+[   42.579564] ol_ath_alloc_host_mem_chunk req_id 3 idx 1 num_units 53 unit_len 1024,
+[   42.587064] idx 3 req 4  num_units 1 num_unit_info 12 unit size 4096 actual units 53
+[   42.595061] ol_ath_alloc_host_mem_chunk req_id 4 idx 2 num_units 53 unit_len 4096,
+[   42.602431] idx 0 req 1  num_units 0 num_unit_info 2 unit size 744 actual units 531
+[   42.610462] ol_ath_alloc_host_mem_chunk req_id 1 idx 3 num_units 531 unit_len 744,
+[   42.617704] idx 4 req 6  num_units 35 num_unit_info 0 unit size 3072 actual units 35
+[   42.625605] ol_ath_alloc_host_mem_chunk req_id 6 idx 4 num_units 35 unit_len 3072,
+[   42.633069] idx 5 req 7  num_units 1 num_unit_info 0 unit size 6144 actual units 1
+[   42.640725] ol_ath_alloc_host_mem_chunk req_id 7 idx 5 num_units 1 unit_len 6144,
+[   42.648172] idx 6 req 5  num_units 0 num_unit_info 2 unit size 2052 actual units 531
+[   42.656961] ol_ath_alloc_host_mem_chunk req_id 5 idx 6 num_units 531 unit_len 2052,
+[   42.663608] Support not added yet for Service 91
+[   42.668223] Support not added yet for Service 92
+[   42.672807] No EXT_MSG send INIT now
+[   42.676388] chunk 0 len 13568 requested , ptr  0x9c580000
+[   42.681749] chunk 1 len 54272 requested , ptr  0x9b0d0000
+[   42.687145] chunk 2 len 217088 requested , ptr  0x9b140000
+[   42.692601] chunk 3 len 395064 requested , ptr  0x9b180000
+[   42.698082] chunk 4 len 107520 requested , ptr  0x9b200000
+[   42.703537] chunk 5 len 6144 requested , ptr  0x9b176000
+[   42.708857] chunk 6 len 1089612 requested , ptr  0x9ac00000
+[   42.714388] chunk 7 len 0 requested , ptr  0x87500000
+[   42.719523] Set  btcoex_enable:0
+[   42.722721] ol_ath_service_ready_event[4251] WAPI MBSSID 2
+[   42.728419] smart_log_init: Smart logging Enabled buf=dad10000 (size=65536)
+[   42.763635] Version = 16777216 3  status = 0
+[   42.766910] ol_ath_connect_htc() WMI is ready
+[   42.771267] htt_h2t_frag_desc_bank_cfg_msg - HTT_H2T_MSG_TYPE_FRAG_DESC_BANK_CFG sent to FW for radio ID = 0
+[   42.771279] target uses HTT version 2.2; host uses 2.2
+[   42.791182] ol_ath_attach() connect HTC.
+[   42.794160] bypasswmi : 0
+[   42.796780] ol_regdmn_start: reg-domain param: regdmn=0, countryName=, wModeSelect=FFFFFFFF, netBand=FFFFFFFF, extendedChanMode=0.
+[   42.808514] ol_regdmn_init_channels: !avail mode 0x680c (0x2) flags 0x2150
+[   42.815343] ol_regdmn_init_channels: !avail mode 0x680c (0x1) flags 0x140
+[   42.822157] ol_regdmn_init_channels: !avail mode 0x680c (0x20) flags 0xd0
+[   42.828895] ol_regdmn_init_channels: !avail mode 0x680c (0x40) flags 0x150
+[   42.835778] ol_regdmn_init_channels: !avail mode 0x680c (0x1000) flags 0x10100
+[   42.842956] ol_regdmn_init_channels: !avail mode 0x680c (0x8000) flags 0x20100
+[   42.850160] ol_regdmn_init_channels: !avail mode 0x680c (0x10000) flags 0x40100
+[   42.857453] ol_regdmn_init_channels: !avail mode 0x680c (0x20000) flags 0x100100
+[   42.864822] ol_regdmn_init_channels: !avail mode 0x680c (0x40000) flags 0x200100
+[   42.872209] ol_regdmn_init_channels: !avail mode 0x680c (0x80000) flags 0x400100
+[   42.879588] ol_regdmn_init_channels: !avail mode 0x680c (0x100000) flags 0x800100
+[   42.887052] ol_regdmn_init_channels: !avail mode 0x680c (0x200000) flags 0x4000100
+[   42.894597] ol_regdmn_init_channels: !avail mode 0x680c (0x400000) flags 0x8000100
+[   42.902383] OL Resmgr Init-ed
+[   42.905263] ieee80211_bsteering_attach: Band steering initialized
+[   42.911222] acfg_attach: 3013: Netlink socket created:dc51fc00
+[   42.917036] SPECTRAL : get_capability not registered
+[   42.921938] HAL_CAP_PHYDIAG : Capable
+[   42.925586] SPECTRAL : Need to fix the capablity check for RADAR (spectral_attach : 237)
+[   42.933668] SPECTRAL : get_capability not registered
+[   42.938611] HAL_CAP_RADAR   : Capable
+[   42.942250] SPECTRAL : Need to fix the capablity check for SPECTRAL
+[   42.942250]  (spectral_attach : 242)
+[   42.952068] SPECTRAL : get_capability not registered
+[   42.957013] HAL_CAP_SPECTRAL_SCAN : Capable
+[   42.961174] SPECTRAL : get_tsf64 not registered
+[   42.965709] spectral_init_netlink 78 NULL SKB
+[   42.970046] Green-AP : Green-AP : Attached
+[   42.970046]
+[   42.975582] Green-AP : Attached
+[   42.978717] rate power table override is only supported for AR98XX
+[   42.984936] ol_ath_smart_ant_attach: Hardware doest not support Smart Antenna.
+[   42.992145] ol_if_dfs_attach: called; ptr=db17998c, radar_info=dc15dba8
+[   42.998684] dfs_attach: event log enabled by default
+[   43.004568] >>>> CB Set   (null)
+[   43.007188] ol_ath_attach() UMAC attach .
+[   43.010911]
+[   43.010911]  BURSTING enabled by default
+[   43.016372] ol_ath_attach: Set global_ic[1] ..ptr:bfcd3338
+[   43.021803] ath_lowi_if_netlink_init LOWI Netlink successfully created
+[   43.028319] osif_wrap_attach:444 osif wrap attached
+[   43.033159] osif_wrap_devt_init:405 osif wrap dev table init done
+[   43.039237]  Wrap Attached: Wrap_com =defd6600 ic->ic_wrap_com=defd6600 &wrap_com->wc_devt=defd6600
+[   43.048378] __ol_ath_attach: needed_headroom reservation 60
+[   43.055308] ol_ath_thermal_mitigation_attach: --
+[   43.058976] ol_ath_ahb_probe num_radios=0, wifi_radios[0].sc = dc2c0500 wifi_radio_type = 2
+[   43.067297] ath_sysfs_diag_init: diag_fsattr
+[   43.072095]  *********** IPQ4019  *************Wifi1 CPU frequency 250000000
+[   43.098787] hif_target_sync_ahb: Got FW signal, retries = 1hif_ahb_enable_bus: X - hif_type = 0xd, target_type = 0xbhif_config_ce: ce_init donehif_config_ce: X, ret = 0hif_set_hia: Ehif_pci_bus_configure: hif_set_hia donehif_configure_irq: Ehif_enable: X OKhif_napi_create: NAPI structures initializedhif_napi_create: NAPI id 6 created for pipe 5qca_napi_create: napi instance 32 created on pipe 4
+[   43.136978] hif_napi_event: received evnt: CONF cmd; v = 1 (state=0x1)hif_napi_event: setting configuration to ON
+__ol_ath_attach() Allocated scn db240500
+[   43.150932] nss is not enabled on this platform
+[   43.155367] nss register id -1 offload mode enabled = 0 nss config 0 Target Type b
+[   43.163021] __ol_ath_attach: dev name wifi1
+[   43.167184] ol_ath_attach interface_id 1
+[   43.171333] ol_target_init() BMI inited.
+[   43.175083] ol_target_init() BMI Get Target Info.
+[   43.179688] Chip id: 0xb, chip version: 0x1000000
+[   43.184354]
+[   43.184354]  CE WAR Disabled
+[   43.188839] NUM_DEV=1 FWMODE=0x2 FWSUBMODE=0x0 FWBR_BUF 0
+[   43.194258] ol_target_init() configure Target .
+[   43.198695]
+[   43.198695]  Target Version is 1000000
+[   43.203803]
+[   43.203803]  Flash Download Address  c0000
+[   43.209459] ol_transfer_bin_file: flash data file defined
+[   43.214828] ol_transfer_bin_file[3769] Get Caldata for wifi1.
+[   43.220618] qdf_fs_read[59], Open File /tmp/wifi1.caldata SUCCESS!!file system magic:16914836super blocksize:4096inode 2130file size:12064qc98xx_verify_checksum: flash checksum passed: 0xd95e
+[   43.237583] ol_transfer_bin_file 3830: Download Flash data len 12064
+[   43.244269] Board extended Data download address: 0x0
+[   43.268509]
+[   43.268509]  Board data initialized
+[   43.272490] ol_ath_download_firmware: Download OTP, flash download ADDRESS 0xc0000
+[   43.280018]
+[   43.280018]  Selecting  OTP binary for CHIP Version -509221332
+[   43.287457] ol_transfer_bin_file 3650: downloading file 0, Download data len 4676
+[   43.311146]
+[   43.311146]  First OTP send param 8000
+[   43.320010] ol_ath_download_firmware :First OTP download and Execute is good address:0x5400 return param 4660
+[   43.328911] ol_ath_download_firmware:##Board Id 21 , CHIP Id 0
+[   43.334800] ol_ath_download_firmware: BOARDDATA DOWNLOAD TO address 0xc0000
+[   43.341674]
+[   43.341674]  wifi1: Selecting board data file name boardData_1_0_IPQ4019_DK04_5G.bin
+[   43.350869] ol_transfer_bin_file: Board Data File download to address=0xc0000 file name=IPQ4019/hw.1/boardData_1_0_IPQ4019_DK04_5G.bin
+[   43.363184] ol_transfer_bin_file 3650: downloading file 3, Download data len 12064
+[   43.370859] Board extended Data download address: 0x0
+[   43.387549] [wifi0] FWLOG: [50239] WAL_DBGID_RST_STATS ( 0x1, 0x1, 0x96c, 0x0 )
+[   43.393847] [wifi0] FWLOG: [50280] WAL_DBGID_TX_AC_BUFFER_SET ( 0x3, 0x1e, 0x94c, 0x94c, 0x0 )
+[   43.402436] [wifi0] FWLOG: [50280] WAL_DBGID_TX_AC_BUFFER_SET ( 0x12, [   43.408613] ol_ath_download_firmware: Using 0x1234 for the remainder of init
+[   43.408619]
+[   43.408619]  Selecting  OTP binary for CHIP Version -509221332
+[   43.408760] ol_transfer_bin_file 3650: downloading file 0, Download data len 4676
+
+[   43.430588] 0x1e, 0x94c, 0x94c, 0x0 )
+[   43.434384] [wifi0] FWLOG: [50280] WAL_DBGID_TX_AC_BUFFER_SET ( 0x45, 0x1e, 0x94c, 0x94c, 0x0 )
+[   43.443062] [wifi0] FWLOG: [50280] WAL_DBGID_TX_AC_BUFFER_SET ( 0x67, 0x1e, 0x94c, 0x94c, 0x0 )
+[   43.451742] [wifi0] FWLOG: [50426] WAL_DBGID_PDEV_INFO_PRINT ( [   43.453760]
+[   43.453760]  [Flash] : Ignore Module param
+[   43.453765]
+[   43.453765]  Second otp download Param 10000
+
+[   43.468855] 0x3aol_ath_download_firmware : Second OTP download and Execute is good, param=0x0
+[   43.468871]
+[   43.468871]  Mission mode: Firmware CHIP Version -509221332
+[   43.469612] ol_swap_seg_alloc: Successfully allocated memory for SWAP size=262144
+[   43.469997] ol_swap_wlan_memory_expansion: length:185067 size_left:185087 dma_size_left:262144 fw_temp:e2581004 fw_entry_size:185091
+[   43.470005] ol_swap_wlan_memory_expansion: dma_virt_addr :e2210000 fw_temp: e2581008 length: 185067
+[   43.470221] Swap: bytes_left to copy: fw:16; dma_page:77077
+[   43.470229] ol_swap_wlan_memory_expansion: length:0 size_left:12 dma_size_left:77077 fw_temp:e25ae2f7 fw_entry_size:185091
+[   43.470232] Swap: wrong length read:0
+[   43.470238] ol_swap_wlan_memory_expansion: Swap total_bytes copied: 185067 Target address 4180b0
+[   43.470701] scn=db240500  target_write_addr=4180b0 seg_info=dece2f10
+[   43.470709] ol_transfer_swap_struct:Code swap structure successfully downloaded for bin type =2
+[   43.470714] bin_filename=IPQ4019/hw.1/athwlan.bin swap_filename=/lib/firmware/IPQ4019/hw.1/athwlan.codeswap.bin
+[   43.470753] ol_transfer_bin_file: Downloading firmware file: IPQ4019/hw.1/athwlan.bin
+[   43.471656] ol_transfer_bin_file 3650: downloading file 1, Download data len 378640
+[   43.583007] , 0xa10, 0x160, 0x0, 0x12 )
+[   43.586823] [wifi0] FWLOG: [50426] WAL_DBGID_PDEV_INFO_PRINT ( 0x3a, 0x0, 0x12, 0x10, 0x12 )
+[   44.827953] ol_target_init() Download FW done.
+[   44.831567]
+[   44.831567] ol_ath_copy_tgt_iram() iram read paddr: 0x980000 host paddr 0x87700000 Radio id 1
+[   45.006713] ol_ath_attach() WMI attached. wmi_handle db45e000
+[   45.011524] wmi_unified_register_event_handler: Event id 62 is unavailable
+[   45.018394] +htc_create ..  HIF :db280000-htc_create: (0xdc50e000)
+[   45.024368] htc_wmi_init() HT Create . dc50e000
+[   45.029152] htc_wmi_init 7754 host_enable 0 nss_nwifi_offload 0
+[   45.034960] ol_ath_set_default_tgt_config : AC Minfree buffer allocation through module param (umac.ko)
+[   45.044345]  OL_ACBKMinfree : 0
+[   45.047464]  OL_ACBEMinfree : 0
+[   45.050576]  OL_ACVIMinfree : 0
+[   45.053702]  OL_ACVOMinfree : 0
+[   45.056840] hif_enable_fastpath, Enabling fastpath mode
+[   45.061862] +HWT
+[   45.063866] hif_completion_thread_startup: pipe_num:0 pipe_info:0xdb284b78hif_completion_thread_startup: pipe_num:3 pipe_info:0xdb284c50hif_completion_thread_startup: pipe_num:4 pipe_info:0xdb284c98
+[   45.085878] -HWT
+[   45.086946] Startup Mode-0 set
+[   45.089902] pdev attach   (null) -1
+[   45.093454]
+[   45.093454] <=== cfg max peer id 1056 ====>
+[   45.099858] htt_peer_map_timer_init Enter pdev daa58000 hrtimer daa5c948
+[   45.105794]
+[   45.105794]  htt_alloc_peer_map_mem : Alloc Success : host q vaddr daae0000 paddr 9aae0000
+[   45.115531]
+[   45.115531]  htt_alloc_peer_map_mem : Flush Interval Configured to 256 pkts
+[   45.127143] ol_txrx_pdev_attach: 2500 tx desc's allocated ; range starts from da6e0000
+[   45.136201] Firmware_Build_Number:50
+[   45.138870] FW wireless modes: 0x1f9001
+[   45.142655] num_rf_chain:0x00000002  ht_cap_info:0x0000085b  vht_cap_info:0x339959b2  vht_supp_mcs:0x0000fffa
+[   45.152553] wmi_service_coex_gpio 0, wmi_service_4_wire_coex_support 0, coex_version 0
+[   45.160466]
+[   45.160466] Sending Ext resource cfg: HOST PLATFORM as 0
+[   45.160466] fw_feature_bitmap as 50 to TGT
+[   45.171369] ol_ath_service_ready_event: tt_support: 1
+[   45.176349] ol_ath_service_ready_event: periodic_chan_stats: 1
+[   45.182150] ol_ath_service_ready_event: sw_cal_support_check_flag: 1
+[   45.188506] Peer Caching Enabled ; num_peers = 530, num_active_peers = 52 num_tids = 104, num_vdevs = 17
+[   45.198003] EXT NSS Supported
+[   45.200915] idx 1 req 2  num_units 1 num_unit_info 12 unit size 256 actual units 53
+[   45.208690] ol_ath_alloc_host_mem_chunk req_id 2 idx 0 num_units 53 unit_len 256,
+[   45.216093] idx 2 req 3  num_units 1 num_unit_info 12 unit size 1024 actual units 53
+[   45.223978] ol_ath_alloc_host_mem_chunk req_id 3 idx 1 num_units 53 unit_len 1024,
+[   45.231470] idx 3 req 4  num_units 1 num_unit_info 12 unit size 4096 actual units 53
+[   45.239466] ol_ath_alloc_host_mem_chunk req_id 4 idx 2 num_units 53 unit_len 4096,
+[   45.246838] idx 0 req 1  num_units 0 num_unit_info 2 unit size 744 actual units 531
+[   45.254863] ol_ath_alloc_host_mem_chunk req_id 1 idx 3 num_units 531 unit_len 744,
+[   45.262115] idx 4 req 6  num_units 35 num_unit_info 0 unit size 3072 actual units 35
+[   45.270041] ol_ath_alloc_host_mem_chunk req_id 6 idx 4 num_units 35 unit_len 3072,
+[   45.277481] idx 5 req 7  num_units 1 num_unit_info 0 unit size 6144 actual units 1
+[   45.285126] ol_ath_alloc_host_mem_chunk req_id 7 idx 5 num_units 1 unit_len 6144,
+[   45.292582] idx 6 req 5  num_units 0 num_unit_info 2 unit size 2052 actual units 531
+[   45.301359] ol_ath_alloc_host_mem_chunk req_id 5 idx 6 num_units 531 unit_len 2052,
+[   45.308036] Support not added yet for Service 91
+[   45.312616] Support not added yet for Service 92
+[   45.317232] No EXT_MSG send INIT now
+[   45.320786] chunk 0 len 13568 requested , ptr  0x9b288000
+[   45.326158] chunk 1 len 54272 requested , ptr  0x9a6d0000
+[   45.331556] chunk 2 len 217088 requested , ptr  0x9a740000
+[   45.337024] chunk 3 len 395064 requested , ptr  0x9a780000
+[   45.342479] chunk 4 len 107520 requested , ptr  0x9a000000
+[   45.347973] chunk 5 len 6144 requested , ptr  0x9c3fe000
+[   45.353244] chunk 6 len 1089612 requested , ptr  0x9a200000
+[   45.358812] chunk 7 len 0 requested , ptr  0x87700000
+[   45.363892] ol_ath_service_ready_event[4251] WAPI MBSSID 2
+[   45.369558] smart_log_init: Smart logging Enabled buf=da340000 (size=65536)
+[   45.408411] Version = 16777216 3  status = 0
+[   45.411683] ol_ath_connect_htc() WMI is ready
+[   45.416034] htt_h2t_frag_desc_bank_cfg_msg - HTT_H2T_MSG_TYPE_FRAG_DESC_BANK_CFG sent to FW for radio ID = 1
+[   45.416048] target uses HTT version 2.2; host uses 2.2
+[   45.435977] ol_ath_attach() connect HTC.
+[   45.438969] bypasswmi : 0
+[   45.441565] ol_regdmn_start: reg-domain param: regdmn=0, countryName=, wModeSelect=FFFFFFFF, netBand=FFFFFFFF, extendedChanMode=0.
+[   45.453312] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x2) flags 0x2150
+[   45.460360] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x4) flags 0xa0
+[   45.467180] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x8) flags 0xc0
+[   45.474029] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x20) flags 0xd0
+[   45.480981] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x40) flags 0x150
+[   45.488011] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x800) flags 0x10080
+[   45.495295] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x2000) flags 0x20080
+[   45.502681] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x4000) flags 0x40080
+[   45.510165] Add VHT80 channel: 5210
+[   45.513523] Add VHT80 channel: 5290
+[   45.517003] Add VHT80 channel: 5530
+[   45.520465] Add VHT80 channel: 5610
+[   45.523935] Add VHT80 channel: 5690
+[   45.527418] Add VHT80 channel: 5775
+[   45.530910] Skipping VHT80 channel 5825
+[   45.534708] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x200000) flags 0x4000100
+[   45.542441] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x400000) flags 0x8000100
+[   45.551207] freq=58
+[   45.552363] freq=106
+[   45.554617] freq=122
+[   45.556892] freq=138
+[   45.559163] OL Resmgr Init-ed
+[   45.562250] ieee80211_bsteering_attach: Band steering initialized
+[   45.568186] acfg_attach: Offload using existing sock dc51fc00
+[   45.573930] SPECTRAL : get_capability not registered
+[   45.578851] HAL_CAP_PHYDIAG : Capable
+[   45.582489] SPECTRAL : Need to fix the capablity check for RADAR (spectral_attach : 237)
+[   45.590567] SPECTRAL : get_capability not registered
+[   45.595504] HAL_CAP_RADAR   : Capable
+[   45.599163] SPECTRAL : Need to fix the capablity check for SPECTRAL
+[   45.599163]  (spectral_attach : 242)
+[   45.608968] SPECTRAL : get_capability not registered
+[   45.613909] HAL_CAP_SPECTRAL_SCAN : Capable
+[   45.618084] SPECTRAL : get_tsf64 not registered
+[   45.622593] spectral_init_netlink 78 NULL SKB
+[   45.626944] Green-AP : Green-AP : Attached
+[   45.626944]
+[   45.632487] Green-AP : Attached
+[   45.635609] rate power table override is only supported for AR98XX
+[   45.641845] ol_ath_smart_ant_attach: Hardware doest not support Smart Antenna.
+[   45.649050] ol_if_dfs_attach: called; ptr=da77998c, radar_info=dc15dba8
+[   45.655579] dfs_attach: event log enabled by default
+[   45.661534] >>>> CB Set   (null)
+[   45.664528] ol_ath_attach() UMAC attach .
+[   45.667845]
+[   45.667845]  BURSTING enabled by default
+[   45.673270] ol_ath_attach: Set global_ic[2] ..ptr:bfcd3338
+[   45.678703] ath_lowi_if_netlink_init Incremented LOWI netlink ref count: 2
+[   45.685544] osif_wrap_attach:444 osif wrap attached
+[   45.690423] osif_wrap_devt_init:405 osif wrap dev table init done
+[   45.696476]  Wrap Attached: Wrap_com =da7e2000 ic->ic_wrap_com=da7e2000 &wrap_com->wc_devt=da7e2000
+[   45.705580] __ol_ath_attach: needed_headroom reservation 60
+[   45.712628] ol_ath_thermal_mitigation_attach: --
+[   45.716266] ol_ath_ahb_probe num_radios=1, wifi_radios[1].sc = db240500 wifi_radio_type = 2
+[   45.724626] ath_sysfs_diag_init: diag_fsattr
+[   45.729382] ath_ol_pci:  (Atheros/multi-bss)
+[   45.747171]  pktlog_init: Initializing Pktlog for AR900B, pktlog_hdr_size = 16
+[   45.753364] +hif_update_pipe_callback pipeid 8
+[   45.757900] -hif_update_pipe_callback
+[   45.758446] Switching to Tx Mode-1 Threshold 280
+[   45.766075]  pktlog_init: Initializing Pktlog for AR900B, pktlog_hdr_size = 16
+[   45.773294] +hif_update_pipe_callback pipeid 8
+[   45.777726] -hif_update_pipe_callback
+[   45.791287] __sa_init_module
+No Direct-Attach chipsets found.
+[   45.863782] Removing athdebug proc file
+[   45.866648] ath_dev: driver unloaded
+[   45.913871] ath_tx99: driver unloaded
+[   45.963720] ath_rate_atheros: driver unloaded
+[   46.003808] ath_hal: driver unloaded
+[   46.038097] [wifi1] FWLOG: [52948] WAL_DBGID_RST_STATS ( 0x1, 0x1, 0x1464, 0x0 )
+[   46.044467] [wifi1] FWLOG: [52989] WAL_DBGID_TX_AC_BUFFER_SET ( 0x3, 0x1e, 0x94c, 0x94c, 0x0 )
+[   46.053056] [wifi1] FWLOG: [52989] WAL_DBGID_TX_AC_BUFFER_SET ( 0x12, 0x1e, 0x94c, 0x94c, 0x0 )
+[   46.061737] [wifi1] FWLOG: [52989] WAL_DBGID_TX_AC_BUFFER_SET ( 0x45, 0x1e, 0x94c, 0x94c, 0x0 )
+[   46.070417] [wifi1] FWLOG: [52989] WAL_DBGID_TX_AC_BUFFER_SET ( 0x67, 0x1e, 0x94c, 0x94c, 0x0 )
+[   46.079102] [wifi1] FWLOG: [53139] WAL_DBGID_PDEV_INFO_PRINT ( 0x3a, 0xa10, 0x160, 0x10, 0x0 )
+[   46.087691] [wifi1] FWLOG: [53140] WAL_DBGID_PDEV_INFO_PRINT ( 0x3a, 0x10, 0x0, 0x10, 0x12 )
+[   46.767008] random: jshn: uninitialized urandom read (4 bytes read, 93 bits of entropy available)
+[   46.831781] random: ubusd: uninitialized urandom read (4 bytes read, 93 bits of entropy available)
+[   46.921743] Unsafe core_pattern used with suid_dumpable=2. Pipe handler or fully qualified core dump path required.
+[   48.403234] Switching to Tx Mode-1 Threshold 280
+[   50.169640] ECM init
+[   50.170869] ECM database jhash random seed: 0x32150c4f
+[   50.177825] ECM init complete
+[   51.049640] Not a bridge device, or device not found: br-lan
+mac80211 qcawifi disable radio wifi0
+mac80211 qcawifi disable radio wifi1
+mac80211 qcawifi: enable radio wifi0
+[   51.586102] isCountryCodeValid: EEPROM regdomain 0x0
+[   51.590170] ol_regdmn_init_channels: !avail mode 0x680c (0x2) flags 0x2150
+[   51.597144] ol_regdmn_init_channels: !avail mode 0x680c (0x1) flags 0x140
+[   51.603707] ol_regdmn_init_channels: !avail mode 0x680c (0x20) flags 0xd0
+[   51.610711] ol_regdmn_init_channels: !avail mode 0x680c (0x40) flags 0x150
+[   51.617521] ol_regdmn_init_channels: !avail mode 0x680c (0x1000) flags 0x10100
+[   51.624513] ol_regdmn_init_channels: !avail mode 0x680c (0x8000) flags 0x20100
+[   51.631952] ol_regdmn_init_channels: !avail mode 0x680c (0x10000) flags 0x40100
+[   51.639165] ol_regdmn_init_channels: !avail mode 0x680c (0x20000) flags 0x100100
+[   51.646536] ol_regdmn_init_channels: !avail mode 0x680c (0x40000) flags 0x200100
+[   51.653754] ol_regdmn_init_channels: !avail mode 0x680c (0x80000) flags 0x400100
+[   51.661400] ol_regdmn_init_channels: !avail mode 0x680c (0x100000) flags 0x800100
+[   51.668819] ol_regdmn_init_channels: !avail mode 0x680c (0x200000) flags 0x4000100
+[   51.676176] ol_regdmn_init_channels: !avail mode 0x680c (0x400000) flags 0x8000100
+[   51.713438] set TXBF_SND_PERIOD: value 100 wmi_status 0
+[   51.731938]  Disconnect_timeout value entered:10
+[   51.740174]  reconfiguration_timeout value entered:60
+[   51.752637] device eth1 entered promiscuous mode
+[   51.760313] IPv6: ADDRCONF(NETDEV_UP): br-lan: link is not ready
+[   51.842465] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   52.092966] wlan_vap_create : enter. devhandle=0xdc2c0500, opmode=IEEE80211_M_HOSTAP, flags=0x1
+[   52.100803] send_vdev_create_cmd_non_tlv: ID = 0 Type = 1, Subtype = 0 VAP Addr = xx:xx:xx:xx:xx:09:
+[   52.109949] ieee80211_mbo_vattach:MBO Initialized
+[   52.114540] ieee80211_oce_vattach: OCE Initialized
+[   52.119655] wlan_vap_create : exit. devhandle=0xdc2c0500, vap=0xd9618000, opmode=IEEE80211_M_HOSTAP, flags=0x1.
+[   52.129523] __ieee80211_smart_ant_init: Smart Antenna is not supported
+[   52.136086] Enabling TX checksum bit for the vap ath0 features 4000
+[   52.142466] Enabling SG bit for the vap ath0 features 4000
+[   52.147988] Enabling SG bit for the vap ath0 features 4000
+[   52.153511] Enabling TSO bit for the vap ath0 features 4000
+[   52.159225] Enabling LRO bit for the vap ath0 features 4000
+[   52.166076] VAP device ath0 created osifp: (d9605500) os_if: (d9618000)
+[   52.183011] 8021q: adding VLAN 0 to HW filter on device ath0
+[   52.194555] device ath0 entered promiscuous mode
+[   52.199827] br-lan: port 2(ath0) entered forwarding state
+[   52.204278] br-lan: port 2(ath0) entered forwarding state
+[   52.210393] IPv6: ADDRCONF(NETDEV_CHANGE): br-lan: link becomes ready
+[   52.222047] siwfreq
+[   52.224333] Set freq vap 0 stop send + d9618000
+[   52.236650] Set freq vap 0 stop send -d9618000
+[   52.266408] Set wait done --d9618000
+[   52.361453] [DEBUG] vap-0(ath0):set SIOC80211NWID, 16 characters
+[   52.366733]
+[   52.366733]  DES SSID SET=NCP-HG100-6a09-b
+[   52.383621] [wifi0] FWLOG: [59423] WAL_DBGID_PDEV_INFO_PRINT ( 0x88, 0xa50, 0x540, 0x0, 0x42 )
+[   52.391203] [wifi0] FWLOG: [59454] WAL_DBGID_RST_STATS ( 0x2, 0x2, 0x96c, 0x0 )
+[   52.403571] Sending SCAN START cmd
+[   52.552673] netlink: 12 bytes leftover after parsing attributes in process `ip'.
+[   52.559121] netlink: 12 bytes leftover after parsing attributes in process `ip'.
+[   52.736438] br-lan: port 1(eth1) entered forwarding state
+[   52.740926] br-lan: port 1(eth1) entered forwarding state
+[   53.086672]  ieee80211_ioctl_siwmode: imr.ifm_active=131712, new mode=3, valid=1
+[   53.094341] [UNSPECIFIED] ol_scan_unregister_event_handler: Failed to unregister evhandler=bfc03548 arg=dad20000
+[   53.094341]
+[   53.105396] osif_vap_stop: Scan in progress.. Cancelling it. vap: 0xd9618000
+[   53.113784] send_vdev_down_cmd_non_tlv for vap 0
+[   53.119872] br-lan: port 2(ath0) entered disabled state
+[   53.196930]  DEVICE IS DOWN ifname=ath0
+[   53.199803]  DEVICE IS DOWN ifname=ath0
+[   53.383045] [wifi0] FWLOG: [60170] WAL channel change freq=2412, mode=1 flags=0 rx_ok=1 tx_ok=1
+[   53.390828] [wifi0] FWLOG: [60478] WAL channel change freq=2417, mode=1 flags=0 rx_ok=1 tx_ok=1
+[   53.399629] [wifi0] FWLOG: [60793] WAL channel change freq=2422, mode=1 flags=0 rx_ok=1 tx_ok=1
+[   53.408226] [wifi0] FWLOG: [60892] RESMGR_OCS_GEN_PERIODIC_NOA ( 0x0 )
+[   53.414578] [wifi0] FWLOG: [60892] RESMGR_OCS_GEN_PERIODIC_NOA ( 0x0 )
+[   53.446738] Sending SCAN START cmd
+[   53.449358] br-lan: port 2(ath0) entered forwarding state
+[   53.454582] br-lan: port 2(ath0) entered forwarding state
+[   53.460014] 8021q: adding VLAN 0 to HW filter on device ath0
+[   53.939388] __mc_netlink_receive: Disable bridge snooping!
+mac80211 qcawifi: enable radio wifi1
+[   54.110333] isCountryCodeValid: EEPROM regdomain 0x0
+[   54.116785] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x2) flags 0x2150
+[   54.123803] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x4) flags 0xa0
+[   54.130045] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x8) flags 0xc0
+[   54.137368] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x20) flags 0xd0
+[   54.143487] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x40) flags 0x150
+[   54.150967] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x800) flags 0x10080
+[   54.157886] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x2000) flags 0x20080
+[   54.165172] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x4000) flags 0x40080
+[   54.173426] Add VHT80 channel: 5210
+[   54.176031] Add VHT80 channel: 5290
+[   54.179620] Add VHT80 channel: 5530
+[   54.182973] Add VHT80 channel: 5610
+[   54.187047] Skipping VHT80 channel 5660
+[   54.190267] Skipping VHT80 channel 5680
+[   54.194084] Skipping VHT80 channel 5700
+[   54.197997] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x200000) flags 0x4000100
+[   54.206000] ol_regdmn_init_channels: !avail mode 0x1f9001 (0x400000) flags 0x8000100
+[   54.215210] freq=58
+[   54.216432] freq=106
+[   54.218634] freq=122
+
+
+
+root@OpenWrt:/etc/uci-defaults# cat /proc/version
+Linux version 4.4.60 (android@androidbuildmachine) (gcc version 5.3.0 (OpenWrt GCC 5.3.0 r48067) ) #7 SMP PREEMPT Thu Dec 20 16:40:33 CST 2018
+
+root@OpenWrt:/etc/uci-defaults# cat /proc/cpuinfo
+processor       : 0
+model name      : ARMv7 Processor rev 5 (v7l)
+BogoMIPS        : 26.81
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xc07
+CPU revision    : 5
+
+processor       : 1
+model name      : ARMv7 Processor rev 5 (v7l)
+BogoMIPS        : 26.81
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xc07
+CPU revision    : 5
+
+processor       : 2
+model name      : ARMv7 Processor rev 5 (v7l)
+BogoMIPS        : 26.81
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xc07
+CPU revision    : 5
+
+processor       : 3
+model name      : ARMv7 Processor rev 5 (v7l)
+BogoMIPS        : 26.81
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xc07
+CPU revision    : 5
+
+Hardware        : Qualcomm (Flattened Device Tree)
+Revision        : 0000
+Serial          : 0000000000000000
+
+
+root@OpenWrt:/etc/uci-defaults# cat /proc/devices
+Character devices:
+  1 mem
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+ 10 misc
+ 13 input
+ 14 sound
+ 29 fb
+ 89 i2c
+ 90 mtd
+108 ppp
+116 alsa
+128 ptm
+136 pts
+153 spi
+180 usb
+188 ttyUSB
+189 usb_device
+247 ecm_state
+248 sfe_ipv6
+249 sfe_ipv4
+250 ttyMSM
+251 ttyMSM
+252 watchdog
+253 rtc
+254 msm_sps
+
+Block devices:
+  1 ramdisk
+259 blkext
+  8 sd
+ 31 mtdblock
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+179 mmc
+254 ubiblock
+
+
+root@OpenWrt:/etc/uci-defaults# free
+             total       used       free     shared    buffers     cached
+Mem:        495112     170356     324756        324      18032      40500
+-/+ buffers/cache:     111824     383288
+Swap:            0          0          0
+
+
+root@OpenWrt:/etc/uci-defaults# df -h
+Filesystem                Size      Used Available Use% Mounted on
+/dev/root                35.3M     35.3M         0 100% /rom
+tmpfs                   241.8M    324.0K    241.4M   0% /tmp
+/dev/mmcblk0p17           1.6G      3.3M      1.5G   0% /overlay
+overlayfs:/overlay        1.6G      3.3M      1.5G   0% /
+tmpfs                   512.0K         0    512.0K   0% /dev
+
+
+root@OpenWrt:/etc/uci-defaults# ls /sys/devices/platform/
+Fixed MDIO bus.0  firmware:qfprom   pmu               snd-soc-dummy
+alarmtimer        firmware:scm      power             soc
+cpufreq-dt        mdss_fb.0         reg-dummy         uevent
+
+
+
+root@OpenWrt:/etc/uci-defaults# cat /proc/mtd
+dev:    size   erasesize  name
+root@OpenWrt:/etc/uci-defaults# cat /proc/partitions
+major minor  #blocks  name
+
+   1        0       4096 ram0
+   1        1       4096 ram1
+   1        2       4096 ram2
+   1        3       4096 ram3
+   1        4       4096 ram4
+   1        5       4096 ram5
+   1        6       4096 ram6
+   1        7       4096 ram7
+   1        8       4096 ram8
+   1        9       4096 ram9
+   1       10       4096 ram10
+   1       11       4096 ram11
+   1       12       4096 ram12
+   1       13       4096 ram13
+   1       14       4096 ram14
+   1       15       4096 ram15
+ 179        0    3866624 mmcblk0
+ 179        1        512 mmcblk0p1
+ 179        2        512 mmcblk0p2
+ 179        3        512 mmcblk0p3
+ 179        4        512 mmcblk0p4
+ 179        5        256 mmcblk0p5
+ 179        6        256 mmcblk0p6
+ 179        7        512 mmcblk0p7
+ 179        8        256 mmcblk0p8
+ 179        9       1024 mmcblk0p9
+ 179       10       1024 mmcblk0p10
+ 179       11        256 mmcblk0p11
+ 179       12        256 mmcblk0p12
+ 179       13       8192 mmcblk0p13
+ 179       14       8192 mmcblk0p14
+ 179       15     131072 mmcblk0p15
+ 179       16     131072 mmcblk0p16
+ 179       17    1694600 mmcblk0p17
+ 179       32        512 mmcblk0rpmb
+
+
+root@OpenWrt:/etc/uci-defaults# cat /proc/mounts
+/dev/root /rom squashfs ro,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,noatime 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,noatime 0 0
+cgroup /sys/fs/cgroup cgroup rw,nosuid,nodev,noexec,relatime,memory 0 0
+tmpfs /tmp tmpfs rw,nosuid,nodev,noatime 0 0
+/dev/mmcblk0p17 /overlay ext4 rw,noatime,data=ordered 0 0
+overlayfs:/overlay / overlay rw,noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/work 0 0
+tmpfs /dev tmpfs rw,nosuid,relatime,size=512k,mode=755 0 0
+devpts /dev/pts devpts rw,nosuid,noexec,relatime,mode=600 0 0
+debugfs /sys/kernel/debug debugfs rw,noatime 0 0
+
+
+root@OpenWrt:/etc/uci-defaults# ifconfig -a
+ath0      Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:09
+          UP BROADCAST RUNNING ALLMULTI MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+ath1      Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:0A
+          UP BROADCAST RUNNING ALLMULTI MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+bond0     Link encap:Ethernet  HWaddr 82:D0:C9:B3:D4:1B
+          BROADCAST MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+br-lan    Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:09
+          inet addr:192.168.132.1  Bcast:192.168.132.255  Mask:255.255.255.0
+          inet6 addr: fd1e:8904:d838::1/60 Scope:Global
+          inet6 addr: fd00:aaaa::1/64 Scope:Global
+          inet6 addr: fe80::5eff:35ff:1919:8009/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:44 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:10397 (10.1 KiB)
+
+eth0      Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:0B
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+eth1      Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:09
+          UP BROADCAST RUNNING ALLMULTI MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:37 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:9317 (9.0 KiB)
+
+gre0      Link encap:UNSPEC  HWaddr 00-00-00-00-39-00-00-00-00-00-00-00-00-00-00-00
+          NOARP  MTU:1476  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+gretap0   Link encap:Ethernet  HWaddr 00:00:00:00:00:00
+          BROADCAST MULTICAST  MTU:1462  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+ifb0      Link encap:Ethernet  HWaddr 96:D0:D0:EB:6B:2D
+          BROADCAST NOARP  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:32
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+ifb1      Link encap:Ethernet  HWaddr 72:D0:56:2A:FF:EE
+          BROADCAST NOARP  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:32
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+ip6tnl0   Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
+          NOARP  MTU:1452  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:1224 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1224 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:78347 (76.5 KiB)  TX bytes:78347 (76.5 KiB)
+
+miireg    Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
+          [NO FLAGS]  MTU:0  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+sit0      Link encap:IPv6-in-IPv4
+          NOARP  MTU:1480  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+teql0     Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
+          NOARP  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+wifi0     Link encap:UNSPEC  HWaddr xx-xx-xx-xx-xx-09-00-00-00-00-00-00-00-00-00-00
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:2699
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+          Interrupt:48
+
+wifi1     Link encap:UNSPEC  HWaddr xx-xx-xx-xx-xx-0A-00-00-00-00-00-00-00-00-00-00
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:2699
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+          Interrupt:65
+
+wwan0     Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
+          POINTOPOINT NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:6 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:1968 (1.9 KiB)
+
+root@OpenWrt:/etc/uci-defaults# ls /sys/class/net/
+ath0             eth0             ifb1             teql0
+ath1             eth1             ip6tnl0          wifi0
+bond0            gre0             lo               wifi1
+bonding_masters  gretap0          miireg           wwan0
+br-lan           ifb0             sit0
+
+root@OpenWrt:/etc/uci-defaults# brctl show
+bridge name     bridge id               STP enabled     interfaces
+br-lan          7fff.xxxxxxxxxxx9       no              ath0
+                                                        ath1
+                                                        eth1
+
+root@OpenWrt:/etc/uci-defaults# cat /sys/kernel/debug/gpio
+GPIOs 0-99, platform/1000000.pinctrl, 1000000.pinctrl:
+ gpio0   : in  0 2mA keeper
+ gpio1   : out 0 2mA no pull
+ gpio2   : in  0 2mA keeper
+ gpio3   : in  0 2mA no pull
+ gpio4   : in  0 2mA keeper
+ gpio5   : out 0 2mA no pull // mcu reset
+ gpio6   : in  1 2mA keeper
+ gpio7   : in  1 2mA keeper
+ gpio8   : out 1 2mA no pull
+ gpio9   : out 1 2mA no pull
+ gpio10  : in  1 2mA no pull
+ gpio11  : in  1 2mA no pull
+ gpio12  : in  2 2mA no pull
+ gpio13  : in  2 2mA no pull
+ gpio14  : in  0 2mA pull down
+ gpio15  : out 0 2mA keeper // debug console <-> zwave
+ gpio16  : out 1 2mA no pull //serial
+ gpio17  : out 1 2mA no pull //serial
+ gpio18  : in  0 2mA pull down
+ gpio19  : in  1 2mA pull down
+ gpio20  : in  0 2mA keeper
+ gpio21  : in  0 2mA keeper
+ gpio22  : in  1 2mA keeper
+ gpio23  : in  1 4mA keeper
+ gpio24  : in  1 4mA keeper
+ gpio25  : in  1 4mA keeper
+ gpio26  : in  1 4mA keeper
+ gpio27  : in  1 16mA keeper
+ gpio28  : in  1 4mA keeper
+ gpio29  : in  1 4mA keeper
+ gpio30  : in  1 4mA keeper
+ gpio31  : in  1 4mA keeper
+ gpio32  : in  1 4mA keeper
+ gpio33  : out 0 2mA no pull // sd-ldo-gpios
+ gpio34  : in  0 2mA keeper
+ gpio35  : in  0 2mA keeper
+ gpio36  : out 0 2mA pull down //usb pwr
+ gpio37  : in  7 6mA pull down
+ gpio38  : out 0 2mA no pull // mcu boot
+ gpio39  : in  0 2mA no pull
+ gpio40  : in  0 2mA no pull
+ gpio41  : out 0 2mA pull down // mido phy-reset-gpio
+ gpio42  : in  0 2mA no pull
+ gpio43  : in  2 6mA pull down
+ gpio44  : out 0 2mA no pull // rt5628 shutdown-gpio
+ gpio45  : out 0 2mA no pull // mute-gpio
+ gpio46  : in  0 2mA pull down
+ gpio47  : in  0 2mA no pull
+ gpio48  : in  2 2mA pull down
+ gpio49  : in  2 2mA pull down
+ gpio50  : in  2 2mA keeper
+ gpio51  : in  2 2mA pull down
+ gpio52  : out 0 6mA keeper // wifi mux3
+ gpio53  : out 3 2mA keeper // audio mux1
+ gpio54  : out 3 2mA pull down //audio mux3
+ gpio55  : in  0 2mA pull down
+ gpio56  : in  0 2mA pull down
+ gpio57  : out 3 2mA pull down //audio mux2
+ gpio58  : in  0 2mA keeper
+ gpio59  : out 0 2mA keeper // ZWAVE RST
+ gpio60  : out 7 2mA pull down //audio mux1
+ gpio61  : out 7 2mA pull down //audio mux2
+ gpio62  : in  2 2mA pull down
+ gpio63  : out 6 2mA pull down //audio mux3
+ gpio64  : in  0 2mA no pull
+ gpio65  : out 0 2mA no pull //cx2902x mux2
+ gpio66  : out 0 2mA pull down //BT RST
+ gpio67  : in  0 2mA pull down
+ gpio68  : out 0 2mA pull down //BT PWR
+ gpio69  : in  0 2mA pull down
+ gpio70  : in  0 2mA pull down
+ gpio71  : in  0 2mA pull down
+ gpio72  : in  0 2mA pull down
+ gpio73  : in  0 2mA pull down
+ gpio74  : in  0 2mA pull down
+ gpio75  : in  0 2mA pull down
+ gpio76  : in  0 2mA pull down
+ gpio77  : in  0 2mA pull down
+ gpio78  : in  0 2mA pull down
+ gpio79  : in  0 2mA pull down
+ gpio80  : in  0 2mA pull down
+ gpio81  : in  0 2mA pull down
+ gpio82  : in  0 2mA pull down
+ gpio83  : in  0 2mA pull down
+ gpio84  : in  0 2mA pull down
+ gpio85  : in  0 2mA pull down
+ gpio86  : in  0 2mA pull down
+ gpio87  : in  0 2mA pull down
+ gpio88  : in  0 2mA pull down
+ gpio89  : in  0 2mA pull down
+ gpio90  : in  0 2mA pull down
+ gpio91  : in  0 2mA pull down
+ gpio92  : in  0 2mA pull down
+ gpio93  : in  0 2mA pull down
+ gpio94  : in  0 2mA pull down
+ gpio95  : in  0 2mA pull down
+ gpio96  : in  0 2mA pull down
+ gpio97  : in  0 2mA pull down
+ gpio98  : in  0 2mA pull down
+ gpio99  : in  0 2mA pull down
+
+root@OpenWrt:/etc/uci-defaults# lsmod
+act_connmark            2065  0
+act_ipt                 2914  0
+act_mirred              3030  0
+act_police              3455  0
+act_skbedit             1934  0
+af_key                 23623  0
+ah4                     5068  0
+ah6                     5522  0
+ahci_platform           2763  0
+aq_phy                  9198  0
+arp_tables              9176  1 arptable_filter
+arpt_mangle             1186  0
+arptable_filter         1127  0
+asf                     6897  5 ath_pktlog
+ath_dfs                63085  2 qca_ol
+ath_pktlog             16254  0
+ath_spectral           35378  1 qca_ol
+authenc                 3816  0
+bonding               118938  2 ecm
+bootconfig              3188  0
+button_hotplug          3210  0
+cbc                     2209  0
+cdc_wdm                10137  1 qmi_wwan
+cls_basic               3446  0
+cls_flow                5776  0
+cls_fw                  3931  0
+cls_route               4995  0
+cls_tcindex             6370  0
+cls_u32                 6927  0
+cp210x                 12362  0
+crc_ccitt               1131  1 ppp_async
+crc_itu_t               1131  0
+des_generic            16416  1 qcrypto
+dwc3                   49158  0
+dwc3_of_simple          2427  0
+ecb                     1761  0
+ecm                   940887  0
+em_cmp                  1037  0
+em_meta                 7528  0
+em_nbyte                1071  0
+em_text                 1642  0
+em_u32                   909  0
+esp4                    5816  0
+esp6                    5564  0
+essedma                44645  0
+evdev                   9955  1
+fat                    45226  2 msdos
+ftdi_sio               32721  0
+fuse                   66436  0
+gpio_button_hotplug     6802  0
+gpio_keys               7979  0
+gre                     1506  2 pptp
+ifb                     3432  0
+input_core             26142  4 evdev
+ip6_tables              9785  4 ip6table_nat
+ip6_tunnel             20063  1 qca_nss_tunipip6
+ip6_udp_tunnel          1815  1 l2tp_core
+ip6t_MASQUERADE          889  0
+ip6t_NPT                1870  0
+ip6t_REJECT             1260  2
+ip6table_filter         1127  1
+ip6table_mangle         1575  1
+ip6table_nat            1385  0
+ip6table_raw            1118  1
+ip_gre                  9738  0
+ip_tables              10746  4 iptable_nat
+ip_tunnel              11639  2 ip_gre
+ipcomp                  1870  0
+ipcomp6                 1870  0
+ipt_ECN                 1636  0
+ipt_MASQUERADE          1330  1
+ipt_REJECT              1194  2
+ipt_ah                  1634  0
+iptable_filter          1188  1
+iptable_mangle          1316  1
+iptable_nat             1398  1
+iptable_raw             1179  1
+l2tp_core              18382  3 l2tp_ppp
+l2tp_netlink            7496  1 l2tp_ppp
+l2tp_ppp               16900  1 ecm
+leds_gpio               3179  0
+ledtrig_usbdev          2531  0
+libcrc32c                907  1 nf_nat_proto_sctp
+md5                     1716  0
+mem_manager             6032  2 qca_ol
+mii                     3544  1 usbnet
+msdos                   6244  0
+nat46                  22547  2 ecm
+nf_conntrack           62319 41 ecm
+nf_conntrack_amanda     1996  1 nf_nat_amanda
+nf_conntrack_broadcast    1085  1 nf_conntrack_snmp
+nf_conntrack_ftp        7975  1 nf_nat_ftp
+nf_conntrack_h323      39907  1 nf_nat_h323
+nf_conntrack_ipv4       6787  9
+nf_conntrack_ipv6       7164  4
+nf_conntrack_irc        3551  1 nf_nat_irc
+nf_conntrack_pptp       6644  1 nf_nat_pptp
+nf_conntrack_proto_gre    4247  1 nf_conntrack_pptp
+nf_conntrack_proto_sctp    8107  0
+nf_conntrack_rtcache    3922  0
+nf_conntrack_rtsp       6640  1 nf_nat_rtsp
+nf_conntrack_sip       17517  1 nf_nat_sip
+nf_conntrack_snmp       1048  1 nf_nat_snmp_basic
+nf_conntrack_tftp       3461  1 nf_nat_tftp
+nf_defrag_ipv4          1212  1 nf_conntrack_ipv4
+nf_defrag_ipv6         16366  1 nf_conntrack_ipv6
+nf_log_common           2639  2 nf_log_ipv4
+nf_log_ipv4             3419  0
+nf_log_ipv6             3612  0
+nf_nat                 10321 16 nf_nat_pptp
+nf_nat_amanda           1093  0
+nf_nat_ftp              1764  0
+nf_nat_h323             7105  0
+nf_nat_ipv4             4530  1 iptable_nat
+nf_nat_ipv6             4858  1 ip6table_nat
+nf_nat_irc              1502  0
+nf_nat_masquerade_ipv4    1741  1 ipt_MASQUERADE
+nf_nat_masquerade_ipv6    1677  1 ip6t_MASQUERADE
+nf_nat_pptp             3186  0
+nf_nat_proto_gre        1619  1 nf_nat_pptp
+nf_nat_proto_sctp       1208  0
+nf_nat_redirect         1243  1 xt_REDIRECT
+nf_nat_rtsp             5038  0
+nf_nat_sip              7291  0
+nf_nat_snmp_basic       6997  0
+nf_nat_tftp              901  0
+nf_reject_ipv4          2243  1 ipt_REJECT
+nf_reject_ipv6          3336  1 ip6t_REJECT
+nls_base                5206  6 vfat
+nls_cp437               4770  0
+nls_iso8859_1           3234  0
+ntfs                   78386  0
+ocf                    19007  1 qca_nss_cfi_ocf
+option                 31793  0
+phy_msm_qusb            9643  0
+phy_msm_ssusb_qmp      12515  0
+phy_qca_baldur          2543  2
+phy_qca_uniphy          2804  1
+phy_qcom_dwc3           4268  0
+pl2303                  9600  0
+ppp_async               6673  0
+ppp_generic            22519 10 ecm
+ppp_mppe                5157  0
+pppoe                   9558  1 ecm
+pppox                   1511  3 pppoe
+pptp                   15980  2 ecm
+qca_85xx_sw            14864  0
+qca_mcs                42441  2 ecm
+qca_nss_cfi_cryptoapi   31734  0
+qca_nss_cfi_ocf         9785  1 qca_nss_ipsec
+qca_nss_crypto         27856  4 qca_nss_cfi_cryptoapi
+qca_nss_crypto_tool     9015  0
+qca_nss_drv           398378 13 ecm
+qca_nss_gmac           58494  2 qca_nss_macsec
+qca_nss_gre            18123  0
+qca_nss_ipsec           7505  0
+qca_nss_ipsecmgr       35021  1 qca_nss_ipsec
+qca_nss_l2tpv2         10504  0
+qca_nss_lag_mgr         2677  0
+qca_nss_macsec         70232  0
+qca_nss_map_t           9596  0
+qca_nss_pptp            3423  0
+qca_nss_qdisc          45723  0
+qca_nss_tun6rd          5386  0
+qca_nss_tunipip6        1776  0
+qca_ol               1028214  0
+qca_ssdk             1930592  1
+qcrypto                47117  0
+qdf                    22980  6 smart_antenna
+qmi_wwan               12959  0
+qrfs                   35310  1 qca_ssdk
+sch_codel               5036  0
+sch_dsmark              6278  0
+sch_fq                  5862  0
+sch_gred                6700  0
+sch_hfsc               12335  0
+sch_htb                12394  0
+sch_ingress             1409  0
+sch_pie                 4692  0
+sch_prio                3747  0
+sch_red                 5180  0
+sch_sfq                 8650  0
+sch_tbf                 5635  0
+sch_teql                4228  0
+sd_mod                 23661  0
+sha1_generic            2031  0
+shortcut_fe            49865  1 shortcut_fe_drv
+shortcut_fe_drv         8740  1 ecm
+shortcut_fe_ipv6       50769  1 shortcut_fe_drv
+sit                    14645  1 qca_nss_tun6rd
+slhc                    4242  1 ppp_generic
+smart_antenna          34682  0
+snd_compress            9782  0
+snd_hwdep               4813  0
+snd_mixer_oss          10737  1 snd_pcm_oss
+snd_pcm_oss            30665  0
+snd_rawmidi            15285  0
+snd_seq_device          2664  1 snd_rawmidi
+ts_bm                   1698  0
+ts_fsm                  2790  0
+ts_kmp                  1574  5
+tun                    16193  0
+tunnel4                 1968  2 sit
+tunnel6                 1968  2 xfrm6_tunnel
+udc_core                7519  1 dwc3
+udp_tunnel              2051  1 l2tp_core
+umac                 1545790  4 smart_antenna
+usb_common              2381  3 dwc3
+usb_storage            39147  0
+usb_wwan                6489  1 option
+usbcore               153212 14 option
+usbnet                 22465  1 qmi_wwan
+usbserial              25212  5 option
+vfat                    8210  0
+x_tables               11479 56 ipt_REJECT
+xfrm4_mode_beet         1779  0
+xfrm4_mode_transport    1213  0
+xfrm4_mode_tunnel       1665  0
+xfrm4_tunnel            1575  0
+xfrm6_mode_beet         1715  0
+xfrm6_mode_transport    1213  0
+xfrm6_mode_tunnel       1601  0
+xfrm6_tunnel            2759  1 ipcomp6
+xfrm_algo               4096  7 esp6
+xfrm_ipcomp             3413  2 ipcomp6
+xfrm_user              20208  0
+xhci_hcd              118934  2 xhci_plat_hcd
+xhci_pci                3925  0
+xhci_plat_hcd           4629  0
+xt_CLASSIFY              908  0
+xt_CT                   3157  0
+xt_DSCP                 1774  0
+xt_HL                   1624  0
+xt_LOG                  1475  0
+xt_REDIRECT             1333  0
+xt_TCPMSS               2856  4
+xt_addrtype             2520  0
+xt_comment               843 66
+xt_connbytes            1621  0
+xt_connlimit            4757  0
+xt_connmark             1524  0
+xt_conntrack            2648 11
+xt_dscp                 1366  0
+xt_ecn                  1692  0
+xt_esp                  1700  0
+xt_helper               1164  0
+xt_hl                   1182  0
+xt_id                    838  0
+xt_length               1061  0
+xt_limit                1357 20
+xt_mac                   967  0
+xt_mark                  992  0
+xt_multiport            2068  0
+xt_nat                  1629  0
+xt_owner                1253  0
+xt_physdev              1644  1
+xt_pkttype               971  0
+xt_policy               2218  0
+xt_quota                1097  0
+xt_recent               7036  0
+xt_state                1097  0
+xt_statistic            1173  0
+xt_string               1100  0
+xt_tcpmss               1290  0
+xt_tcpudp               2648 12
+xt_time                 1958  0
+
+
+root@OpenWrt:/etc/uci-defaults# board_info
+SYNOPSIS
+    board_info [-get] [OPTION]
+
+DESCRIPTION
+    -hwver       HW Version
+    -sku         Device SKU
+    -fasn        FA S/N
+    -pwd1        Password1
+    -pwd2        Password2
+
+Version_1.5 DATE: Sep 19 2018
+root@OpenWrt:/etc/uci-defaults# board_info -get -sku
+LTE
+root@OpenWrt:/etc/uci-defaults# board_info -get -hwver
+03
+root@OpenWrt:/etc/uci-defaults# board_info -get -fasn
+
+root@OpenWrt:/etc/uci-defaults# board_info -get -pwd1
+
+root@OpenWrt:/etc/uci-defaults# board_info -get -pwd2
+
+
+root@OpenWrt:/etc/uci-defaults# cat /etc/openwrt_release
+DISTRIB_ID='OpenWrt'
+DISTRIB_RELEASE='Chaos Calmer'
+DISTRIB_REVISION='r48067'
+DISTRIB_CODENAME='chaos_calmer'
+DISTRIB_TARGET='ipq806x/generic'
+DISTRIB_DESCRIPTION='OpenWrt Chaos Calmer 15.05.1'
+DISTRIB_TAINTS='no-all busybox override'
+
+
+root@OpenWrt:/tmp/usr/bin# ./lsusb -t
+/:  Bus 04.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/0p, 5000M
+/:  Bus 03.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+    |__ Port 1: Dev 3, If 0, Class=Vendor Specific Class, Driver=option, 5000M
+    |__ Port 1: Dev 3, If 1, Class=Vendor Specific Class, Driver=qmi_wwan, 5000M
+    |__ Port 1: Dev 3, If 2, Class=Vendor Specific Class, Driver=option, 5000M
+    |__ Port 1: Dev 3, If 3, Class=Vendor Specific Class, Driver=option, 5000M
+    |__ Port 1: Dev 3, If 4, Class=Vendor Specific Class, Driver=option, 5000M
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 480M
+
+root@OpenWrt:/tmp/usr/bin# ./lsusb -s 3 -v
+
+Bus 002 Device 003: ID 1bc7:1900 Telit
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               3.00
+  bDeviceClass          239 Miscellaneous Device
+  bDeviceSubClass         2 ?
+  bDeviceProtocol         1 Interface Association
+  bMaxPacketSize0         9
+  idVendor           0x1bc7 Telit
+  idProduct          0x1900
+  bcdDevice            3.10
+  iManufacturer           1 Telit
+  iProduct                2 Telit LN940 Mobile Broadband
+  iSerial                 3 0123456789ABCDEF
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength          293
+    bNumInterfaces          5
+    bConfigurationValue     1
+    iConfiguration          0
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              126mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass    255 Vendor Specific Subclass
+      bInterfaceProtocol    255 Vendor Specific Protocol
+      iInterface              0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x01  EP 1 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass    255 Vendor Specific Subclass
+      bInterfaceProtocol    255 Vendor Specific Protocol
+      iInterface              0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval               9
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        2
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass      0
+      bInterfaceProtocol      0
+      iInterface              0
+      ** UNRECOGNIZED:  05 24 00 10 01
+      ** UNRECOGNIZED:  05 24 01 00 00
+      ** UNRECOGNIZED:  04 24 02 02
+      ** UNRECOGNIZED:  05 24 06 00 00
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x85  EP 5 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x000a  1x 10 bytes
+        bInterval               9
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x84  EP 4 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        3
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass      0
+      bInterfaceProtocol      0
+      iInterface              0
+      ** UNRECOGNIZED:  05 24 00 10 01
+      ** UNRECOGNIZED:  05 24 01 00 00
+      ** UNRECOGNIZED:  04 24 02 02
+      ** UNRECOGNIZED:  05 24 06 00 00
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x87  EP 7 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x000a  1x 10 bytes
+        bInterval               9
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x86  EP 6 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x04  EP 4 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        4
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass      0
+      bInterfaceProtocol      0
+      iInterface              0
+      ** UNRECOGNIZED:  05 24 00 10 01
+      ** UNRECOGNIZED:  05 24 01 00 00
+      ** UNRECOGNIZED:  04 24 02 02
+      ** UNRECOGNIZED:  05 24 06 00 00
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x89  EP 9 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x000a  1x 10 bytes
+        bInterval               9
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x88  EP 8 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x05  EP 5 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               0
+        bMaxBurst               0
+Binary Object Store Descriptor:
+  bLength                 5
+  bDescriptorType        15
+  wTotalLength           22
+  bNumDeviceCaps          2
+  USB 2.0 Extension Device Capability:
+    bLength                 7
+    bDescriptorType        16
+    bDevCapabilityType      2
+    bmAttributes   0x00000002
+      Link Power Management (LPM) Supported
+  SuperSpeed USB Device Capability:
+    bLength                10
+    bDescriptorType        16
+    bDevCapabilityType      3
+    bmAttributes         0x00
+    wSpeedsSupported   0x000f
+      Device can operate at Low Speed (1Mbps)
+      Device can operate at Full Speed (12Mbps)
+      Device can operate at High Speed (480Mbps)
+      Device can operate at SuperSpeed (5Gbps)
+    bFunctionalitySupport   1
+      Lowest fully-functional device speed is Full Speed (12Mbps)
+    bU1DevExitLat           1 micro seconds
+    bU2DevExitLat         500 micro seconds
+Device Status:     0x0000
+  (Bus Powered)
+root@OpenWrt:/tmp/usr/bin#
+
+root@OpenWrt:/tmp# qmicli -d /dev/cdc-wdm0 --nas-get-system-selection-preference
+[/dev/cdc-wdm0] Successfully got system selection preference
+        Emergency mode: 'no'
+        Mode preference: 'umts, lte'
+        Band preference: 'wcdma-2100, wcdma-pcs-1900, wcdma-1700-us, wcdma-850-us, wcdma-800, wcdma-900'
+        LTE band preference: '1, 2, 3, 4, 5, 7, 8, 12, 13, 17, 18, 19, 20, 21, 25, 26, 28, 29, 30, 38, 39, 40, 41'
+        LTE band preference (extended): '1, 2, 3, 4, 5, 7, 8, 12, 13, 17, 18, 19, 20, 21, 25, 26, 28, 29, 30, 38, 39, 40, 41, 66'
+        TD-SCDMA band preference: 'a, b, c, d, e, f'
+        Roaming preference: 'any'
+        Network selection preference: 'automatic'
+        Service domain preference: 'cs-ps'
+        Service selection preference: 'automatic'
+
+
+root@OpenWrt:/tmp# qmicli -d /dev/cdc-wdm0 --nas-get-lte-cphy-ca-info
+[/dev/cdc-wdm0] Successfully got carrier aggregation info
+DL Bandwidth: '10'
+Secondary Cell Info
+        Physical Cell ID: '59'
+        RX Channel: '40196'
+        DL Bandwidth: '10'
+        LTE Band: 'eutran-41'
+        State: 'deactivated'
+Primary Cell Info
+        Physical Cell ID: '59'
+        RX Channel: '40340'
+        DL Bandwidth: '20'
+        LTE Band: 'eutran-41'
+Secondary Cell index: '1'
+
+
+root@OpenWrt:/etc/uci-defaults# i2cdetect -y -r 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- 14 UU -- -- UU -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- UU UU -- -- -- -- -- -- -- -- -- -- -- --
+40: -- UU -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- --

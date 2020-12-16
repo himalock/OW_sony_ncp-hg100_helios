@@ -1,0 +1,313 @@
+(IPQ40xx) # run boottftp
+eth0 PHY0 Down Speed :10 Half duplex
+eth0 PHY1 Down Speed :10 Half duplex
+eth0 PHY2 Down Speed :10 Half duplex
+eth0 PHY3 up Speed :1000 Full duplex
+eth0 PHY4 Down Speed :10 Half duplex
+Using eth0 device
+TFTP from server 192.168.132.100; our IP address is 192.168.132.1
+Filename 'openwrt-ipq40xx-generic-sony_ncp-hg100-initramfs-fit-uImage.itb'.
+Load address: 0x84000000
+Loading: #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #
+done
+Bytes transferred = 11456128 (aece80 hex)
+## Booting kernel from FIT Image at 84000000 ...
+   Using 'config@1' configuration
+   Trying 'kernel@1' kernel subimage
+     Description:  ARM OpenWrt Linux-5.4.81
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Start:   0x840000e4
+     Data Size:    11433276 Bytes = 10.9 MiB
+     Architecture: ARM
+     OS:           Linux
+     Load Address: 0x80208000
+     Entry Point:  0x80208000
+     Hash algo:    crc32
+     Hash value:   6677370c
+     Hash algo:    sha1
+     Hash value:   335fbb9dc3f73b30d3480e0712fbd1dcebe3145c
+   Verifying Hash Integrity ... crc32+ sha1+ OK
+## Flattened Device Tree from FIT Image at 84000000
+   Using 'config@1' configuration
+   Trying 'fdt@1' FDT blob subimage
+     Description:  ARM OpenWrt sony_ncp-hg100 device tree blob
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x84ae7758
+     Data Size:    20981 Bytes = 20.5 KiB
+     Architecture: ARM
+     Hash algo:    crc32
+     Hash value:   7f83d260
+     Hash algo:    sha1
+     Hash value:   1f44f8830b9a33afa591a1354dfc77f0a987df61
+   Verifying Hash Integrity ... crc32+ sha1+ OK
+   Booting using the fdt blob at 0x84ae7758
+   Uncompressing Kernel Image ... OK
+   Loading Device Tree to 87067000, end 8706f1f4 ... OK
+Using machid 0x8010301 from environment
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.4.81 (root@ea4b115b0431) (gcc version 8.4.0 (OpenWrt GCC 8.4.0 r15152-61ef5940f2)) #0 SMP Mon Dec 7 00:57:19 2020
+[    0.000000] CPU: ARMv7 Processor [410fc075] revision 5 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: Sony NCP-HG100
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] percpu: Embedded 15 pages/cpu s30092 r8192 d23156 u61440
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 129408
+[    0.000000] Kernel command line: console=ttyMSM0,115200n8
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 490856K/522240K available (5469K kernel code, 183K rwdata, 1444K rodata, 18432K init, 230K bss, 31384K reserved, 0K cma-reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] random: get_random_bytes called from start_kernel+0x2f0/0x498 with crng_init=0
+[    0.000000] arch_timer: cp15 timer(s) running at 48.00MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0xb11fd3bfb, max_idle_ns: 440795203732 ns
+[    0.000007] sched_clock: 56 bits at 48MHz, resolution 20ns, wraps every 4398046511096ns
+[    0.000021] Switching to timer-based delay loop, resolution 20ns
+[    0.000290] Calibrating delay loop (skipped), value calculated using timer frequency.. 96.00 BogoMIPS (lpj=480000)
+[    0.000307] pid_max: default: 32768 minimum: 301
+[    0.000512] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.000528] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.001509] CPU: Testing write buffer coherency: ok
+[    0.002532] Setting up static identity map for 0x80300000 - 0x80300060
+[    0.002668] rcu: Hierarchical SRCU implementation.
+[    0.003102] smp: Bringing up secondary CPUs ...
+[    0.006179] smp: Brought up 1 node, 4 CPUs
+[    0.006200] SMP: Total of 4 processors activated (384.00 BogoMIPS).
+[    0.006208] CPU: All CPU(s) started in SVC mode.
+[    0.012029] VFP support v0.3: implementor 41 architecture 2 part 30 variant 7 rev 5
+[    0.012195] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.012218] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.012480] pinctrl core: initialized pinctrl subsystem
+[    0.013537] NET: Registered protocol family 16
+[    0.013832] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.015054] cpuidle: using governor ladder
+[    0.015131] cpuidle: using governor menu
+[    0.020275] GPIO line 448 (Enable USB) hogged as output/high
+[    0.020309] GPIO line 416 (USB-FLT) hogged as input
+[    0.020336] GPIO line 432 (Enable LTE PWR) hogged as output/high
+[    0.020362] GPIO line 480 (Enable BT PWR) hogged as output/high
+[    0.020386] GPIO line 478 (Enable BT Reset) hogged as output/high
+[    0.036402] cryptd: max_cpu_qlen set to 1000
+[    0.039776] usbcore: registered new interface driver usbfs
+[    0.039843] usbcore: registered new interface driver hub
+[    0.039939] usbcore: registered new device driver usb
+[    0.039993] pps_core: LinuxPPS API ver. 1 registered
+[    0.040068] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.040101] PTP clock support registered
+[    0.040825] workqueue: max_active 576 requested for napi_workq is out of range, clamping between 1 and 512
+[    0.041856] clocksource: Switched to clocksource arch_sys_counter
+[    0.042664] thermal_sys: Registered thermal governor 'step_wise'
+[    0.042993] NET: Registered protocol family 2
+[    0.043572] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 6144 bytes, linear)
+[    0.043616] TCP established hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    0.043676] TCP bind hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.043764] TCP: Hash tables configured (established 4096 bind 4096)
+[    0.043878] UDP hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.043916] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.044169] NET: Registered protocol family 1
+[    0.044216] PCI: CLS 0 bytes, default 64
+[    0.270061] workingset: timestamp_bits=14 max_order=17 bucket_order=3
+[    0.275862] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.275879] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.330827] bam-dma-engine 8e04000.dma: num-channels unspecified in dt
+[    0.330848] bam-dma-engine 8e04000.dma: num-ees unspecified in dt
+[    0.331596] tcsr 1949000.tcsr: setting wifi_glb_cfg = 41000000
+[    0.331691] tcsr 194b000.tcsr: setting usb hs phy mode select = e700e7
+[    0.331778] tcsr 1953000.ess_tcsr: setting ess interface select = 0
+[    0.331925] tcsr 1957000.tcsr: setting wifi_noc_memtype_m0_m2 = 2222222
+[    0.332670] Serial: 8250/16550 driver, 2 ports, IRQ sharing disabled
+[    0.333272] msm_serial 78af000.serial: msm_serial: detected port #0
+[    0.333316] msm_serial 78af000.serial: uartclk = 1843200
+[    0.333371] 78af000.serial: ttyMSM0 at MMIO 0x78af000 (irq = 27, base_baud = 115200) is a MSM
+[    0.333402] msm_serial: console setup on port #0
+[    0.841660] printk: console [ttyMSM0] enabled
+[    0.846669] msm_serial 78b0000.serial: msm_serial: detected port #1
+[    0.850610] msm_serial 78b0000.serial: uartclk = 1843200
+[    0.856730] 78b0000.serial: ttyMSM1 at MMIO 0x78b0000 (irq = 28, base_baud = 115200) is a MSM
+[    0.862501] msm_serial: driver initialized
+[    0.875777] loop: module loaded
+[    0.876941] ipq4019-pinctrl 1000000.pinctrl: invalid function mdio0 in map table
+[    0.877920] libphy: ipq40xx_mdio: probed
+[    0.972925] ESS reset ok!
+[    1.005930] ESS reset ok!
+[    1.424153] libphy: Fixed MDIO Bus: probed
+[    1.428628] i2c /dev entries driver
+[    1.428881] i2c_qup 78b8000.i2c: using default clock-frequency 100000
+[    1.433961] sdhci: Secure Digital Host Controller Interface driver
+[    1.437524] sdhci: Copyright(c) Pierre Ossman
+[    1.443645] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.448491] sdhci_msm 7824900.sdhci: Got CD GPIO
+[    1.489143] mmc0: SDHCI controller on 7824900.sdhci [7824900.sdhci] using ADMA 64-bit
+[    1.582678] lp5523x 1-0032: lp55231 Programmable led chip found
+[    1.591636] mmc0: new HS200 MMC card at address 0001
+[    1.594017] mmcblk0: mmc0:0001 004GA0 3.69 GiB
+[    1.596683] mmcblk0boot0: mmc0:0001 004GA0 partition 1 2.00 MiB
+[    1.600973] mmcblk0boot1: mmc0:0001 004GA0 partition 2 2.00 MiB
+[    1.606322] mmcblk0rpmb: mmc0:0001 004GA0 partition 3 512 KiB, chardev (247:0)
+[    1.614128] Alternate GPT is invalid, using primary GPT.
+[    1.619123]  mmcblk0: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 p17
+[    1.639622] random: fast init done
+[    1.682569] lp5523x 1-0033: lp55231 Programmable led chip found
+[    1.698678] NET: Registered protocol family 10
+[    1.702799] Segment Routing with IPv6
+[    1.703138] NET: Registered protocol family 17
+[    1.705912] 8021q: 802.1Q VLAN Support v1.8
+[    1.710251] Registering SWP/SWPB emulation handler
+[    1.72368・    1.750698] Freeing unused kernel memory: 18432K
+[    1.784980] Run /init as init process
+[    2.390514] init: Console is alive
+[    2.390749] init: - watchdog -
+[    2.405800] kmodloader: loading kernel modules from /etc/modules-boot.d/*
+[    2.422362] gpio-keys gpio-keys: does not support key code:704
+[    2.422398] gpio-keys gpio-keys: does not support key code:14
+[    2.431023] dwc3-qcom 8af8800.usb3: IRQ hs_phy_irq not found
+[    2.432990] dwc3-qcom 8af8800.usb3: IRQ dp_hs_phy_irq not found
+[    2.438638] dwc3-qcom 8af8800.usb3: IRQ dm_hs_phy_irq not found
+[    2.444308] dwc3-qcom 8af8800.usb3: IRQ ss_phy_irq not found
+[    2.451964] dwc3-qcom 60f8800.usb2: IRQ hs_phy_irq not found
+[    2.456092] dwc3-qcom 60f8800.usb2: IRQ dp_hs_phy_irq not found
+[    2.461730] dwc3-qcom 60f8800.usb2: IRQ dm_hs_phy_irq not found
+[    2.467528] dwc3-qcom 60f8800.usb2: IRQ ss_phy_irq not found
+[    2.480595] dwc3 8a00000.dwc3: Failed to get clk 'ref': -2
+[    2.607330] dwc3 6000000.dwc3: Failed to get clk 'ref': -2
+[    2.710551] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[    2.710632] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+[    2.715301] xhci-hcd xhci-hcd.0.auto: hcc params 0x0228f665 hci version 0x100 quirks 0x0000000002010010
+[    2.722653] xhci-hcd xhci-hcd.0.auto: irq 100, io mem 0x08a00000
+[    2.732788] hub 1-0:1.0: USB hub found
+[    2.738173] hub 1-0:1.0: 1 port detected
+[    2.742052] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[    2.745771] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+[    2.751061] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+[    2.763505] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    2.765780] hub 2-0:1.0: USB hub found
+[    2.773524] hub 2-0:1.0: 1 port detected
+[    2.777514] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    2.781107] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 3
+[    2.786663] xhci-hcd xhci-hcd.1.auto: hcc params 0x0220f665 hci version 0x100 quirks 0x0000000002010010
+[    2.794050] xhci-hcd xhci-hcd.1.auto: irq 101, io mem 0x06000000
+[    2.804196] hub 3-0:1.0: USB hub found
+[    2.809603] hub 3-0:1.0: 1 port detected
+[    2.813503] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    2.817210] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 4
+[    2.822544] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
+[    2.830172] usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+[    2.837226] hub 4-0:1.0: USB hub found
+[    2.853855] hub 4-0:1.0: config failed, hub doesn't have any ports! (err -19)
+[    2.856251] kmodloader: done loading kernel modules from /etc/modules-boot.d/*
+[    2.867261] init: - preinit -
+[    3.099805] random: jshn: uninitialized urandom read (4 bytes read)
+[    3.143897] random: jshn: uninitialized urandom read (4 bytes read)
+[    3.178712] random: jshn: uninitialized urandom read (4 bytes read)
+[    3.181974] usb 3-1: new high-speed USB device number 2 using xhci-hcd
+[    3.321496] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Press the [f] key and hit [enter] to enter failsafe mode
+Press the [1], [2], [3] or [4] key and hit [enter] to select the debug level
+[    3.934307] usb 2-1: new SuperSpeed Gen 1 USB device number 2 using xhci-hcd
+[    7.538323] procd: - early -
+[    7.538463] procd: - watchdog -
+[    8.086004] procd: - watchdog -
+[    8.089819] procd: - ubus -
+[    8.115672] urandom_read: 5 callbacks suppressed
+[    8.115684] random: ubusd: uninitialized urandom read (4 bytes read)
+[    8.141234] random: ubusd: uninitialized urandom read (4 bytes read)
+[    8.144349] procd: - init -
+Please press Enter to activate this console.
+[    8.498419] kmodloader: loading kernel modules from /etc/modules.d/*
+[    8.506951] ntfs: driver 2.1.32 [Flags: R/O MODULE].
+[    8.507217] urngd: v1.0.2 started.
+[    8.526382] hidraw: raw HID events driver (C) Jiri Kosina
+[    8.534304] Bluetooth: Core ver 2.22
+[    8.534424] NET: Registered protocol family 31
+[    8.536949] Bluetooth: HCI device and connection manager initialized
+[    8.541220] Bluetooth: HCI socket layer initialized
+[    8.547845] Bluetooth: L2CAP socket layer initialized
+[    8.552402] Bluetooth: SCO socket layer initialized
+[    8.563371] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    8.563403] Bluetooth: BNEP filters: protocol multicast
+[    8.567779] Bluetooth: BNEP socket layer initialized
+[    8.575090] usbcore: registered new interface driver btusb
+[    8.578883] usbcore: registered new interface driver cdc_wdm
+[    8.579834] random: crng init done
+[    8.583842] Loading modules backported from Linux version v5.8-0-gbcf876870b95
+[    8.592274] Backport generated by backports.git v5.8-1-0-g79400d9e
+[    8.603086] Bluetooth: HCI UART driver ver 2.3
+[    8.605617] Bluetooth: HCI UART protocol H4 registered
+[    8.610041] Bluetooth: HCI UART protocol BCSP registered
+[    8.616413] Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+[    8.620650] Bluetooth: HIDP socket layer initialized
+[    8.634897] Bluetooth: RFCOMM TTY layer initialized
+[    8.634949] Bluetooth: RFCOMM socket layer initialized
+[    8.638607] Bluetooth: RFCOMM ver 1.11
+[    8.668062] xt_time: kernel timezone is -0000
+[    8.763214] PPP generic driver version 2.4.2
+[    8.764995] NET: Registered protocol family 24
+[    8.775308] qmi_wwan 2-1:1.1: cdc-wdm0: USB WDM device
+[    8.777435] qmi_wwan 2-1:1.1 wwan0: register 'qmi_wwan' at usb-xhci-hcd.0.auto-1, WWAN/QMI device
+[    8.779655] usbcore: registered new interface driver qmi_wwan
+[    9.499614] ath10k_ahb a000000.wifi: qca4019 hw1.0 target 0x01000000 chip_id 0x003b00ff sub 0000:0000
+[    9.499665] ath10k_ahb a000000.wifi: kconfig debug 0 debugfs 1 tracing 0 dfs 1 testmode 0
+[    9.512637] ath10k_ahb a000000.wifi: firmware ver 10.4b-ct-4019-fW-13-8c5b2baa2 api 5 features mfp,peer-flow-ctrl,txstatus-noack,wmi-10.x-CT,ratemask-CT,regdump-CT,txrate-CT,flush-all-CT,pingpong-CT,ch-regs-CT,nop-CT,set-special-CT,tx-rc-CT,cust-stats-CT,txrate2-CT,beacon-cb-CT,wmi-block-ack-CT,wmi-bcn-rc-CT crc32 1f3ed50f
+[    9.563652] ath10k_ahb a000000.wifi: board_file api 2 bmi_id 0:20 crc32 d92a77b4
+[   10.850775] ath10k_ahb a000000.wifi: 10.4 wmi init: vdevs: 16  peers: 48  tid: 96
+[   10.850822] ath10k_ahb a000000.wifi: msdu-desc: 2500  skid: 32
+[   10.900196] ath10k_ahb a000000.wifi: wmi print 'P 48/48 V 16 K 144 PH 176 T 186  msdu-desc: 2500  sw-crypt: 0 ct-sta: 0'
+[   10.903531] ath10k_ahb a000000.wifi: wmi print 'free: 53252 iram: 13576 sram: 35752'
+[   11.051047] ath10k_ahb a000000.wifi: htt-ver 2.2 wmi-op 6 htt-op 4 cal pre-cal-file max-sta 32 raw 0 hwcrypto 1
+[   11.969529] ath10k_ahb a800000.wifi: qca4019 hw1.0 target 0x01000000 chip_id 0x003b00ff sub 0000:0000
+[   11.969576] ath10k_ahb a800000.wifi: kconfig debug 0 debugfs 1 tracing 0 dfs 1 testmode 0
+[   11.981596] ath10k_ahb a800000.wifi: firmware ver 10.4b-ct-4019-fW-13-8c5b2baa2 api 5 features mfp,peer-flow-ctrl,txstatus-noack,wmi-10.x-CT,ratemask-CT,regdump-CT,txrate-CT,flush-all-CT,pingpong-CT,ch-regs-CT,nop-CT,set-special-CT,tx-rc-CT,cust-stats-CT,txrate2-CT,beacon-cb-CT,wmi-block-ack-CT,wmi-bcn-rc-CT crc32 1f3ed50f
+[   12.033368] ath10k_ahb a800000.wifi: board_file api 2 bmi_id 0:21 crc32 d92a77b4
+[   13.320425] ath10k_ahb a800000.wifi: 10.4 wmi init: vdevs: 16  peers: 48  tid: 96
+[   13.320473] ath10k_ahb a800000.wifi: msdu-desc: 2500  skid: 32
+[   13.369984] ath10k_ahb a800000.wifi: wmi print 'P 48/48 V 16 K 144 PH 176 T 186  msdu-desc: 2500  sw-crypt: 0 ct-sta: 0'
+[   13.371852] ath10k_ahb a800000.wifi: wmi print 'free: 53252 iram: 13576 sram: 35752'
+[   13.513267] ath10k_ahb a800000.wifi: htt-ver 2.2 wmi-op 6 htt-op 4 cal pre-cal-file max-sta 32 raw 0 hwcrypto 1
+[   13.678239] kmodloader: done loading kernel modules from /etc/modules.d/*
+[   50.698660] br-lan: port 1(eth0) entered blocking state
+[   50.698701] br-lan: port 1(eth0) entered disabled state
+[   50.703244] device eth0 entered promiscuous mode
+[   50.723340] ess_edma c080000.edma: eth1: GMAC Link is down
+[   51.752327] br-lan: port 1(eth0) entered blocking state
+[   51.752367] br-lan: port 1(eth0) entered forwarding state
+[   51.757546] IPv6: ADDRCONF(NETDEV_CHANGE): br-lan: link becomes ready
+
+
+
+BusyBox v1.31.1 () built-in shell (ash)
+
+  _______                     ________        __
+ |       |.-----.-----.-----.|  |  |  |.----.|  |_
+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+ |_______||   __|_____|__|__||________||__|  |____|
+          |__| W I R E L E S S   F R E E D O M
+ -----------------------------------------------------
+ OpenWrt SNAPSHOT, r15162-cb38170f4c
+ -----------------------------------------------------
+=== WARNING! =====================================
+There is no root password defined on this device!
+Use the "passwd" command to set up a new password
+in order to prevent unauthorized SSH logins.
+--------------------------------------------------
+root@OpenWrt:/# 

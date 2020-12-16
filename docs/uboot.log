@@ -1,0 +1,250 @@
+Format: Log Type - Time(microsec) - Message - Optional Info
+Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
+S - QC_IMAGE_VERSION_STRING=BOOT.BF.3.1.1-00120
+S - IMAGE_VARIANT_STRING=DAAAANAZA
+S - OEM_IMAGE_VERSION_STRING=CRM
+S - Boot Config, 0x000000a3
+S - Reset status Config, 0x00000010
+S - Core 0 Frequency, 0 MHz
+B -       261 - PBL, Start
+B -      5157 - bootable_media_detect_entry, Start
+B -     38779 - bootable_media_detect_success, Start
+B -     38785 - elf_loader_entry, Start
+B -     40757 - auth_hash_seg_entry, Start
+B -     41913 - auth_hash_seg_exit, Start
+B -     57733 - elf_segs_hash_verify_entry, Start
+B -    102424 - PBL, End
+B -    102437 - SBL1, Start
+B -    178781 - pm_device_init, Start
+D -         2 - pm_device_init, Delta
+B -    179539 - boot_flash_init, Start
+D -     17521 - boot_flash_init, Delta
+B -    201590 - boot_config_data_table_init, Start
+D -      1619 - boot_config_data_table_init, Delta - (419 Bytes)
+B -    209659 - clock_init, Start
+D -      3305 - clock_init, Delta
+B -    216395 - CDT version:2,Platform ID:8,Major ID:1,Minor ID:3,Subtype:1
+B -    222824 - sbl1_ddr_set_params, Start
+B -    227057 - cpr_init, Start
+D -         2 - cpr_init, Delta
+B -    231656 - Pre_DDR_clock_init, Start
+D -         4 - Pre_DDR_clock_init, Delta
+D -     13389 - sbl1_ddr_set_params, Delta
+B -    244960 - pm_driver_init, Start
+D -         2 - pm_driver_init, Delta
+B -    316030 - sbl1_wait_for_ddr_training, Start
+D -        28 - sbl1_wait_for_ddr_training, Delta
+B -    332432 - Image Load, Start
+D -    706882 - QSEE Image Loaded, Delta - (304152 Bytes)
+B -   1039742 - Image Load, Start
+D -       944 - SEC Image Loaded, Delta - (0 Bytes)
+B -   1049609 - Image Load, Start
+D -    705630 - APPSBL Image Loaded, Delta - (435807 Bytes)
+B -   1755664 - QSEE Execution, Start
+D -        60 - QSEE Execution, Delta
+B -   1761838 - SBL1, End
+D -   1661514 - SBL1, Delta
+S - Flash Throughput, 26472 KB/s  (740730 Bytes,  27981 us)
+S - DDR Frequency, 672 MHz
+
+
+U-Boot 2012.07 [Chaos Calmer 15.05.1,r48067] (Dec 19 2018 - 08:16:11)
+
+smem ram ptable found: ver: 1 len: 3
+DRAM:  512 MiB
+machid : 0x8010301
+MMC:   qca_mmc: 0
+In:    serial
+Out:   serial
+Err:   serial
+machid: 8010301
+flash_type: 1
+MAC0 : xxxxxxxxxx0B
+MAC1 : xxxxxxxxxx09
+Hit any key to stop autoboot:  0
+Net:   MAC0 addr:xx:xx:xx:xx:xx:b
+PHY ID1: 0x4d
+PHY ID2: 0xd0b2
+ipq40xx_ess_sw_init done
+eth0
+
+(IPQ40xx) # ?
+?       - alias for 'help'
+base    - print or set address offset
+bootipq - bootipq from flash device
+bootm   - boot application image from memory
+bootp   - boot image via network using BOOTP/TFTP protocol
+chpart  - change active partition
+cmp     - memory compare
+cp      - memory copy
+crc32   - checksum calculation
+dhcp    - boot image via network using DHCP/TFTP protocol
+dumpipq_data- dumpipq_data crashdump collection from memory
+dumpipq_flash_data- dumpipq_flash_data crashdump collection and storing in flash
+echo    - echo args to console
+env     - environment handling commands
+exit    - exit script
+false   - do nothing, unsuccessfully
+fdt     - flattened device tree utility commands
+fuseipq - fuse QFPROM registers from memory
+go      - start application at address 'addr'
+help    - print command description/usage
+i2c     - I2C sub-system
+imxtract- extract a part of a multi-image
+loop    - infinite loop on address range
+md      - memory display
+mii     - MII utility commands
+mm      - memory modify (auto-incrementing address)
+mmc     - MMC sub system
+mmcinfo - display MMC info
+mtdparts- define flash/nand partitions
+mtest   - simple RAM read/write test
+mw      - memory write (fill)
+nand    - NAND sub-system
+nboot   - boot from NAND device
+nm      - memory modify (constant address)
+pci     - list and access PCI Configuration Space
+ping    - send ICMP ECHO_REQUEST to network host
+printenv- print environment variables
+reset   - Perform RESET of the CPU
+run     - run commands in an environment variable
+saveenv - save environment variables to persistent storage
+setenv  - set environment variables
+sf      - SPI flash sub-system
+showvar - print local hushshell variables
+smeminfo- print SMEM FLASH information
+source  - run script from memory
+test    - minimal test like /bin/sh
+tftpboot- boot image via network using TFTP protocol
+tftpput - TFTP put command, for uploading files to a server
+true    - do nothing, successfully
+uartrd  - uartrd read from second UART
+uartwr  - uartwr to second UART
+ubi     - ubi commands
+usb     - USB sub-system
+usbboot - boot from USB device
+version - print monitor, compiler and linker version
+(IPQ40xx) # v
+
+U-Boot 2012.07 [Chaos Calmer 15.05.1,r48067] (Dec 19 2018 - 08:16:11)
+arm-openwrt-linux-muslgnueabi-gcc (OpenWrt GCC 5.3.0 r48067) 5.3.0
+GNU ld (GNU Binutils) 2.24.0
+
+(IPQ40xx) # pr
+baudrate=115200
+bootcmd=bootipq
+bootdelay=2
+eth1addr=xx:xx:xx:xx:xx:9
+ethact=eth0
+ethaddr=xx:xx:xx:xx:xx:b
+fileaddr=88000000
+filesize=AD0
+flash_type=1
+ipaddr=192.168.132.1
+machid=8010301
+serverip=192.168.132.100
+stderr=serial
+stdin=serial
+stdout=serial
+
+(IPQ40xx) # mmcinfo
+Device: qca_mmc
+Manufacturer ID: 11
+OEM: 100
+Name: 004GA
+Tran Speed: 25000000
+Rd Block Len: 512
+MMC version 4.0
+High Capacity: Yes
+Capacity: 3.7 GiB
+Bus Width: 8-bit
+
+(IPQ40xx) # mmc dev
+mmc0(part 0) is current device
+
+(IPQ40xx) # mmc part
+
+Partition Map for MMC device 0  --   Partition Type: EFI
+
+Part    Name                    Start LBA       End LBA
+  1     0:SBL1                  0x00000022      0x00000421
+  2     0:BOOTCONFIG            0x00000422      0x00000821
+  3     0:QSEE                  0x00000822      0x00000C21
+  4     0:QSEE_1                0x00000C22      0x00001021
+  5     0:CDT                   0x00001022      0x00001221
+  6     0:CDT_1                 0x00001222      0x00001421
+  7     0:BOOTCONFIG1           0x00001422      0x00001821
+  8     0:APPSBLENV             0x00001822      0x00001A21
+  9     0:APPSBL                0x00001A22      0x00002221
+ 10     0:APPSBL_1              0x00002222      0x00002A21
+ 11     0:ART                   0x00002A22      0x00002C21
+ 12     0:HSEE                  0x00002C22      0x00002E21
+ 13     0:HLOS                  0x00002E22      0x00006E21
+ 14     0:HLOS_1                0x00006E22      0x0000AE21
+ 15     rootfs                  0x0000AE22      0x0004AE21
+ 16     rootfs_1                0x0004AE22      0x0008AE21
+ 17     rootfs_data             0x0008AE22      0x003C6531
+(IPQ40xx) # usb info
+1: Hub,  USB Revision 3.0
+ - u-boot XHCI Host Controller
+ - Class: Hub
+ - PacketSize: 9  Configurations: 1
+ - Vendor: 0x0000  Product 0x0000 Version 1.0
+   Configuration: 1
+   - Interfaces: 1 Self Powered 0mA
+     Interface: 0
+     - Alternate Setting 0, Endpoints: 1
+     - Class Hub
+     - Endpoint 1 In Interrupt MaxPacket 8 Interval 255ms
+
+2: Vendor specific,  USB Revision 3.0
+ - Telit Telit LN940 Mobile Broadband 0123456789ABCDEF
+ - Class:
+ - PacketSize: 9  Configurations: 1
+ - Vendor: 0x1bc7  Product 0x1900 Version 3.16
+   Configuration: 1
+   - Interfaces: 5 Bus Powered Remote Wakeup 126mA
+     Interface: 0
+     - Alternate Setting 0, Endpoints: 2
+     - Class Vendor specific
+     - Endpoint 1 In Bulk MaxPacket 1024
+     - Endpoint 1 Out Bulk MaxPacket 1024
+     Interface: 1
+     - Alternate Setting 0, Endpoints: 3
+     - Class Vendor specific
+     - Endpoint 3 In Interrupt MaxPacket 8 Interval 9ms
+     - Endpoint 2 In Bulk MaxPacket 1024
+     - Endpoint 2 Out Bulk MaxPacket 1024
+     Interface: 2
+     - Alternate Setting 0, Endpoints: 3
+     - Class Vendor specific
+     - Endpoint 5 In Interrupt MaxPacket 10 Interval 9ms
+     - Endpoint 4 In Bulk MaxPacket 1024
+     - Endpoint 3 Out Bulk MaxPacket 1024
+     Interface: 3
+     - Alternate Setting 0, Endpoints: 3
+     - Class Vendor specific
+     - Endpoint 7 In Interrupt MaxPacket 10 Interval 9ms
+     - Endpoint 6 In Bulk MaxPacket 1024
+     - Endpoint 4 Out Bulk MaxPacket 1024
+     Interface: 4
+     - Alternate Setting 0, Endpoints: 3
+     - Class Vendor specific
+     - Endpoint 9 In Interrupt MaxPacket 10 Interval 9ms
+     - Endpoint 8 In Bulk MaxPacket 1024
+     - Endpoint 5 Out Bulk MaxPacket 1024
+
+3: Hub,  USB Revision 3.0
+ - u-boot XHCI Host Controller
+ - Class: Hub
+ - PacketSize: 9  Configurations: 1
+ - Vendor: 0x0000  Product 0x0000 Version 1.0
+   Configuration: 1
+   - Interfaces: 1 Self Powered 0mA
+     Interface: 0
+     - Alternate Setting 0, Endpoints: 1
+     - Class Hub
+     - Endpoint 1 In Interrupt MaxPacket 8 Interval 255ms
+
+Environment size: 284/262140 bytes
+(IPQ40xx) # reset

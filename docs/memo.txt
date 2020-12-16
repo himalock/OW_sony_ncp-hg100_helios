@@ -1,0 +1,70 @@
+Sony NPC-HG100 BoardChips
+
+Specification
+- SoC: Qualcomm IPQ4019 (DAKOTA) ARM Quad-Core (717MHz) (Based IPQ4019 Premium)
+- RAM: Hynix H5TC4G63CFR DDR3L 512 MiB 1333 MHz
+- Flash: KIOXIA THGBMNG5D1LBAIT NAND eMMC 4GB
+- WLAN: 2T2R
+ - 2.4GHz: SoC (FrontRF SKY85330
+ -  5 GHz: SoC (FrontRF SKY85748
+- LAN: WANx1 LANx1 (Qualcomm QCA8072 Dual-Port 10/100/1000 Mbps Ethernet Transceiver 
+- Bluetooth: Qualcomm CSR8811 Bluetooth v4.2 single-chip radio (UART1
+- WWAN: SIM1 Telit Wireless Solutions LN940A9(T77W676.03) USB WDM device
+- Z-Wave: SILICON LABS ZM5101 (UART0 gpio15 switching debug console <-> zwave
+- AudioDAC: Realtek ALC5629 I2S/PCM AUDIO DAC
+- Amp: Realtek ALC1304
+- Mic: conexant CX20924-21Z
+- LED: Texas-Instruments lp55231 x2
+- MCU(Micro Controller Unit?) I2C1-15 MINI54FDE
+- TouchSwitch CY8C4014LQ
+- UART through-hole on PCB
+ - J1: +3.3v, TX, RX, GND
+ - baud: 115200n8
+
+memo unknown
+Philips? 74LVC08A
+SPI Memory
+ adesto2018 25DF321A
+ adesto2018 45DB021E
+
+
+Sony OSS: https://oss.sony.net/Products/Linux/Others/NCP-HG100_v14423.html
+
+led1 wan
+led2 lan
+led3 2.4
+led4 5
+led5 net
+led6 cloud
+
+eth0 = LAN
+eth1 = WAN
+usb2 = modem = WWAN0
+usb3 = external
+
+Partition Map for MMC device 0      --  Partition Type: EFI     
+ 
+Part    Name    Start LBA   End LBA Size(dec)   Size(hex)
+1   0:SBL1  0x00000022  0x00000421  524288  80000
+2   0:BOOTCONFIG    0x00000422  0x00000821  524288  80000
+3   0:QSEE  0x00000822  0x00000C21  524288  80000
+4   0:QSEE_1    0x00000C22  0x00001021  524288  80000
+5   0:CDT   0x00001022  0x00001221  262144  40000
+6   0:CDT_1 0x00001222  0x00001421  262144  40000
+7   0:BOOTCONFIG1   0x00001422  0x00001821  524288  80000
+8   0:APPSBLENV 0x00001822  0x00001A21  262144  40000
+9   0:APPSBL    0x00001A22  0x00002221  1048576 100000
+10  0:APPSBL_1  0x00002222  0x00002A21  1048576 100000
+11  0:ART   0x00002A22  0x00002C21  262144  40000
+12  0:HSEE  0x00002C22  0x00002E21  262144  40000
+13  0:HLOS  0x00002E22  0x00006E21  8388608 800000
+14  0:HLOS_1    0x00006E22  0x0000AE21  8388608 800000
+15  rootfs  0x0000AE22  0x0004AE21  134217728   8000000
+16  rootfs_1    0x0004AE22  0x0008AE21  134217728   8000000
+17  rootfs_data 0x0008AE22  0x003C6531  1735270400  676E2000
+ 
+
+bootconsole
+setenv bootargs console=ttyMSM0,115200n8
+bootipq debug
+

@@ -1,0 +1,23 @@
+"MMC sub system",
+"read addr blk# cnt"
+"mmc write addr blk# cnt"
+"mmc erase blk# cnt"
+"mmc rescan"
+"mmc part - lists available partition on current mmc device"
+"mmc dev [dev] [part] - show or set current mmc device [partition]"
+"mmc list - lists available devices");
+
+mmc read/write memoryaddr(hex) startblock(hex) count(hex)
+ex. mmc read 0x88000000 0x00000000 0x00000022
+
+tftpput addr size(hex) filename
+ec. tftpput 0x88000000 0x22 filename
+
+:rootfs backup
+mmc part
+mmc read 0x88000000 0x0000AE22 0x0004AE21
+tftpput 0x88000000 0x08000000 rootfs
+
+:rootfs write
+tftpboot 0x88000000 rootfs
+mmc write 0x88000000 0x0000AE22 0x0004AE21
