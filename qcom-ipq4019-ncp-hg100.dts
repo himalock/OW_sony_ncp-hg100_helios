@@ -10,14 +10,14 @@
 	compatible = "sony,ncp-hg100", "qcom,ipq4019";
 /*
 	aliases {
-		led-boot = &led_blue0;
-		led-failsafe = &led_red0;
-		led-running = &led_blue0;
-		led-upgrade = &led_red0;
+		led-boot = &led_blue;
+		led-failsafe = &led_red;
+		led-running = &led_green;
+		led-upgrade = &led_red;
 	};
 */
 	chosen {
-	/*	bootargs = "root=/dev/mmcblk0p16 rootfstype=squashfs,ext4 rootwait"; */
+	//	bootargs = "root=/dev/mmcblk0p16 rootfstype=squashfs,ext4 rootwait";
 		bootargs-append = " clk_ignore_unused";
 	};
 
@@ -27,10 +27,6 @@
 	};
 
 	soc {
-		rng@22000 {
-			status = "okay";
-		};
-
 		mdio@90000 {
 			status = "okay";
 			pinctrl-0 = <&mdio_pins>;
@@ -68,22 +64,6 @@
 		};
 
 		ess-psgmii@98000 {
-			status = "okay";
-		};
-
-		usb2@60f8800 {
-			status = "okay";
-		};
-
-		usb3@8af8800 {
-			status = "okay";
-		};
-
-		crypto@8e3a000 {
-			status = "okay";
-		};
-
-		watchdog@b017000 {
 			status = "okay";
 		};
 
@@ -139,7 +119,7 @@
 		};
 
 		wps {
-			label = "SETUP Button";
+			label = "SETUP";
 			gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_WPS_BUTTON>;
 		};
@@ -152,11 +132,30 @@
  //Right, I don't get it.
 */
 &tlmm {
+	pinctrl-0 = <&bt_pins>, <&pcm_pins>;
+	pinctrl-names = "default";
+
+	helios_pins: helios_pinmux {
+		UART0_CTRL { //1 = UART0 as debug console ; 0 = UART0 as Zwave UART
+			pins = "gpio15";
+			function = "gpio";
+			output-low;
+		};
+	};
+
 	serial_pins: serial_pinmux {
 		mux {
 			pins = "gpio16", "gpio17";
 			function = "blsp_uart0";
 			bias-disable;
+		};
+	};
+
+	zwave_pins: zwave_pinmux {
+		mux { //Active low to reset the ZWAVE (at least 20ns)
+			pins = "gpio59";
+			function = "gpio";
+			output-high;
 		};
 	};
 
@@ -166,6 +165,19 @@
 				"gpio10", "gpio11";
 			function = "blsp_uart1";
 			bias-disable;
+		};
+	};
+
+	bt_pins: bt_pinmux {
+		mux_1 { //Active low to reset the BT
+			pins = "gpio66";
+			function = "gpio";
+			output-high;
+		};
+		mux_2 { //1 = BT power on ; 0 = BT power off
+			pins = "gpio68";
+			function = "gpio";
+			output-high;
 		};
 	};
 
@@ -191,10 +203,15 @@
 	};
 
 	gpiokey_pins: gpiokey_pinmux {
-		mux {
+		mux_1 {
 			pins = "gpio39", "gpio40", "gpio42", "gpio47";
 			function = "gpio";
 			bias-disable;
+		};
+		mux_2 {
+			pins = "gpio2";
+			function = "gpio";
+			input;
 		};
 	};
 
@@ -220,73 +237,13 @@
 		};
 	};
 
-	helios_pins: helios_pinmux {
-		//1 = UART0 as debug console ; 0 = UART0 as Zwave UART
-
-		UART0_CTRL {
-			pins = "gpio15";
-			function = "gpio";
-			output-low;
-		};
-
-		//Active low to reset the BT
-		BT_RST {
-			pins = "gpio66";
-			function = "gpio";
-			output-high;
-		};
-
-		//1 = BT power on ; 0 = BT power off
-		BT_VREG_EN {
-			pins = "gpio68";
-			function = "gpio";
-			output-high;
-		};
-
-		//1 = Reset button not be pressed ; 0 = Reset button be pressed
-		SW_REST {
-			pins = "gpio2";
-			function = "gpio";
-			input;
-		};
-
-		USB_FLT {
-			pins = "gpio4";
-			function = "gpio";
-			input;
-		};
-
-		USB_EN {
-			pins = "gpio36";
-			function = "gpio";
-			output-high;
-		};
-
-		//Audio PCM interface for BT
-		PCM {
+	pcm_pins: pcm_pinmux {
+		mux { //Audio PCM interface for BT
 			pins = "gpio48", "gpio49", "gpio50", "gpio51";
 			function = "aud_pin";
 		};
-
-		//Active low to reset the ZWAVE (at least 20ns)
-		ZW_RST {
-			pins = "gpio59";
-			function = "gpio";
-			output-high;
-		};
-
-		LTE_PWR {
-			pins = "gpio20";
-			function = "gpio";
-			output-high;
-		};
-
-		LTE_RESET {
-			pins = "gpio35";
-			function = "gpio";
-			input;
-		};
 	};
+
 	audio_gpio_pins: audio_gpio_pinmux {
 		mux_1 {
 			pins = "gpio53";
@@ -304,6 +261,7 @@
 			output-high;
 		};
 	};
+
 	audio_pins: audio_pinmux {
 		mux_1 {
 			pins = "gpio53";
@@ -378,6 +336,33 @@
 		};
 	};
 
+	usb2_pins: usb2_pinmux {
+		mux_1 {
+			pins = "gpio20";
+			function = "gpio";
+			output-high;
+		};
+
+		mux_2 {
+			pins = "gpio35";
+			function = "gpio";
+			input;
+		};
+	};
+
+	usb3_pins: usb3_pinmux {
+		mux_1 {
+			pins = "gpio36";
+			function = "gpio";
+			output-high;
+		};
+		mux_2 {
+			pins = "gpio4";
+			function = "gpio";
+			input;
+		};
+	};
+
 	mcu_pins: mcu_pinmux {
 		mux_1 {
 			pins = "gpio5";
@@ -390,42 +375,18 @@
 			output-low;
 		};
 	};
+};
 
-	usb-pwr-en {
-		gpio-hog;
-		gpios = <36 GPIO_ACTIVE_HIGH>;
-		output-high;
-		line-name = "Enable USB";
-	};
+&prng {
+	status = "okay";
+};
 
-	usb-ovc-detect {
-		gpio-hog;
-		gpios = <4 GPIO_ACTIVE_HIGH>;
-		input;
-		line-name = "USB-FLT";
-	};
+&crypto {
+	status = "okay";
+};
 
-	lte-pwr {
-		gpio-hog;
-		gpios = <20 GPIO_ACTIVE_HIGH>;
-		output-high;
-		line-name = "Enable LTE PWR";
-	};
-
-	bt-pwr {
-		gpio-hog;
-		gpios = <68 GPIO_ACTIVE_HIGH>;
-		output-high;
-		line-name = "Enable BT PWR";
-	};
-
-	bt-rst {
-		gpio-hog;
-		gpios = <66 GPIO_ACTIVE_LOW>;
-		output-high;
-		line-name = "Enable BT Reset";
-	};
-
+&watchdog {
+	status = "okay";
 };
 
 /* emmc */
@@ -489,7 +450,7 @@
 		enable-gpio = <&tlmm 1 GPIO_ACTIVE_HIGH>;
 
 		chan0 {
-			label = "wan:green";
+			chan-name = "wan:green";
 			led-cur = /bits/ 8 <50>;
 			max-cur = /bits/ 8 <100>;
 		};
@@ -516,6 +477,7 @@
 			chan-name = "wlan0:green";
 			led-cur = /bits/ 8 <50>;
 			max-cur = /bits/ 8 <100>;
+			linux,default-trigger = "phy0tpt";
 		};
 
 		chan5 {
@@ -552,6 +514,7 @@
 			chan-name = "wlan1:green";
 			led-cur = /bits/ 8 <50>;
 			max-cur = /bits/ 8 <100>;
+			linux,default-trigger = "phy1tpt";
 		};
 
 		chan1 {
@@ -632,8 +595,23 @@
 	};
 };
 
+&usb2 {
+	status = "okay";
+
+	pinctrl-0 = <&usb2_pins>;
+	pinctrl-names = "default";
+
+};
+
 &usb2_hs_phy {
 	status = "okay";
+};
+
+&usb3 {
+	status = "okay";
+
+	pinctrl-0 = <&usb3_pins>;
+	pinctrl-names = "default";
 };
 
 &usb3_hs_phy {
@@ -647,7 +625,7 @@
 &wifi0 {
 	status = "okay";
 	qcom,ath10k-calibration-variant = "Sony_NCP-HG100";
-	};
+};
 
 &wifi1 {
 	status = "okay";
