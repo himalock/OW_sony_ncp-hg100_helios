@@ -8,22 +8,46 @@
 / {
 	model = "Sony NCP-HG100";
 	compatible = "sony,ncp-hg100", "qcom,ipq4019";
-/*
+
+	chosen {
+		bootargs = "console=ttyMSM0,115200n8 rootfsname=rootfs_1 rootwait";
+		bootargs-append = " clk_ignore_unused";
+	};
+
 	aliases {
+		sdhc1 = "/soc/sdhci@7824900";
+/*
 		led-boot = &led_blue;
 		led-failsafe = &led_red;
 		led-running = &led_green;
 		led-upgrade = &led_red;
-	};
 */
-	chosen {
-	//	bootargs = "root=/dev/mmcblk0p16 rootfstype=squashfs,ext4 rootwait";
-		bootargs-append = " clk_ignore_unused";
 	};
 
 	memory {
 		device_type = "memory";
 		reg = <0x80000000 0x20000000>; /* 512MB */
+	};
+
+	reserved-memory {
+		#address-cells = < 0x01 >;
+		#size-cells = < 0x01 >;
+		ranges;
+
+		rsvd1@87000000 {
+			reg = < 0x87000000 0x500000 >;
+			no-map;
+		};
+
+		wifi_dump@87500000 {
+			reg = < 0x87500000 0x600000 >;
+			no-map;
+		};
+
+		rsvd2@87B00000 {
+			reg = < 0x87b00000 0x500000 >;
+			no-map;
+		};
 	};
 
 	soc {
@@ -64,6 +88,10 @@
 		};
 
 		ess-psgmii@98000 {
+			status = "okay";
+		};
+
+		dma@7984000 {
 			status = "okay";
 		};
 
@@ -139,7 +167,7 @@
 		UART0_CTRL { //1 = UART0 as debug console ; 0 = UART0 as Zwave UART
 			pins = "gpio15";
 			function = "gpio";
-			output-low;
+			output-high;
 		};
 	};
 
@@ -337,13 +365,13 @@
 	};
 
 	usb2_pins: usb2_pinmux {
-		mux_1 {
+		lte_en {
 			pins = "gpio20";
 			function = "gpio";
 			output-high;
 		};
 
-		mux_2 {
+		lte_reset {
 			pins = "gpio35";
 			function = "gpio";
 			input;
@@ -351,37 +379,41 @@
 	};
 
 	usb3_pins: usb3_pinmux {
-		mux_1 {
+		usb_en {
 			pins = "gpio36";
 			function = "gpio";
 			output-high;
 		};
-		mux_2 {
+		usb_reset {
 			pins = "gpio4";
 			function = "gpio";
 			input;
 		};
 	};
 
-	mcu_pins: mcu_pinmux {
-		mux_1 {
-			pins = "gpio5";
-			function = "gpio";
-			output-high;
-		};
-		mux_2 {
+	mcu_pins: mcu_pinmux { // mcu-i2c.c
+		mcu_en {
 			pins = "gpio38";
 			function = "gpio";
 			output-low;
 		};
+		mcu_reset {
+			pins = "gpio5";
+			function = "gpio";
+			output-high;
+		};
 	};
 };
 
-&prng {
+&dma {
 	status = "okay";
 };
 
 &crypto {
+	status = "okay";
+};
+
+&prng {
 	status = "okay";
 };
 
@@ -406,7 +438,6 @@
  BAM(Boot Assist Module)
  BLSP(BAM Low Speed Peripheral)
 */
-
 &blsp_dma {
 	status = "okay";
 };
@@ -586,7 +617,6 @@
 		pinctrl-names = "default";
 	};
 
-/* testing */
 	mcu@15 {
 		compatible = "wistron,mcu";
 		reg = <0x15>;
@@ -600,7 +630,6 @@
 
 	pinctrl-0 = <&usb2_pins>;
 	pinctrl-names = "default";
-
 };
 
 &usb2_hs_phy {
@@ -620,6 +649,18 @@
 
 &usb3_ss_phy {
 	status = "okay";
+};
+
+&gmac0 {
+	vlan_tag = < 0x02 0x20 >;
+};
+
+&gmac1 {
+	qcom,phy_mdio_addr = < 0x04 >;
+	qcom,poll_required = < 0x01 >;
+	qcom,forced_speed = < 0x3e8 >;
+	qcom,forced_duplex = < 0x01 >;
+	vlan_tag = < 0x01 0x1e >;
 };
 
 &wifi0 {
