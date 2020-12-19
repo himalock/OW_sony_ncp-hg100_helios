@@ -2047,3 +2047,28 @@ root@OpenWrt:/etc/uci-defaults# i2cdetect -y -r 1
 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 70: -- -- -- -- -- -- -- --
+
+
+root@OpenWrt:/etc/uci-defaults# ls -l /sys/class/i2c-adapter/i2c-1/1-0015/*led*
+-rw-r--r--    1 root     root          4096 Dec 13 22:41 /sys/class/i2c-adapter/i2c-1/1-0015/led
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/led_blue
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/led_f_blue
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/led_f_green
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/led_f_red
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/led_green
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/led_red
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/led_speed
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/pwm_led
+-rw-r--r--    1 root     root          4096 Dec 13 22:45 /sys/class/i2c-adapter/i2c-1/1-0015/pwm_led_duty
+
+root@OpenWrt:/etc/uci-defaults# cat /sys/class/i2c-adapter/i2c-1/1-0015/*led*
+0xb0
+0
+220
+160
+100
+0
+0
+5
+0
+100

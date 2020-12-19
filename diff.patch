@@ -23,10 +23,10 @@ index ee4ad1af83..8352b51d3a 100755
  	local name="$1"
  	local gid="$2"
 diff --git a/package/base-files/files/lib/functions/caldata.sh b/package/base-files/files/lib/functions/caldata.sh
-index e22c7d27e6..7ff4b68a08 100644
+index 2177cf8415..ef5676b4ab 100644
 --- a/package/base-files/files/lib/functions/caldata.sh
 +++ b/package/base-files/files/lib/functions/caldata.sh
-@@ -15,6 +15,8 @@ caldata_extract() {
+@@ -25,6 +25,8 @@ caldata_extract() {
  	local mtd
  
  	mtd=$(find_mtd_chardev $part)
@@ -34,7 +34,7 @@ index e22c7d27e6..7ff4b68a08 100644
 +		mtd=$(find_mmc_part $part)
  	[ -n "$mtd" ] || caldata_die "no mtd device found for partition $part"
  
- 	dd if=$mtd of=/lib/firmware/$FIRMWARE iflag=skip_bytes bs=$count skip=$offset count=1 2>/dev/null || \
+ 	caldata_dd $mtd /lib/firmware/$FIRMWARE $count $offset || \
 diff --git a/package/firmware/ipq-wifi/Makefile b/package/firmware/ipq-wifi/Makefile
 index 9aa6852046..9954249cf9 100644
 --- a/package/firmware/ipq-wifi/Makefile
@@ -56,6 +56,30 @@ index 9aa6852046..9954249cf9 100644
 +$(eval $(call generate-ipq-wifi-package,sony_ncp-hg100,Sony NCP-HG100))
  
  $(foreach PACKAGE,$(ALLWIFIPACKAGES),$(eval $(call BuildPackage,$(PACKAGE))))
+diff --git a/package/kernel/linux/modules/other.mk b/package/kernel/linux/modules/other.mk
+index 421b1b536c..63fc21407a 100644
+--- a/package/kernel/linux/modules/other.mk
++++ b/package/kernel/linux/modules/other.mk
+@@ -1274,3 +1274,19 @@ define KernelPackage/f71808e-wdt/description
+ endef
+ 
+ $(eval $(call KernelPackage,f71808e-wdt))
++
++define KernelPackage/mcu-i2c
++  SUBMENU:=$(OTHER_MENU)
++  TITLE:=Wistron MCU-I2C bus connection
++  KCONFIG:=CONFIG_MCU_I2C
++  DEPENDS:= @TARGET_ipq40xx_generic_DEVICE_sony_ncp-hg100 +kmod-i2c-core
++  FILES:=$(LINUX_DIR)/drivers/misc/mcu-i2c.ko
++  AUTOLOAD:=$(call AutoProbe,mcu-i2c,1)
++endef
++
++define KernelPackage/mcu-i2c/description
++  Kernel module for Wistron MCU-I2C bus connection.
++endef
++
++$(eval $(call KernelPackage,mcu-i2c))
++
 diff --git a/target/linux/ipq40xx/base-files/etc/board.d/02_network b/target/linux/ipq40xx/base-files/etc/board.d/02_network
 index 86787eeffd..ed772775ca 100755
 --- a/target/linux/ipq40xx/base-files/etc/board.d/02_network
@@ -94,11 +118,24 @@ index f33d3f331c..143df1e6d3 100644
  	zyxel,nbg6617 |\
  	zyxel,wre6606)
  		caldata_extract "ART" 0x5000 0x2f20
+diff --git a/target/linux/ipq40xx/base-files/etc/init.d/bootcount b/target/linux/ipq40xx/base-files/etc/init.d/bootcount
+index d2a4abcadd..5e88a2c4cb 100755
+--- a/target/linux/ipq40xx/base-files/etc/init.d/bootcount
++++ b/target/linux/ipq40xx/base-files/etc/init.d/bootcount
+@@ -13,5 +13,8 @@ boot() {
+ 	linksys,mr8300)
+ 		mtd resetbc s_env || true
+ 		;;
++	sony,ncp-hg100)
++		echo 0xb0 > /sys/class/i2c-dev/i2c-1/device/1-0015/led
++		;;
+ 	esac
+ }
 diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
-index d4188f5282..01169e4c1a 100644
+index d4188f5282..40dd1fbf9d 100644
 --- a/target/linux/ipq40xx/image/Makefile
 +++ b/target/linux/ipq40xx/image/Makefile
-@@ -755,4 +755,17 @@ define Device/zyxel_wre6606
+@@ -755,4 +755,20 @@ define Device/zyxel_wre6606
  endef
  TARGET_DEVICES += zyxel_wre6606
  
@@ -109,9 +146,12 @@ index d4188f5282..01169e4c1a 100644
 +	BOARD_NAME := ncp-hg100
 +	SOC := qcom-ipq4019
 +	KERNEL_SIZE := 8192k
-+	IMAGE_SIZE := 139264k
-+	IMAGE/sysupgrade.bin := append-kernel | append-rootfs | pad-rootfs | append-metadata | check-size
-+	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100
++	KERNEL_INSTALL := 1
++	IMAGE_SIZE := 8192k
++	IMAGES := +kernel.bin rootfs.bin
++	IMAGE/kernel.bin := append-kernel
++	IMAGE/rootfs.bin := append-rootfs
++	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 CONFIG_MCU_I2C
 +endef
 +TARGET_DEVICES += sony_ncp-hg100
 +
