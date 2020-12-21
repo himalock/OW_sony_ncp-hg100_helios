@@ -56,14 +56,24 @@ index 9aa6852046..9954249cf9 100644
 +$(eval $(call generate-ipq-wifi-package,sony_ncp-hg100,Sony NCP-HG100))
  
  $(foreach PACKAGE,$(ALLWIFIPACKAGES),$(eval $(call BuildPackage,$(PACKAGE))))
+diff --git a/package/kernel/linux/modules/i2c.mk b/package/kernel/linux/modules/i2c.mk
+index ca6463c81b..cb4691e818 100644
+--- a/package/kernel/linux/modules/i2c.mk
++++ b/package/kernel/linux/modules/i2c.mk
+@@ -258,4 +258,3 @@ endef
+ 
+ $(eval $(call KernelPackage,i2c-tiny-usb))
+ 
+-
 diff --git a/package/kernel/linux/modules/other.mk b/package/kernel/linux/modules/other.mk
-index 421b1b536c..63fc21407a 100644
+index 421b1b536c..1df9461dfb 100644
 --- a/package/kernel/linux/modules/other.mk
 +++ b/package/kernel/linux/modules/other.mk
 @@ -1274,3 +1274,19 @@ define KernelPackage/f71808e-wdt/description
  endef
  
  $(eval $(call KernelPackage,f71808e-wdt))
++
 +
 +define KernelPackage/mcu-i2c
 +  SUBMENU:=$(OTHER_MENU)
@@ -79,7 +89,6 @@ index 421b1b536c..63fc21407a 100644
 +endef
 +
 +$(eval $(call KernelPackage,mcu-i2c))
-+
 diff --git a/target/linux/ipq40xx/base-files/etc/board.d/02_network b/target/linux/ipq40xx/base-files/etc/board.d/02_network
 index 86787eeffd..ed772775ca 100755
 --- a/target/linux/ipq40xx/base-files/etc/board.d/02_network
@@ -132,10 +141,10 @@ index d2a4abcadd..5e88a2c4cb 100755
  	esac
  }
 diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
-index d4188f5282..40dd1fbf9d 100644
+index b3f2d1f755..cead2821ec 100644
 --- a/target/linux/ipq40xx/image/Makefile
 +++ b/target/linux/ipq40xx/image/Makefile
-@@ -755,4 +755,20 @@ define Device/zyxel_wre6606
+@@ -754,4 +754,20 @@ define Device/zyxel_wre6606
  endef
  TARGET_DEVICES += zyxel_wre6606
  
