@@ -10,7 +10,7 @@
 	compatible = "sony,ncp-hg100", "qcom,ipq4019";
 
 	chosen {
-		bootargs = "console=ttyMSM0,115200n8 rootfsname=rootfs_1 rootwait";
+//		bootargs = "console=ttyMSM0,115200n8 rootfsname=rootfs_1 rootwait";
 		bootargs-append = " clk_ignore_unused";
 	};
 
@@ -250,13 +250,11 @@
 				"gpio28", "gpio29", "gpio30", "gpio31";
 			drive-strength = <4>;
 		};
-
 		pinmux_sd_clk {
 			function = "sdio";
 			pins = "gpio27";
 			drive-strength = <16>;
 		};
-
 		pinmux_sd7 {
 			function = "sdio";
 			pins = "gpio32";
@@ -403,10 +401,6 @@
 			output-high;
 		};
 	};
-};
-
-&dma {
-	status = "okay";
 };
 
 &crypto {
