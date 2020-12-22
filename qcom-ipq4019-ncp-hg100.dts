@@ -624,14 +624,6 @@
 	status = "okay";
 };
 
-&gmac0 {
-	vlan_tag = < 0x02 0x20 >;
-};
-
-&gmac1 {
-	vlan_tag = < 0x01 0x1e >;
-};
-
 &wifi0 {
 	status = "okay";
 	qcom,ath10k-calibration-variant = "Sony_NCP-HG100";
