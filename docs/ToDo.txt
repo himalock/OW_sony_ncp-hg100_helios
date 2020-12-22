@@ -1,0 +1,4 @@
+mcu/touchkey-control firmware
+i2c-1-15 LED control
+ttyMSM1 bluetooth
+ttyMSM0 Z-Wave
