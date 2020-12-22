@@ -141,7 +141,7 @@ index d2a4abcadd..5e88a2c4cb 100755
  	esac
  }
 diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
-index b3f2d1f755..cead2821ec 100644
+index b3f2d1f755..39dfd05651 100644
 --- a/target/linux/ipq40xx/image/Makefile
 +++ b/target/linux/ipq40xx/image/Makefile
 @@ -754,4 +754,20 @@ define Device/zyxel_wre6606
@@ -157,7 +157,7 @@ index b3f2d1f755..cead2821ec 100644
 +	KERNEL_SIZE := 8192k
 +	KERNEL_INSTALL := 1
 +	IMAGE_SIZE := 8192k
-+	IMAGES := +kernel.bin rootfs.bin
++	IMAGES := kernel.bin rootfs.bin
 +	IMAGE/kernel.bin := append-kernel
 +	IMAGE/rootfs.bin := append-rootfs
 +	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 CONFIG_MCU_I2C
