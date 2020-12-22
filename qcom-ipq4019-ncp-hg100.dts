@@ -17,37 +17,16 @@
 	aliases {
 		sdhc1 = "/soc/sdhci@7824900";
 /*
-		led-boot = &led_blue;
-		led-failsafe = &led_red;
-		led-running = &led_green;
-		led-upgrade = &led_red;
+		led-boot = &led_blink;
+		led-failsafe = &led_yellow;
+		led-running = &led_off;
+		led-upgrade = &led_blink_blue;
 */
 	};
 
 	memory {
 		device_type = "memory";
 		reg = <0x80000000 0x20000000>; /* 512MB */
-	};
-
-	reserved-memory {
-		#address-cells = < 0x01 >;
-		#size-cells = < 0x01 >;
-		ranges;
-
-		rsvd1@87000000 {
-			reg = < 0x87000000 0x500000 >;
-			no-map;
-		};
-
-		wifi_dump@87500000 {
-			reg = < 0x87500000 0x600000 >;
-			no-map;
-		};
-
-		rsvd2@87B00000 {
-			reg = < 0x87b00000 0x500000 >;
-			no-map;
-		};
 	};
 
 	soc {
@@ -650,10 +629,6 @@
 };
 
 &gmac1 {
-	qcom,phy_mdio_addr = < 0x04 >;
-	qcom,poll_required = < 0x01 >;
-	qcom,forced_speed = < 0x3e8 >;
-	qcom,forced_duplex = < 0x01 >;
 	vlan_tag = < 0x01 0x1e >;
 };
 
