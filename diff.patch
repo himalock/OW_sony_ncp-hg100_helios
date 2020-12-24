@@ -140,33 +140,50 @@ index d2a4abcadd..5e88a2c4cb 100755
 +		;;
  	esac
  }
+diff --git a/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh b/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
+index e43225cbb2..ebdb72286d 100644
+--- a/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
++++ b/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
+@@ -71,7 +71,8 @@ platform_do_upgrade() {
+ 	engenius,eap2200 |\
+ 	luma,wrtq-329acn |\
+ 	mobipromo,cm520-79f |\
+-	qxwlan,e2600ac-c2)
++	qxwlan,e2600ac-c2 |\
++	sony,ncp-hg100)
+ 		nand_do_upgrade "$1"
+ 		;;
+ 	alfa-network,ap120c-ac)
 diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
-index 487f3b5638..96fe292941 100644
+index 487f3b5638..e8b2a5b7f6 100644
 --- a/target/linux/ipq40xx/image/Makefile
 +++ b/target/linux/ipq40xx/image/Makefile
-@@ -805,4 +805,22 @@ define Device/zyxel_wre6606
+@@ -758,6 +758,25 @@ define Device/qxwlan_e2600ac-c2
  endef
- TARGET_DEVICES += zyxel_wre6606
+ TARGET_DEVICES += qxwlan_e2600ac-c2
  
 +define Device/sony_ncp-hg100
-+	$(call Device/FitImageLzma)
++	$(call Device/FitImage)
 +	DEVICE_VENDOR := Sony
 +	DEVICE_MODEL := NCP-HG100
 +	BOARD_NAME := ncp-hg100
++	DEVICE_DTS_CONFIG := config@ap.dk04.1-c4
 +	SOC := qcom-ipq4019
 +	KERNEL_SIZE := 8192k
-+	KERNEL_INSTALL := 1
 +	BLOCKSIZE := 128k
 +	PAGESIZE := 2048
-+	IMAGE_SIZE := 8192k
++	IMAGE_SIZE := 128m
 +	IMAGES += kernel.bin rootfs.bin
 +	IMAGE/kernel.bin := append-kernel
 +	IMAGE/rootfs.bin := append-rootfs
++	IMAGE/sysupgrade.bin := append-kernel | append-rootfs | pad-rootfs | append-metadata | check-size
 +	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 CONFIG_MCU_I2C
 +endef
 +TARGET_DEVICES += sony_ncp-hg100
 +
- $(eval $(call BuildImage))
+ define Device/unielec_u4019-32m
+ 	$(call Device/FitImage)
+ 	DEVICE_VENDOR := Unielec
 diff --git a/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch b/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch
 index d470bb7204..d69d386622 100644
 --- a/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch
