@@ -433,15 +433,15 @@
 
 &blsp1_i2c4 { /* i2c1 */
 /*
-0x14 ?
-0x15 mcu(thermal/fan controller)
-0x18 dac
-0x31 led
-0x32 led
+0x14 CY8C(CY8C4014LQ) front-touchkey
+0x15 mcu(MINI54FDE) thermal/fan controller
+0x18 DAC(ALC5629)
+0x31 LED(LP55231)
+0x32 LED
   led1:WAN,  led2 LAN
   led3:2.4G, led4 5G
   led5:NET,  led6 CLOUD
-0x41 mic
+0x41 mic(CX20924)
 */
 	pinctrl-0 = <&i2c_1_pins>;
 	pinctrl-names = "default";
