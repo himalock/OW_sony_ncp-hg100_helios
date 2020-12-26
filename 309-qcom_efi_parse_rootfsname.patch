@@ -1,0 +1,56 @@
+--- b/block/partitions/efi.c
++++ a/block/partitions/efi.c
+@@ -89,12 +89,15 @@
+ #include <linux/slab.h>
+ #include "check.h"
+ #include "efi.h"
++#include <linux/root_dev.h>
+ 
+ /* This allows a kernel command line option 'gpt' to override
+  * the test for invalid PMBR.  Not __initdata because reloading
+  * the partition tables happens after init too.
+  */
+ static int force_gpt;
++static char saved_rootfs_name[64];
++
+ static int __init
+ force_gpt_fn(char *str)
+ {
+@@ -103,6 +106,12 @@
+ }
+ __setup("gpt", force_gpt_fn);
+ 
++static int __init rootfs_name_setup(char *line)
++{
++	strlcpy(saved_rootfs_name, line, sizeof(saved_rootfs_name));
++	return 1;
++}
++__setup("rootfsname=", rootfs_name_setup);
+ 
+ /**
+  * efi_crc32() - EFI version of crc32 function
+@@ -682,6 +691,9 @@
+ 	u32 i;
+ 	unsigned ssz = bdev_logical_block_size(state->bdev) / 512;
+ 
++	if (!saved_rootfs_name[0])
++		strlcpy(saved_rootfs_name, "rootfs", sizeof("rootfs"));
++
+ 	if (!find_valid_gpt(state, &gpt, &ptes) || !gpt || !ptes) {
+ 		kfree(gpt);
+ 		kfree(ptes);
+@@ -721,6 +733,14 @@
+ 			info->volname[label_count] = c;
+ 			label_count++;
+ 		}
++
++		if (ROOT_DEV == 0 &&
++		    !strcmp(info->volname, saved_rootfs_name) {
++			ROOT_DEV = MKDEV(MAJOR(state->bdev->bd_dev), i + 1);
++			pr_notice("GPT: device [%d:%d] (%s) set to be root filesystem\n",
++				MAJOR(ROOT_DEV), MINOR(ROOT_DEV),
++				info->volname);
++		}
+ 		state->parts[i + 1].has_info = true;
+ 	}
+ 	kfree(ptes);
