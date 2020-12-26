@@ -36,11 +36,11 @@ index 2177cf8415..ef5676b4ab 100644
  
  	caldata_dd $mtd /lib/firmware/$FIRMWARE $count $offset || \
 diff --git a/package/firmware/ipq-wifi/Makefile b/package/firmware/ipq-wifi/Makefile
-index f1a0c1c474..a06f072e49 100644
+index e5f10a1f98..90f023fbfb 100644
 --- a/package/firmware/ipq-wifi/Makefile
 +++ b/package/firmware/ipq-wifi/Makefile
-@@ -45,7 +45,8 @@ ALLWIFIBOARDS:= \
- 	mobipromo_cm520-79f \
+@@ -47,7 +47,8 @@ ALLWIFIBOARDS:= \
+ 	nec_wg2600hp3 \
  	plasmacloud_pa1200 \
  	plasmacloud_pa2200 \
 -	qxwlan_e2600ac
@@ -49,7 +49,7 @@ index f1a0c1c474..a06f072e49 100644
  
  ALLWIFIPACKAGES:=$(foreach BOARD,$(ALLWIFIBOARDS),ipq-wifi-$(BOARD))
  
-@@ -127,5 +128,6 @@ $(eval $(call generate-ipq-wifi-package,mobipromo_cm520-79f,MobiPromo CM520-79F)
+@@ -131,5 +132,6 @@ $(eval $(call generate-ipq-wifi-package,nec_wg2600hp3,NEC Platforms WG2600HP3))
  $(eval $(call generate-ipq-wifi-package,plasmacloud_pa1200,Plasma Cloud PA1200))
  $(eval $(call generate-ipq-wifi-package,plasmacloud_pa2200,Plasma Cloud PA2200))
  $(eval $(call generate-ipq-wifi-package,qxwlan_e2600ac,Qxwlan E2600AC))
@@ -90,7 +90,7 @@ index 421b1b536c..1df9461dfb 100644
 +
 +$(eval $(call KernelPackage,mcu-i2c))
 diff --git a/target/linux/ipq40xx/base-files/etc/board.d/02_network b/target/linux/ipq40xx/base-files/etc/board.d/02_network
-index 07bacaf51b..c3ce6ff825 100755
+index fe21dc8035..d3acc48b77 100755
 --- a/target/linux/ipq40xx/base-files/etc/board.d/02_network
 +++ b/target/linux/ipq40xx/base-files/etc/board.d/02_network
 @@ -19,7 +19,8 @@ ipq40xx_setup_interfaces()
@@ -104,10 +104,10 @@ index 07bacaf51b..c3ce6ff825 100755
  		;;
  	aruba,ap-303|\
 diff --git a/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata b/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
-index 7293438dfa..f0120f3d3a 100644
+index c4d9dd78e3..f2461bf151 100644
 --- a/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
 +++ b/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
-@@ -144,6 +144,9 @@ case "$FIRMWARE" in
+@@ -145,6 +145,9 @@ case "$FIRMWARE" in
  		caldata_extract "ART" 0x1000 0x2f20
  		ath10k_patch_mac $(mtd_get_mac_binary dnidata 0x0)
  		;;
@@ -117,7 +117,7 @@ index 7293438dfa..f0120f3d3a 100644
  	zyxel,nbg6617 |\
  	zyxel,wre6606)
  		caldata_extract "ART" 0x1000 0x2f20
-@@ -247,6 +250,9 @@ case "$FIRMWARE" in
+@@ -249,6 +252,9 @@ case "$FIRMWARE" in
  		caldata_extract "ART" 0x5000 0x2f20
  		ath10k_patch_mac $(mtd_get_mac_binary dnidata 0xc)
  		;;
@@ -141,11 +141,11 @@ index d2a4abcadd..5e88a2c4cb 100755
  	esac
  }
 diff --git a/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh b/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
-index e43225cbb2..ebdb72286d 100644
+index 5582696759..411b995cde 100644
 --- a/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
 +++ b/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
-@@ -71,7 +71,8 @@ platform_do_upgrade() {
- 	engenius,eap2200 |\
+@@ -72,7 +72,8 @@ platform_do_upgrade() {
+ 	glinet,gl-ap1300 |\
  	luma,wrtq-329acn |\
  	mobipromo,cm520-79f |\
 -	qxwlan,e2600ac-c2)
@@ -155,10 +155,10 @@ index e43225cbb2..ebdb72286d 100644
  		;;
  	alfa-network,ap120c-ac)
 diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
-index 487f3b5638..e8b2a5b7f6 100644
+index c19dcb4039..953bd4dcd7 100644
 --- a/target/linux/ipq40xx/image/Makefile
 +++ b/target/linux/ipq40xx/image/Makefile
-@@ -758,6 +758,25 @@ define Device/qxwlan_e2600ac-c2
+@@ -773,6 +773,22 @@ define Device/qxwlan_e2600ac-c2
  endef
  TARGET_DEVICES += qxwlan_e2600ac-c2
  
@@ -170,13 +170,10 @@ index 487f3b5638..e8b2a5b7f6 100644
 +	DEVICE_DTS_CONFIG := config@ap.dk04.1-c4
 +	SOC := qcom-ipq4019
 +	KERNEL_SIZE := 8192k
-+	BLOCKSIZE := 128k
-+	PAGESIZE := 2048
 +	IMAGE_SIZE := 128m
 +	IMAGES += kernel.bin rootfs.bin
 +	IMAGE/kernel.bin := append-kernel
 +	IMAGE/rootfs.bin := append-rootfs
-+	IMAGE/sysupgrade.bin := append-kernel | append-rootfs | pad-rootfs | append-metadata | check-size
 +	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 CONFIG_MCU_I2C
 +endef
 +TARGET_DEVICES += sony_ncp-hg100
@@ -185,19 +182,19 @@ index 487f3b5638..e8b2a5b7f6 100644
  	$(call Device/FitImage)
  	DEVICE_VENDOR := Unielec
 diff --git a/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch b/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch
-index d470bb7204..d69d386622 100644
+index a3d3341587..de587973ee 100644
 --- a/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch
 +++ b/target/linux/ipq40xx/patches-5.4/901-arm-boot-add-dts-files.patch
 @@ -10,7 +10,7 @@ Signed-off-by: John Crispin <john@phrozen.org>
  
  --- a/arch/arm/boot/dts/Makefile
  +++ b/arch/arm/boot/dts/Makefile
--@@ -837,11 +837,57 @@ dtb-$(CONFIG_ARCH_QCOM) += \
-+@@ -837,11 +837,58 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+-@@ -837,11 +837,58 @@ dtb-$(CONFIG_ARCH_QCOM) += \
++@@ -837,11 +837,59 @@ dtb-$(CONFIG_ARCH_QCOM) += \
   	qcom-apq8074-dragonboard.dtb \
   	qcom-apq8084-ifc6540.dtb \
   	qcom-apq8084-mtp.dtb \
-@@ -53,6 +53,7 @@ Signed-off-by: John Crispin <john@phrozen.org>
+@@ -54,6 +54,7 @@ Signed-off-by: John Crispin <john@phrozen.org>
  +	qcom-ipq4019-e2600ac-c1.dtb \
  +	qcom-ipq4019-e2600ac-c2.dtb \
  +	qcom-ipq4019-habanero-dvk.dtb \

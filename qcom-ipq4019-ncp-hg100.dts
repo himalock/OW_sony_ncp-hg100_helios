@@ -10,7 +10,7 @@
 	compatible = "sony,ncp-hg100", "qcom,ipq4019";
 
 	chosen {
-		bootargs = "console=ttyMSM0,115200n8 rootfsname=rootfs_1 root=/dev/mmcblk0p16 rootwait";
+		//bootargs = "console=ttyMSM0,115200n8 rootfsname=rootfs root=/dev/mmcblk0p? rootwait";
 		bootargs-append = " clk_ignore_unused";
 	};
 
