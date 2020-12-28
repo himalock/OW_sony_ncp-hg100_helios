@@ -17,6 +17,7 @@ mcuはドライバを読ませれば認識操作可能
 タッチパネル部CY8Cはi2cのアドレス有効化で操作可能
 
 ASoC周り(ヾﾉ･∀･`)ﾑﾘﾑﾘ
+
 https://lore.kernel.org/alsa-devel/1468566426-19598-2-git-send-email-njaigane@codeaurora.org/
 
 お手上げ∩(・ω・)∩

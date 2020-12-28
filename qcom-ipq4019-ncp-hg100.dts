@@ -481,7 +481,6 @@
 			chan-name = "wlan0:green";
 			led-cur = /bits/ 8 <50>;
 			max-cur = /bits/ 8 <100>;
-			linux,default-trigger = "phy0tpt";
 		};
 
 		chan5 {
@@ -518,7 +517,6 @@
 			chan-name = "wlan1:green";
 			led-cur = /bits/ 8 <50>;
 			max-cur = /bits/ 8 <100>;
-			linux,default-trigger = "phy1tpt";
 		};
 
 		chan1 {
