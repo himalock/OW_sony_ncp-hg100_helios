@@ -176,12 +176,12 @@
 	};
 
 	bt_pins: bt_pinmux {
-		mux_1 { //Active low to reset the BT
+		RST { //Active low to reset the BT
 			pins = "gpio66";
 			function = "gpio";
 			output-high;
 		};
-		mux_2 { //1 = BT power on ; 0 = BT power off
+		VREG_EN { //1 = BT power on ; 0 = BT power off
 			pins = "gpio68";
 			function = "gpio";
 			output-high;

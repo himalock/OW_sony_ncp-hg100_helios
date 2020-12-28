@@ -45,7 +45,7 @@
  		}
 +
 +		if (ROOT_DEV == 0 &&
-+		    !strcmp(info->volname, saved_rootfs_name) {
++		    !strcmp(info->volname, saved_rootfs_name)) {
 +			ROOT_DEV = MKDEV(MAJOR(state->bdev->bd_dev), i + 1);
 +			pr_notice("GPT: device [%d:%d] (%s) set to be root filesystem\n",
 +				MAJOR(ROOT_DEV), MINOR(ROOT_DEV),

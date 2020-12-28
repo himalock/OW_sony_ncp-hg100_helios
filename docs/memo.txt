@@ -22,10 +22,9 @@ Specification
  - baud: 115200n8
 
 memo unknown
-Philips? 74LVC08A
 SPI Memory
- adesto2018 25DF321A
- adesto2018 45DB021E
+ adesto2018 45DB021E //mcu firmware?
+ adesto2018 25DF321A //touchpanel firmware?
 
 
 Sony OSS: https://oss.sony.net/Products/Linux/Others/NCP-HG100_v14423.html
@@ -68,3 +67,6 @@ bootconsole
 setenv bootargs console=ttyMSM0,115200n8
 bootipq debug
 
+
+:touchpanel CY8C enable
+i2cset -y 1 0x14 0x0f 1

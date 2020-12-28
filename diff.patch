@@ -128,15 +128,16 @@ index c4d9dd78e3..f2461bf151 100644
  	zyxel,wre6606)
  		caldata_extract "ART" 0x5000 0x2f20
 diff --git a/target/linux/ipq40xx/base-files/etc/init.d/bootcount b/target/linux/ipq40xx/base-files/etc/init.d/bootcount
-index d2a4abcadd..5e88a2c4cb 100755
+index d2a4abcadd..39fcb4ac77 100755
 --- a/target/linux/ipq40xx/base-files/etc/init.d/bootcount
 +++ b/target/linux/ipq40xx/base-files/etc/init.d/bootcount
-@@ -13,5 +13,8 @@ boot() {
+@@ -13,5 +13,9 @@ boot() {
  	linksys,mr8300)
  		mtd resetbc s_env || true
  		;;
 +	sony,ncp-hg100)
 +		echo 0xb0 > /sys/class/i2c-dev/i2c-1/device/1-0015/led
++		i2cset -y 1 0x14 0x0f 1
 +		;;
  	esac
  }
@@ -155,7 +156,7 @@ index 5582696759..411b995cde 100644
  		;;
  	alfa-network,ap120c-ac)
 diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
-index c19dcb4039..953bd4dcd7 100644
+index c19dcb4039..b645105952 100644
 --- a/target/linux/ipq40xx/image/Makefile
 +++ b/target/linux/ipq40xx/image/Makefile
 @@ -773,6 +773,22 @@ define Device/qxwlan_e2600ac-c2
@@ -174,7 +175,7 @@ index c19dcb4039..953bd4dcd7 100644
 +	IMAGES += kernel.bin rootfs.bin
 +	IMAGE/kernel.bin := append-kernel
 +	IMAGE/rootfs.bin := append-rootfs
-+	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 CONFIG_MCU_I2C
++	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 CONFIG_MCU_I2C i2c-tools
 +endef
 +TARGET_DEVICES += sony_ncp-hg100
 +
