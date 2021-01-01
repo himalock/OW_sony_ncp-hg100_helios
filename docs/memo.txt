@@ -70,3 +70,24 @@ bootipq debug
 
 :touchpanel CY8C enable
 i2cset -y 1 0x14 0x0f 1
+
+
+:bootpartition config
+BOOTCONFIG Partition support
+/linux-4.4/drivers/platform/ipq/
+CONFIG_BOOTCONFIG_PARTITION=m
+CONFIG_NUM_ALT_PARTITION=8
+
+mmcblk0p2 0:BOOTCONFIG
+
+uint32 SMEM_DUAL_BOOTINFO_MAGIC_START 0xA3A2A1A0
+uint32 age (flash count)
+uint32 data nums
+struct partinfo data
+  name 16byte
+  primaryboot 4byte
+uint32 SMEM_DUAL_BOOTINFO_MAGIC_END 0xB3B2B1B0
+
+change
+/proc/boot_info/${part_name}/primaryboot
+
