@@ -10,12 +10,10 @@
 	compatible = "sony,ncp-hg100", "qcom,ipq4019";
 
 	chosen {
-		//bootargs = "console=ttyMSM0,115200n8 rootfsname=rootfs root=/dev/mmcblk0p? rootwait";
-		bootargs-append = " clk_ignore_unused";
+		bootargs-append = " root=/dev/mmcblk0p16 rootfstype=squashfs,f2fs clk_ignore_unused";
 	};
 
 	aliases {
-		sdhc1 = "/soc/sdhci@7824900";
 /*
 		led-boot = &led_blink;
 		led-failsafe = &led_yellow;
@@ -118,13 +116,11 @@
 
 	keys {
 		compatible = "gpio-keys";
-
 		reset {
 			label = "reset";
 			gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_RESTART>;
 		};
-
 		wps {
 			label = "SETUP";
 			gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
