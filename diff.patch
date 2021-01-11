@@ -1,8 +1,8 @@
 diff --git a/package/base-files/files/lib/functions.sh b/package/base-files/files/lib/functions.sh
-index ee4ad1af83..8352b51d3a 100755
+index 272e230db2..fd4cd05414 100755
 --- a/package/base-files/files/lib/functions.sh
 +++ b/package/base-files/files/lib/functions.sh
-@@ -307,6 +307,19 @@ find_mtd_part() {
+@@ -314,6 +314,19 @@ find_mtd_part() {
  	echo "${INDEX:+$PREFIX$INDEX}"
  }
  
@@ -142,24 +142,24 @@ index d2a4abcadd..39fcb4ac77 100755
  	esac
  }
 diff --git a/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh b/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
-index 5582696759..411b995cde 100644
+index 5582696759..df3a9811f4 100644
 --- a/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
 +++ b/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
-@@ -72,7 +72,8 @@ platform_do_upgrade() {
- 	glinet,gl-ap1300 |\
- 	luma,wrtq-329acn |\
- 	mobipromo,cm520-79f |\
--	qxwlan,e2600ac-c2)
-+	qxwlan,e2600ac-c2 |\
-+	sony,ncp-hg100)
- 		nand_do_upgrade "$1"
+@@ -118,6 +118,9 @@ platform_do_upgrade() {
+ 		PART_NAME="inactive"
+ 		platform_do_upgrade_dualboot_datachk "$1"
  		;;
- 	alfa-network,ap120c-ac)
++	sony,ncp-hg100)
++		emmc_do_upgrade "$1"
++		;;
+ 	zyxel,nbg6617)
+ 		zyxel_do_upgrade "$1"
+ 		;;
 diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
-index c19dcb4039..b645105952 100644
+index c19dcb4039..1d02d17baf 100644
 --- a/target/linux/ipq40xx/image/Makefile
 +++ b/target/linux/ipq40xx/image/Makefile
-@@ -773,6 +773,22 @@ define Device/qxwlan_e2600ac-c2
+@@ -773,6 +773,23 @@ define Device/qxwlan_e2600ac-c2
  endef
  TARGET_DEVICES += qxwlan_e2600ac-c2
  
@@ -170,12 +170,13 @@ index c19dcb4039..b645105952 100644
 +	BOARD_NAME := ncp-hg100
 +	DEVICE_DTS_CONFIG := config@ap.dk04.1-c4
 +	SOC := qcom-ipq4019
++	BLOCKSIZE := 128k
 +	KERNEL_SIZE := 8192k
 +	IMAGE_SIZE := 128m
 +	IMAGES += kernel.bin rootfs.bin
 +	IMAGE/kernel.bin := append-kernel
-+	IMAGE/rootfs.bin := append-rootfs
-+	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 CONFIG_MCU_I2C i2c-tools
++	IMAGE/rootfs.bin := append-rootfs 
++	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 kmod-mcu-i2c i2c-tools qmi-utils e2fsprogs kmod-fs-ext4 kmod-fs-f2fs f2fs-tools
 +endef
 +TARGET_DEVICES += sony_ncp-hg100
 +
