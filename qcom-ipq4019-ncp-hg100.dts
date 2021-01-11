@@ -13,15 +13,6 @@
 		bootargs-append = " root=/dev/mmcblk0p16 rootfstype=squashfs,f2fs clk_ignore_unused";
 	};
 
-	aliases {
-/*
-		led-boot = &led_blink;
-		led-failsafe = &led_yellow;
-		led-running = &led_off;
-		led-upgrade = &led_blink_blue;
-*/
-	};
-
 	memory {
 		device_type = "memory";
 		reg = <0x80000000 0x20000000>; /* 512MB */
