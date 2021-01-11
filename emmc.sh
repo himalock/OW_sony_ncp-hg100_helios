@@ -59,22 +59,26 @@ do_emmc_upgrade_tar() {
 
 emmc_do_upgrade() {
 	local tar_file=$1
-	local kernel_dev="/dev/mmcblk0p14"
-	local rootfs_dev="/dev/mmcblk0p16"
+	local kernel_dev
+	local rootfs_dev
 	local board=$(board_name)
 	local rootfs="$(emmc_get_active_part)"
 
 	case "$board" in
 		sony,ncp-hg100)
+			kernel_dev="/dev/mmcblk0p14"
+			rootfs_dev="/dev/mmcblk0p16"
 			case "${rootfs}" in
 				"rootfs"|\
 				"")
-					echo change boot partition set 1
-					echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=28
-					echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=48
-					echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=68
-					echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=88
-					echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=108
+					local bootpart=`dd if=/dev/mmcblk0p2 bs=1 count=1 skip=108 2> /dev/null |hexdump -e '"%d"'`
+					if [ ${bootpart} -eq 0 ]; then
+						echo force change "BOOTCONFIG"
+						echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=88
+						echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=108
+						echo -en '\x01' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=88
+						echo -en '\x01' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=108
+					fi
 				;;
 				*)
 					echo no change boot partition settings
