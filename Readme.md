@@ -34,7 +34,7 @@ https://lore.kernel.org/alsa-devel/1468566426-19598-2-git-send-email-njaigane@co
 拾えても暗号化されています。  
 また、ubootが破損すると復旧不能です、覚悟のある方だけご利用ください。（EDL方法不明）
 
-###　tftpブート
+### tftpブート
 
 本体ボタンからのtftpブートは発見されてません。シリアル接続から行う必要があります。（誰か見つけて…)
 
@@ -53,8 +53,7 @@ QSDKからのsysupgradeは対応していまません。
 なお強制的にBOOTCONFIGを変更しHLOS_1とrootfs_1を使うようになります。  
 rootfs_dataは自動マウントされません。使いたい場合はblockdでextroot等どうぞ。  
 
-
-###　復旧方法
+### 復旧方法
 
 事前にmmcblk0p13/14/15/16のバックアップがあることが前提です。
 
