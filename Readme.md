@@ -7,7 +7,7 @@ Bluetooth/Z-Wave 動作不明（使い方わからない）
 
 サウンドやマイク周りのドライバはKernelに無いので移植しないと認識不能
 
-筐体のLEDはmcuの下に居る（78b8000.i2c/i2c-1/1-0015/led1）  
+筐体のLEDはmcuの下に居る（/sys/class/i2c-dev/i2c-1/device/1-0015/led）  
 筐体mcu、タッチパネル部CY8Cそれぞれファームの有効化をすれば動作してくれるっぽい
 
 drivers/misc/mcu-i2c.c 温度センサーやFan制御、筐体LED動かしているマイコン  
