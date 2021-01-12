@@ -40,7 +40,7 @@ https://lore.kernel.org/alsa-devel/1468566426-19598-2-git-send-email-njaigane@co
 
 PC側のIPを192.168.132.100にセットしてtftpサーバーを用意します。  
 MANOMA側のubootより、次のようなコマンドでファイルを読ませてinitramfsでの起動がまず必要です。  
-QSDKからのsysupgradeは対応していまません。  
+QSDKからのsysupgradeは対応していません。  
 電源投入後、ubootで停止したときに何かキーを押すとコンソールに入れます。
 入ったら次のコマンドでtftpブートします。ファイル名は環境に応じて変更してください。
 
