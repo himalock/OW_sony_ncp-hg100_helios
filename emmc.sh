@@ -2,19 +2,28 @@
 
 . /lib/functions.sh
 
-emmc_get_active_part() {
-	local rootfs
-	local root
+find_mmc_part() {
+	local FINDNAME=$1
+	local DEVNAME PARTNAME
+
+	if grep -q "$FINDNAME" /proc/mtd; then
+		echo "" && return 0
+	fi
+
+	for DEVNAME in /sys/block/mmcblk0/mmcblk*p*; do
+		PARTNAME=$(grep PARTNAME ${DEVNAME}/uevent | cut -f2 -d'=')
+		[ "$PARTNAME" = "$FINDNAME" ] && echo "/dev/$(basename $DEVNAME)" && return 0
+	done
+}
+
+get_active_part() {
+	local root rootfs
 
 	if read cmdline < /proc/cmdline; then
 		case "$cmdline" in
 			*rootfsname=*)
 				rootfs="${cmdline##*rootfsname=}"
 				rootfs="${rootfsname%% *}"
-			;;
-			*root=*)
-				root="${cmdline##*root=}"
-				root="${root%% *}"
 			;;
 		esac
 		echo $rootfs
@@ -62,22 +71,24 @@ emmc_do_upgrade() {
 	local kernel_dev
 	local rootfs_dev
 	local board=$(board_name)
-	local rootfs="$(emmc_get_active_part)"
+	local rootfs="$(get_active_part)"
 
 	case "$board" in
 		sony,ncp-hg100)
-			kernel_dev="/dev/mmcblk0p14"
-			rootfs_dev="/dev/mmcblk0p16"
+			kernel_dev=$(find_mmc_part 0:HLOS_1)
+			rootfs_dev=$(find_mmc_part rootfs_1)
 			case "${rootfs}" in
 				"rootfs"|\
 				"")
-					local bootpart=`dd if=/dev/mmcblk0p2 bs=1 count=1 skip=108 2> /dev/null |hexdump -e '"%d"'`
+					local BOOTCONFIG=$(find_mmc_part 0:BOOTCONFIG)
+					local BOOTCONFIG1=$(find_mmc_part 0:BOOTCONFIG1)
+					local bootpart=`dd if=${BOOTCONFIG} bs=1 count=1 skip=108 2> /dev/null |hexdump -e '"%d"'`
 					if [ ${bootpart} -eq 0 ]; then
 						echo force change "BOOTCONFIG"
-						echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=88
-						echo -en '\x01' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=108
-						echo -en '\x01' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=88
-						echo -en '\x01' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=108
+						echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=88
+						echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=108
+						echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=88
+						echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=108
 					fi
 				;;
 				*)
