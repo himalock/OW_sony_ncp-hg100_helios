@@ -85,10 +85,10 @@ emmc_do_upgrade() {
 					local bootpart=`dd if=${BOOTCONFIG} bs=1 count=1 skip=108 2> /dev/null |hexdump -e '"%d"'`
 					if [ ${bootpart} -eq 0 ]; then
 						echo force change "BOOTCONFIG"
-						echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=88
-						echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=108
-						echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=88
-						echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=108
+						echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=88 conv=notrunc
+						echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=108 conv=notrunc
+						echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=88 conv=notrunc
+						echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=108 conv=notrunc
 					fi
 				;;
 				*)
