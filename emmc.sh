@@ -2,20 +2,6 @@
 
 . /lib/functions.sh
 
-find_mmc_part() {
-	local FINDNAME=$1
-	local DEVNAME PARTNAME
-
-	if grep -q "$FINDNAME" /proc/mtd; then
-		echo "" && return 0
-	fi
-
-	for DEVNAME in /sys/block/mmcblk0/mmcblk*p*; do
-		PARTNAME=$(grep PARTNAME ${DEVNAME}/uevent | cut -f2 -d'=')
-		[ "$PARTNAME" = "$FINDNAME" ] && echo "/dev/$(basename $DEVNAME)" && return 0
-	done
-}
-
 get_active_part() {
 	local root rootfs
 
