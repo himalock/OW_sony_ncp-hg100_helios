@@ -3,7 +3,7 @@
 . /lib/functions.sh
 
 get_active_part() {
-	local root rootfs
+	local rootfs
 
 	if read cmdline < /proc/cmdline; then
 		case "$cmdline" in
@@ -63,25 +63,19 @@ emmc_do_upgrade() {
 		sony,ncp-hg100)
 			kernel_dev=$(find_mmc_part 0:HLOS_1)
 			rootfs_dev=$(find_mmc_part rootfs_1)
-			case "${rootfs}" in
-				"rootfs"|\
-				"")
-					local BOOTCONFIG=$(find_mmc_part 0:BOOTCONFIG)
-					local BOOTCONFIG1=$(find_mmc_part 0:BOOTCONFIG1)
-					local bootpart=$(dd if=${BOOTCONFIG} bs=1 count=1 skip=108 2> /dev/null |hexdump -e '"%d"')
-					if [ ${bootpart} -eq 0 ]; then
-						echo force change "BOOTCONFIG"
-						echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=88 conv=notrunc
-						echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=108 conv=notrunc
-						echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=88 conv=notrunc
-						echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=108 conv=notrunc
-					fi
-				;;
-				*)
-					echo no change boot partition settings
-				;;
-			esac
-			;;
+
+			local BOOTCONFIG=$(find_mmc_part 0:BOOTCONFIG)
+			local BOOTCONFIG1=$(find_mmc_part 0:BOOTCONFIG1)
+			local bootpart=$(dd if=${BOOTCONFIG} bs=1 count=1 skip=108 2> /dev/null |hexdump -e '"%d"')
+			if [ ${bootpart} -eq 0 ]; then
+				echo force change "BOOTCONFIG"
+				echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=88 conv=notrunc
+				echo -en '\x01' | dd of=${BOOTCONFIG} bs=1 count=1 seek=108 conv=notrunc
+				echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=88 conv=notrunc
+				echo -en '\x01' | dd of=${BOOTCONFIG1} bs=1 count=1 seek=108 conv=notrunc
+			else
+				echo no change boot partition settings
+			fi
 		*)
 			return 1
 		;;
