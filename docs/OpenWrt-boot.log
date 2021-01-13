@@ -1,4 +1,5 @@
-(IPQ40xx) # run boottftp
+(IPQ40xx) # tftpboot 0x84000000 openwrt-ipq40xx-generic-sony_ncp-hg100-initramfs-fit-uImage.itb
+(IPQ40xx) # bootm
 eth0 PHY0 Down Speed :10 Half duplex
 eth0 PHY1 Down Speed :10 Half duplex
 eth0 PHY2 Down Speed :10 Half duplex

@@ -26,7 +26,6 @@ SPI Memory
  adesto2018 45DB021E //mcu firmware?
  adesto2018 25DF321A //touchpanel firmware?
 
-
 Sony OSS: https://oss.sony.net/Products/Linux/Others/NCP-HG100_v14423.html
 
 led1 wan
@@ -42,7 +41,6 @@ usb2 = modem = WWAN0
 usb3 = external
 
 Partition Map for MMC device 0      --  Partition Type: EFI     
- 
 Part    Name    Start LBA   End LBA Size(dec)   Size(hex)
 1   0:SBL1  0x00000022  0x00000421  524288  80000
 2   0:BOOTCONFIG    0x00000422  0x00000821  524288  80000
@@ -61,24 +59,19 @@ Part    Name    Start LBA   End LBA Size(dec)   Size(hex)
 15  rootfs  0x0000AE22  0x0004AE21  134217728   8000000
 16  rootfs_1    0x0004AE22  0x0008AE21  134217728   8000000
 17  rootfs_data 0x0008AE22  0x003C6531  1735270400  676E2000
- 
 
 bootconsole
 setenv bootargs console=ttyMSM0,115200n8
 bootipq debug
 
-
 :touchpanel CY8C enable
 i2cset -y 1 0x14 0x0f 1
-
 
 :bootpartition config
 BOOTCONFIG Partition support
 /linux-4.4/drivers/platform/ipq/
 CONFIG_BOOTCONFIG_PARTITION=m
 CONFIG_NUM_ALT_PARTITION=8
-
-mmcblk0p2 0:BOOTCONFIG
 
 uint32 SMEM_DUAL_BOOTINFO_MAGIC_START 0xA3A2A1A0
 uint32 age (flash count)
