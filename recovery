@@ -1,0 +1,11 @@
+#!/bin/sh
+echo -en '\x00' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=28 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=48 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=68 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=88 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p2 bs=1 count=1 seek=108 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=28 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=48 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=68 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=88 conv=notrunc
+echo -en '\x00' | dd of=/dev/mmcblk0p7 bs=1 count=1 seek=108 conv=notrunc
