@@ -156,7 +156,7 @@ index 5582696759..df3a9811f4 100644
  		zyxel_do_upgrade "$1"
  		;;
 diff --git a/target/linux/ipq40xx/image/generic.mk b/target/linux/ipq40xx/image/generic.mk
-index 9cd50e23ff..c562999853 100644
+index 9cd50e23ff..6e1cb13069 100644
 --- a/target/linux/ipq40xx/image/generic.mk
 +++ b/target/linux/ipq40xx/image/generic.mk
 @@ -759,6 +759,23 @@ define Device/qxwlan_e2600ac-c2
@@ -176,7 +176,7 @@ index 9cd50e23ff..c562999853 100644
 +	IMAGES += kernel.bin rootfs.bin
 +	IMAGE/kernel.bin := append-kernel
 +	IMAGE/rootfs.bin := append-rootfs
-+	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 kmod-mcu-i2c i2c-tools qmi-utils e2fsprogs kmod-fs-ext4 kmod-fs-f2fs f2fs-tools
++	DEVICE_PACKAGES := ipq-wifi-sony_ncp-hg100 kmod-mcu-i2c i2c-tools modemmanager mbim-utils qmi-utils e2fsprogs kmod-fs-ext4 kmod-fs-f2fs f2fs-tools
 +endef
 +TARGET_DEVICES += sony_ncp-hg100
 +
