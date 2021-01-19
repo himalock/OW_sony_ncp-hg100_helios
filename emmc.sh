@@ -21,7 +21,6 @@ do_flash_partition() {
 	local mmcblk=$2
 
 	if [ -e "$mmcblk" ]; then
-		#dd bs=4K if=/dev/zero of=${mmcblk}
 		echo dd bs=4K if=${bin} of=${mmcblk}
 		dd bs=4K if=${bin} of=${mmcblk}
 	fi
@@ -54,8 +53,8 @@ do_emmc_upgrade_tar() {
 
 emmc_do_upgrade() {
 	local tar_file=$1
-	local kernel_dev
-	local rootfs_dev
+	local kernel_dev=$(find_mmc_part kernel)
+	local rootfs_dev=$(find_mmc_part rootfs)
 	local board=$(board_name)
 	local rootfs="$(get_active_part)"
 
@@ -76,6 +75,7 @@ emmc_do_upgrade() {
 			else
 				echo no change boot partition settings
 			fi
+		;;
 		*)
 			return 1
 		;;
